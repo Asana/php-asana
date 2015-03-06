@@ -1,0 +1,20 @@
+{
+    "name": "asana/asana",
+    "description": "",
+    "type": "library",
+    "keywords": [],
+    "homepage": "http://www.example.org/",
+    "license": "",
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "require-dev": {
+        "phpunit/PHPUnit": "4.5.*",
+        "instaclick/php-code-sniffer": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "Asana\\": "src/"
+        }
+    }
+}
