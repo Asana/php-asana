@@ -2,14 +2,14 @@
 
 namespace Asana;
 
-use Asana\Client;
+use Asana\Test\AsanaTest;
 
-class ClientTest extends \PHPUnit_Framework_TestCase
+class ClientTest extends Test\AsanaTest
 {
-    public function testPushAndPop()
+    public function testClientGet()
     {
-        $client = new Client();
-
-        $this->assertEquals(0, 0);
+        $this->dispatcher->registerResponse('/users/me', 200, '{ "data": { "name": "test" }}');
+        $result = $this->client->users->me();
+        $this->assertEquals($result->name, "test");
     }
 }

@@ -6,7 +6,8 @@
     "homepage": "http://www.example.org/",
     "license": "",
     "require": {
-        "php": ">=5.3.3"
+        "php": ">=5.3.3",
+        "nategood/httpful": "~0.2"
     },
     "require-dev": {
         "phpunit/PHPUnit": "4.5.*",
