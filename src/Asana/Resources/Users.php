@@ -2,12 +2,8 @@
 
 namespace Asana\Resources;
 
-use Asana\Resources\Resource;
+use Asana\Resources\Gen\UsersBase;
 
-class Users extends Resource
+class Users extends UsersBase
 {
-    public function me()
-    {
-        return $this->dispatcher->get('/users/me');
-    }
 }

@@ -8,22 +8,29 @@ class Dispatcher
 {
     public $base = 'https://app.asana.com/api/1.0';
 
-    public function get($path)
+    public function request($method, $path, $headers = null, $query = null, $body = null)
     {
         $uri = $this->base . $path;
+        if ($query != null) {
+            $uri .= "?" . http_build_query($query);
+        }
 
         $request = $this->createRequest()
-            ->method("GET")
+            ->method($method)
             ->uri($uri)
             ->expectsJson();
 
+        if ($headers != null) {
+            $request->addHeaders($headers);
+        }
+
+        if ($body != null) {
+            $request->sendsJson()->body(json_encode($body));
+        }
+
         $this->authenticate($request);
 
-        $response = $request->send();
-
-        $body = $response->body;
-
-        return $body->data;
+        return $request->send();
     }
 
     protected function createRequest()
