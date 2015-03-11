@@ -9,10 +9,9 @@ class ClientTest extends Test\AsanaTest
 {
     public function testClientGet()
     {
-        $res = '{ "data": { "name": "test" }}';
-        $this->dispatcher->registerResponse('/users/me', 200, $res);
+        $this->dispatcher->registerResponse('/users/me', 200, '{ "data": "foo" }');
         $result = $this->client->users->me();
-        $this->assertEquals($result->name, "test");
+        $this->assertEquals($result, 'foo');
     }
 
     /**
@@ -20,8 +19,7 @@ class ClientTest extends Test\AsanaTest
      */
     public function testNotAuthorized()
     {
-        $res = '{ "errors": [{ "message": "Not Authorized" }]}';
-        $this->dispatcher->registerResponse('/users/me', 401, $res);
+        $this->dispatcher->registerResponse('/users/me', 401, '{ "errors": [{ "message": "Not Authorized" }]}');
         $this->client->users->me();
     }
 
@@ -30,8 +28,7 @@ class ClientTest extends Test\AsanaTest
      */
     public function testInvalidRequest()
     {
-        $res = '{ "errors": [{ "message": "workspace: Missing input" }] }';
-        $this->dispatcher->registerResponse('/tasks', 400, $res);
+        $this->dispatcher->registerResponse('/tasks', 400, '{ "errors": [{ "message": "workspace: Missing input" }] }');
         $this->client->tasks->findAll();
     }
 
@@ -50,7 +47,7 @@ class ClientTest extends Test\AsanaTest
      */
     public function testNotFound()
     {
-        $res = '{ "errors": [ { "message": "user: Unknown object: 1234124312341" } ] }';
+        $res = '{ "errors": [ { "message": "user: Unknown object: 1234" } ] }';
         $this->dispatcher->registerResponse('/users/1234', 404, $res);
         $this->client->users->findById(1234);
     }
@@ -58,99 +55,51 @@ class ClientTest extends Test\AsanaTest
     /**
      * @expectedException Asana\Errors\ForbiddenError
      */
-    public function testNotForbidden()
+    public function testForbidden()
     {
         $res = '{ "errors": [ { "message": "user: Forbidden" } ] }';
         $this->dispatcher->registerResponse('/users/1234', 403, $res);
         $this->client->users->findById(1234);
     }
 
-    // def test_option_pretty(self):
-    //     res = {
-    //         "data": { "email": "sanchez@...", "id": 999, "name": "Greg Sanchez" }
-    //     }
-    //     # responses.add(GET, 'http://app/users/me?opt_pretty', status=200, body=json.dumps(res), match_querystring=True)
-    //     responses.add(GET, 'http://app/users/me?opt_pretty=true', status=200, body=json.dumps(res), match_querystring=True)
-    //     self.assertEqual(self.client.users.me(pretty=True), res['data']) 
+    public function testOptionPretty()
+    {
+        $this->dispatcher->registerResponse('/users/me?opt_pretty=true', 200, '{ "data": "foo" }');
+        $this->assertEquals($this->client->users->me(null, array('pretty' => true)), 'foo');
+    }
 
-    // def test_option_fields(self):
-    //     res = {
-    //         "data": { "name": "Make a list", "notes": "Check it twice!", "id": 1224 }
-    //     }
-    //     responses.add(GET, 'http://app/tasks/1224?opt_fields=name%2Cnotes', status=200, body=json.dumps(res), match_querystring=True)
-    //     self.assertEqual(self.client.tasks.find_by_id(1224, fields=['name','notes']), res['data'])
+    public function testOptionFields()
+    {
+        $this->dispatcher->registerResponse('/tasks/1224?opt_fields=name%2Cnotes', 200, '{ "data": "foo" }');
+        $result = $this->client->tasks->findById(1224, null, array("fields" => array('name','notes')));
+        $this->assertEquals($result, 'foo');
+    }
 
-    // def test_option_expand(self):
-    //     req = {
-    //         'data': { 'assignee': 1234 },
-    //         'options': { 'expand' : ['projects'] }
-    //     }
-    //     res = {
-    //         "data": {
-    //             "id": 1001,
-    //             "projects": [
-    //                 {
-    //                     "archived": false,
-    //                     "created_at": "",
-    //                     "followers": [],
-    //                     "modified_at": "",
-    //                     "notes": "",
-    //                     "id": 1331,
-    //                     "name": "Things to buy"
-    //                 }
-    //             ]
-    //             # ...
-    //         }
-    //     }
-    //     responses.add(PUT, 'http://app/tasks/1001', status=200, body=json.dumps(res), match_querystring=True)
-    //     # -d "assignee=1234" \
-    //     # -d "options.expand=%2Aprojects%2A"
-    //     self.assertEqual(self.client.tasks.update(1001, req['data'], expand=['projects']), res['data'])
-    //     self.assertEqual(json.loads(responses.calls[0].request.body), req)
+    public function testOptionExpand()
+    {
+        $req = '{ "data": { "assignee": 1234 }, "options": { "expand" : ["projects"] } }';
+        $this->dispatcher->registerResponse('/tasks/1001', 200, '{ "data": "foo" }');
+        $result = $this->client->tasks->update(1001, array('assignee' => 1234), array('expand' => array('projects')));
+        $this->assertEquals($result, 'foo');
+        $this->assertEquals(json_decode($this->dispatcher->calls[0]['request']->payload), json_decode($req));
+    }
 
-    // def test_pagination(self):
-    //     res = {
-    //         "data": [
-    //             { "id": 1000, "name": "Task 1" }
-    //         ],
-    //         "next_page": {
-    //             "offset": "yJ0eXAiOiJKV1QiLCJhbGciOiJIRzI1NiJ9",
-    //             "path": "/tasks?project=1337&limit=5&offset=yJ0eXAiOiJKV1QiLCJhbGciOiJIRzI1NiJ9",
-    //             "uri": "https://app.asana.com/api/1.0/tasks?project=1337&limit=5&offset=yJ0eXAiOiJKV1QiLCJhbGciOiJIRzI1NiJ9"
-    //         }
-    //     }
-    //     responses.add(GET, 'http://app/projects/1337/tasks?limit=5&offset=eyJ0eXAiOJiKV1iQLCJhbGciOiJIUzI1NiJ9', status=200, body=json.dumps(res), match_querystring=True)
-
-    //     self.assertEqual(self.client.tasks.find_by_project(1337, { 'limit': 5, 'offset': 'eyJ0eXAiOJiKV1iQLCJhbGciOiJIUzI1NiJ9'}), res['data'])
-
-    // @unittest.skip("iterator_type='pages' disabled")
-    // def test_page_iterator_item_limit_lt_items(self):
-    //     responses.add(GET, 'http://app/projects/1337/tasks?limit=2', status=200, body=json.dumps({ 'data': ['a', 'b'], 'next_page': { 'offset': 'a', 'path': '/projects/1337/tasks?limit=2&offset=a' } }), match_querystring=True)
-    //     responses.add(GET, 'http://app/projects/1337/tasks?limit=2&offset=a', status=200, body=json.dumps({ 'data': ['c'], 'next_page': null }), match_querystring=True)
-
-    //     iterator = self.client.tasks.find_by_project(1337, item_limit=2, page_size=2, iterator_type='pages')
-    //     self.assertEqual(next(iterator), ['a', 'b'])
-    //     self.assertRaises(StopIteration, next, (iterator))
-
-    // @unittest.skip("iterator_type='pages' disabled")
-    // def test_page_iterator_item_limit_eq_items(self):
-    //     responses.add(GET, 'http://app/projects/1337/tasks?limit=2', status=200, body=json.dumps({ 'data': ['a', 'b'], 'next_page': { 'offset': 'a', 'path': '/projects/1337/tasks?limit=2&offset=a' } }), match_querystring=True)
-    //     responses.add(GET, 'http://app/projects/1337/tasks?limit=1&offset=a', status=200, body=json.dumps({ 'data': ['c'], 'next_page': null }), match_querystring=True)
-
-    //     iterator = self.client.tasks.find_by_project(1337, item_limit=3, page_size=2, iterator_type='pages')
-    //     self.assertEqual(next(iterator), ['a', 'b'])
-    //     self.assertEqual(next(iterator), ['c'])
-    //     self.assertRaises(StopIteration, next, (iterator))
-
-    // @unittest.skip("iterator_type='pages' disabled")
-    // def test_page_iterator_item_limit_gt_items(self):
-    //     responses.add(GET, 'http://app/projects/1337/tasks?limit=2', status=200, body=json.dumps({ 'data': ['a', 'b'], 'next_page': { 'offset': 'a', 'path': '/projects/1337/tasks?limit=2&offset=a' } }), match_querystring=True)
-    //     responses.add(GET, 'http://app/projects/1337/tasks?limit=2&offset=a', status=200, body=json.dumps({ 'data': ['c'], 'next_page': null }), match_querystring=True)
-
-    //     iterator = self.client.tasks.find_by_project(1337, item_limit=4, page_size=2, iterator_type='pages')
-    //     self.assertEqual(next(iterator), ['a', 'b'])
-    //     self.assertEqual(next(iterator), ['c'])
-    //     self.assertRaises(StopIteration, next, (iterator))
+    public function testPagination()
+    {
+        $res = '{
+            "data": [
+                { "id": 1000, "name": "Task 1" }
+            ],
+            "next_page": {
+                "offset": "ABCDEF",
+                "path": "/tasks?project=1337&limit=5&offset=ABCDEF",
+                "uri": "https://app.asana.com/api/1.0/tasks?project=1337&limit=5&offset=ABCDEF"
+            }
+        }';
+        $this->dispatcher->registerResponse('/projects/1337/tasks?limit=5&offset=ABCDEF', 200, $res);
+        $result = $this->client->tasks->findByProject(1337, array('limit' => 5, 'offset' => 'ABCDEF'));
+        $this->assertEquals($result, json_decode($res)->data);
+    }
 
     // def test_item_iterator_item_limit_lt_items(self):
     //     responses.add(GET, 'http://app/projects/1337/tasks?limit=2', status=200, body=json.dumps({ 'data': ['a', 'b'], 'next_page': { 'offset': 'a', 'path': '/projects/1337/tasks?limit=2&offset=a' } }), match_querystring=True)
@@ -241,34 +190,45 @@ class ClientTest extends Test\AsanaTest
     //     self.assertEqual(self.client.users.me(), 'me')
     //     self.assertEqual(time_sleep.mock_calls, [call(1.0), call(2.0), call(4.0)])
 
+    public function testGetNamedParameters()
+    {
+        $this->dispatcher->registerResponse('/tasks?workspace=14916&assignee=me', 200, '{ "data": "dummy data" }');
+        $result = $this->client->tasks->findAll(array('workspace' => 14916, 'assignee' => 'me'));
+        $this->assertEquals($result, 'dummy data');
+    }
 
-    // def test_get_named_parameters(self):
-    //     responses.add(GET, 'http://app/tasks?workspace=14916&assignee=me', status=200, body=json.dumps({ 'data': 'dummy data' }), match_querystring=True)
+    public function testPostNamedParameters()
+    {
+        $req = '{
+            "data": {
+                "assignee": 1235,
+                "followers": [5678],
+                "name": "Hello, world."
+            }
+        }';
+        $this->dispatcher->registerResponse('/tasks', 201, '{ "data": "dummy data" }');
+        $result = $this->client->tasks->create(
+            array('assignee' => 1235, 'followers' => array(5678), 'name' => "Hello, world.")
+        );
+        $this->assertEquals($result, 'dummy data');
+        $this->assertEquals(json_decode($this->dispatcher->calls[0]['request']->payload), json_decode($req));
+    }
 
-    //     self.assertEqual(self.client.tasks.find_all(workspace=14916, assignee="me"), 'dummy data')
-
-    // def test_post_named_parameters(self):
-    //     responses.add(POST, 'http://app/tasks', status=201, body='{ "data": "dummy data" }', match_querystring=True)
-
-    //     self.assertEqual(self.client.tasks.create(assignee=1235, followers=[5678], name="Hello, world."), 'dummy data')
-    //     self.assertEqual(json.loads(responses.calls[0].request.body), {
-    //         "data": {
-    //             "assignee": 1235,
-    //             "followers": [5678],
-    //             "name": "Hello, world."
-    //         }
-    //     })
-
-    // def test_put_named_parameters(self):
-    //     responses.add(PUT, 'http://app/tasks/1001', status=200, body='{ "data": "dummy data" }', match_querystring=True)
-
-    //     self.assertEqual(self.client.tasks.update(1001, assignee=1235, followers=[5678], name="Hello, world."), 'dummy data')
-    //     self.assertEqual(json.loads(responses.calls[0].request.body), {
-    //         "data": {
-    //             "assignee": 1235,
-    //             "followers": [5678],
-    //             "name": "Hello, world."
-    //         }
-    //     })
-
+    public function testPutNamedParameters()
+    {
+        $req = '{
+            "data": {
+                "assignee": 1235,
+                "followers": [5678],
+                "name": "Hello, world."
+            }
+        }';
+        $this->dispatcher->registerResponse('/tasks/1001', 200, '{ "data": "dummy data" }');
+        $result = $this->client->tasks->update(
+            1001,
+            array('assignee' => 1235, 'followers' => array(5678), 'name' => "Hello, world.")
+        );
+        $this->assertEquals($result, 'dummy data');
+        $this->assertEquals(json_decode($this->dispatcher->calls[0]['request']->payload), json_decode($req));
+    }
 }

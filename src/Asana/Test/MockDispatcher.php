@@ -10,6 +10,7 @@ class MockDispatcher extends \Asana\Dispatcher\Dispatcher
     public function __construct()
     {
         $this->responses = array();
+        $this->calls = array();
     }
     protected function createRequest()
     {
@@ -24,6 +25,9 @@ class MockDispatcher extends \Asana\Dispatcher\Dispatcher
         $res = $this->responses[$request->uri];
         $headers = "HTTP/1.1 " . $res[0] . " OK\r\nContent-Type: application/json\r\n\r\n";
         $body = $res[1];
-        return new \Httpful\Response($body, $headers, $request);
+
+        $response = new \Httpful\Response($body, $headers, $request);
+        $this->calls[] = array('request' => $request, 'response' => $response);
+        return $response;
     }
 }
