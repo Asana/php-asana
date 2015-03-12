@@ -9,6 +9,8 @@ use Asana\Errors\AsanaError;
 use Asana\Errors\RetryableAsanaError;
 use Asana\Errors\RateLimitEnforcedError;
 
+use Asana\Iterator\CollectionPageIterator;
+
 class Client
 {
     const RETRY_DELAY = 1.0;
@@ -65,7 +67,11 @@ class Client
 
                 Errors\AsanaError::handleErrorResponse($response);
 
-                return $response->body->data;
+                if ($options['full_payload']) {
+                    return $response->body;
+                } else {
+                    return $response->body->data;
+                }
             } catch (RetryableAsanaError $e) {
                 if ($retryCount < $options['max_retries']) {
                     $this->handleRetryableError($e, $retryCount);
@@ -100,7 +106,17 @@ class Client
 
     public function getCollection($path, $query, $options = array())
     {
-        return $this->get($path, $query, $options);
+        $options = array_merge($this->options, $options);
+        if ($options['iterator_type'] == 'items') {
+            $pageIterator = new CollectionPageIterator($this, $path, $query, $options);
+            return $pageIterator->items();
+        } elseif ($options['iterator_type'] == 'pages') {
+            $pageIterator = new CollectionPageIterator($this, $path, $query, $options);
+            return $pageIterator;
+        } elseif ($options['iterator_type'] == false) {
+            return $this->get($path, $query, $options);
+        }
+        throw Exception('Unknown value for "iterator_type" option: ' . (string)$options['iterator_type']);
     }
 
     public function post($path, $data, $options = array())
