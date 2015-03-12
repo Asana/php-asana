@@ -1,18 +1,34 @@
 <?php
 
-namespace Asana\Test;
+namespace Asana\Test {
 
-use Asana\Client;
-use Asana\Test\MockDispatcher;
+    use Asana\Client;
+    use Asana\Test\MockDispatcher;
 
-class AsanaTest extends \PHPUnit_Framework_TestCase
-{
-    protected $client;
-
-    protected function setUp()
+    class AsanaTest extends \PHPUnit_Framework_TestCase
     {
-        $this->dispatcher = new MockDispatcher();
-        $this->dispatcher->base = '';
-        $this->client = new Client($this->dispatcher);
+        protected $client;
+
+        protected function setUp()
+        {
+            global $sleepCalls;
+
+            $this->dispatcher = new MockDispatcher();
+            $this->dispatcher->base = '';
+            $this->client = new Client($this->dispatcher);
+            $sleepCalls = array();
+        }
     }
+
+}
+
+// This is hacky way of mocking "sleep", since it's called within the Asana namespace we can redefine it.
+namespace Asana {
+
+    function sleep($time)
+    {
+        global $sleepCalls;
+        $sleepCalls[] = $time;
+    }
+
 }

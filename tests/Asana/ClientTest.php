@@ -3,13 +3,14 @@
 namespace Asana;
 
 use Asana\Test\AsanaTest;
-use Asana\Error;
+use Asana\Errors\Error;
+use Asana\Errors\ServerError;
 
 class ClientTest extends Test\AsanaTest
 {
     public function testClientGet()
     {
-        $this->dispatcher->registerResponse('/users/me', 200, '{ "data": "foo" }');
+        $this->dispatcher->registerResponse('/users/me', 200, null, '{ "data": "foo" }');
         $result = $this->client->users->me();
         $this->assertEquals($result, 'foo');
     }
@@ -19,7 +20,7 @@ class ClientTest extends Test\AsanaTest
      */
     public function testNotAuthorized()
     {
-        $this->dispatcher->registerResponse('/users/me', 401, '{ "errors": [{ "message": "Not Authorized" }]}');
+        $this->dispatcher->registerResponse('/users/me', 401, null, '{ "errors": [{ "message": "Not Authorized" }]}');
         $this->client->users->me();
     }
 
@@ -28,7 +29,7 @@ class ClientTest extends Test\AsanaTest
      */
     public function testInvalidRequest()
     {
-        $this->dispatcher->registerResponse('/tasks', 400, '{ "errors": [{ "message": "workspace: Missing input" }] }');
+        $this->dispatcher->registerResponse('/tasks', 400, null, '{ "errors": [{ "message": "Missing input" }] }');
         $this->client->tasks->findAll();
     }
 
@@ -38,7 +39,7 @@ class ClientTest extends Test\AsanaTest
     public function testServerError()
     {
         $res = '{ "errors": [ { "message": "Server Error", "phrase": "6 sad squid snuggle softly" } ] }';
-        $this->dispatcher->registerResponse('/users/me', 500, $res);
+        $this->dispatcher->registerResponse('/users/me', 500, null, $res);
         $this->client->users->me();
     }
 
@@ -48,7 +49,7 @@ class ClientTest extends Test\AsanaTest
     public function testNotFound()
     {
         $res = '{ "errors": [ { "message": "user: Unknown object: 1234" } ] }';
-        $this->dispatcher->registerResponse('/users/1234', 404, $res);
+        $this->dispatcher->registerResponse('/users/1234', 404, null, $res);
         $this->client->users->findById(1234);
     }
 
@@ -58,19 +59,19 @@ class ClientTest extends Test\AsanaTest
     public function testForbidden()
     {
         $res = '{ "errors": [ { "message": "user: Forbidden" } ] }';
-        $this->dispatcher->registerResponse('/users/1234', 403, $res);
+        $this->dispatcher->registerResponse('/users/1234', 403, null, $res);
         $this->client->users->findById(1234);
     }
 
     public function testOptionPretty()
     {
-        $this->dispatcher->registerResponse('/users/me?opt_pretty=true', 200, '{ "data": "foo" }');
+        $this->dispatcher->registerResponse('/users/me?opt_pretty=true', 200, null, '{ "data": "foo" }');
         $this->assertEquals($this->client->users->me(null, array('pretty' => true)), 'foo');
     }
 
     public function testOptionFields()
     {
-        $this->dispatcher->registerResponse('/tasks/1224?opt_fields=name%2Cnotes', 200, '{ "data": "foo" }');
+        $this->dispatcher->registerResponse('/tasks/1224?opt_fields=name%2Cnotes', 200, null, '{ "data": "foo" }');
         $result = $this->client->tasks->findById(1224, null, array("fields" => array('name','notes')));
         $this->assertEquals($result, 'foo');
     }
@@ -78,7 +79,7 @@ class ClientTest extends Test\AsanaTest
     public function testOptionExpand()
     {
         $req = '{ "data": { "assignee": 1234 }, "options": { "expand" : ["projects"] } }';
-        $this->dispatcher->registerResponse('/tasks/1001', 200, '{ "data": "foo" }');
+        $this->dispatcher->registerResponse('/tasks/1001', 200, null, '{ "data": "foo" }');
         $result = $this->client->tasks->update(1001, array('assignee' => 1234), array('expand' => array('projects')));
         $this->assertEquals($result, 'foo');
         $this->assertEquals(json_decode($this->dispatcher->calls[0]['request']->payload), json_decode($req));
@@ -96,7 +97,7 @@ class ClientTest extends Test\AsanaTest
                 "uri": "https://app.asana.com/api/1.0/tasks?project=1337&limit=5&offset=ABCDEF"
             }
         }';
-        $this->dispatcher->registerResponse('/projects/1337/tasks?limit=5&offset=ABCDEF', 200, $res);
+        $this->dispatcher->registerResponse('/projects/1337/tasks?limit=5&offset=ABCDEF', 200, null, $res);
         $result = $this->client->tasks->findByProject(1337, array('limit' => 5, 'offset' => 'ABCDEF'));
         $this->assertEquals($result, json_decode($res)->data);
     }
@@ -139,62 +140,68 @@ class ClientTest extends Test\AsanaTest
     //     self.assertEqual(next(iterator), 'c')
     //     self.assertRaises(StopIteration, next, (iterator))
 
-    // @patch('time.sleep')
-    // def test_rate_limiting(self, time_sleep):
-    //     res = [
-    //         (429, { 'Retry-After': '10' }, '{}'),
-    //         (200, {}, json.dumps({ 'data': 'me' }))
-    //     ]
-    //     responses.add_callback(responses.GET, 'http://app/users/me', callback=lambda r: res.pop(0), content_type='application/json')
+    public function testRateLimiting()
+    {
+        global $sleepCalls;
+        $res = array(
+            array(429, array('Retry-After' => '0.1' ), '{}'),
+            array(200, null, '{ "data": "me" }')
+        );
+        $this->dispatcher->registerResponse('/users/me', function () use (&$res) { return array_shift($res); });
+        $result = $this->client->users->me();
+        $this->assertEquals($result, 'me');
+        $this->assertEquals(count($this->dispatcher->calls), 2);
+        $this->assertEquals($sleepCalls, array(0.1));
+    }
 
-    //     self.assertEqual(self.client.users.me(), 'me')
-    //     self.assertEqual(len(responses.calls), 2)
-    //     self.assertEqual(time_sleep.mock_calls, [call(10.0)])
+    public function testRateLimitedTwice()
+    {
+        global $sleepCalls;
+        $res = array(
+            array(429, array('Retry-After' => '0.1' ), '{}'),
+            array(429, array('Retry-After' => '0.1' ), '{}'),
+            array(200, null, '{ "data": "me" }')
+        );
+        $this->dispatcher->registerResponse('/users/me', function () use (&$res) { return array_shift($res); });
+        $result = $this->client->users->me();
+        $this->assertEquals($result, 'me');
+        $this->assertEquals(count($this->dispatcher->calls), 3);
+        $this->assertEquals($sleepCalls, array(0.1, 0.1));
+    }
 
-    // @patch('time.sleep')
-    // def test_rate_limited_twice(self, time_sleep):
-    //     res = [
-    //         (429, { 'Retry-After': '10' }, '{}'),
-    //         (429, { 'Retry-After': '1' }, '{}'),
-    //         (200, {}, json.dumps({ 'data': 'me' }))
-    //     ]
-    //     responses.add_callback(responses.GET, 'http://app/users/me', callback=lambda r: res.pop(0), content_type='application/json')
+    public function testServerErrorRetry()
+    {
+        global $sleepCalls;
+        $res = array(
+            array(500, null, '{}'),
+            array(200, null, '{ "data": "me" }')
+        );
+        $this->dispatcher->registerResponse('/users/me', function () use (&$res) { return array_shift($res); });
+        $result = $this->client->users->me(null, array('max_retries' => 1));
+        $this->assertEquals(count($this->dispatcher->calls), 2);
+        $this->assertEquals($sleepCalls, array(1.0));
+    }
 
-    //     self.assertEqual(self.client.users.me(), 'me')
-    //     self.assertEqual(len(responses.calls), 3)
-    //     self.assertEqual(time_sleep.mock_calls, [call(10.0), call(1.0)])
-
-    // @patch('time.sleep')
-    // def test_server_error_retry(self, time_sleep):
-    //     res = [
-    //         (500, {}, '{}'),
-    //         (500, {}, '{}'),
-    //         (500, {}, '{}'),
-    //         (200, {}, json.dumps({ 'data': 'me' }))
-    //     ]
-    //     responses.add_callback(responses.GET, 'http://app/users/me', callback=lambda r: res.pop(0), content_type='application/json')
-
-    //     self.assertRaises(asana.error.ServerError, self.client.users.me, max_retries=2)
-    //     self.assertEqual(time_sleep.mock_calls, [call(1.0), call(2.0)])
-
-    // @patch('time.sleep')
-    // def test_server_error_retry_backoff(self, time_sleep):
-    //     res = [
-    //         (500, {}, '{}'),
-    //         (500, {}, '{}'),
-    //         (500, {}, '{}'),
-    //         (200, {}, json.dumps({ 'data': 'me' }))
-    //     ]
-    //     responses.add_callback(responses.GET, 'http://app/users/me', callback=lambda r: res.pop(0), content_type='application/json')
-
-    //     self.assertEqual(self.client.users.me(), 'me')
-    //     self.assertEqual(time_sleep.mock_calls, [call(1.0), call(2.0), call(4.0)])
+    public function testServerErrorRetryBackoff()
+    {
+        global $sleepCalls;
+        $res = array(
+            array(500, null, '{}'),
+            array(500, null, '{}'),
+            array(500, null, '{}'),
+            array(200, null, '{ "data": "me" }')
+        );
+        $this->dispatcher->registerResponse('/users/me', function () use (&$res) { return array_shift($res); });
+        $result = $this->client->users->me();
+        $this->assertEquals(count($this->dispatcher->calls), 4);
+        $this->assertEquals($sleepCalls, array(1.0, 2.0, 4.0));
+    }
 
     public function testGetNamedParameters()
     {
-        $this->dispatcher->registerResponse('/tasks?workspace=14916&assignee=me', 200, '{ "data": "dummy data" }');
+        $this->dispatcher->registerResponse('/tasks?workspace=14916&assignee=me', 200, null, '{ "data": "foo" }');
         $result = $this->client->tasks->findAll(array('workspace' => 14916, 'assignee' => 'me'));
-        $this->assertEquals($result, 'dummy data');
+        $this->assertEquals($result, 'foo');
     }
 
     public function testPostNamedParameters()
@@ -206,11 +213,11 @@ class ClientTest extends Test\AsanaTest
                 "name": "Hello, world."
             }
         }';
-        $this->dispatcher->registerResponse('/tasks', 201, '{ "data": "dummy data" }');
+        $this->dispatcher->registerResponse('/tasks', 201, null, '{ "data": "foo" }');
         $result = $this->client->tasks->create(
             array('assignee' => 1235, 'followers' => array(5678), 'name' => "Hello, world.")
         );
-        $this->assertEquals($result, 'dummy data');
+        $this->assertEquals($result, 'foo');
         $this->assertEquals(json_decode($this->dispatcher->calls[0]['request']->payload), json_decode($req));
     }
 
@@ -223,12 +230,12 @@ class ClientTest extends Test\AsanaTest
                 "name": "Hello, world."
             }
         }';
-        $this->dispatcher->registerResponse('/tasks/1001', 200, '{ "data": "dummy data" }');
+        $this->dispatcher->registerResponse('/tasks/1001', 200, null, '{ "data": "foo" }');
         $result = $this->client->tasks->update(
             1001,
             array('assignee' => 1235, 'followers' => array(5678), 'name' => "Hello, world.")
         );
-        $this->assertEquals($result, 'dummy data');
+        $this->assertEquals($result, 'foo');
         $this->assertEquals(json_decode($this->dispatcher->calls[0]['request']->payload), json_decode($req));
     }
 }

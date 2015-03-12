@@ -2,10 +2,15 @@
 
 namespace Asana\Errors;
 
-use Asana\Error;
+use Asana\Errors\AsanaError;
 
-class NotFoundError extends Error
+class NotFoundError extends AsanaError
 {
     const MESSAGE = 'Not Found';
     const STATUS = 404;
+
+    public function __construct($response)
+    {
+        parent::__construct(self::MESSAGE, self::STATUS, $response);
+    }
 }

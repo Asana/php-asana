@@ -1,6 +1,6 @@
 <?php
 
-namespace Asana;
+namespace Asana\Errors;
 
 use Asana\Errors\ForbiddenError;
 use Asana\Errors\InvalidRequestError;
@@ -10,11 +10,13 @@ use Asana\Errors\NotFoundError;
 use Asana\Errors\RateLimitEnforcedError;
 use Asana\Errors\ServerError;
 
-class Error extends \Exception
+class AsanaError extends \Exception
 {
-    public function __construct($request)
+    public function __construct($message, $status, $response)
     {
-        $this->request = $request;
+        $this->message = $message;
+        $this->status = $status;
+        $this->response = $response;
     }
 
     public static function handleErrorResponse($response)

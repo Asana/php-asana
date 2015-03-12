@@ -5,7 +5,9 @@ namespace Asana;
 use Asana\Dispatcher\BaiscAuth;
 use Asana\Resources\Users;
 
-use Asana\Errors;
+use Asana\Errors\AsanaError;
+use Asana\Errors\RetryableAsanaError;
+use Asana\Errors\RateLimitEnforcedError;
 
 class Client
 {
@@ -54,13 +56,34 @@ class Client
 
     public function request($method, $path, $options)
     {
+        $options = array_merge($this->options, $options);
         $requestOptions = $this->parseRequestOptions($options);
+        $retryCount = 0;
+        while (true) {
+            try {
+                $response = $this->dispatcher->request($method, $path, $requestOptions);
 
-        $response = $this->dispatcher->request($method, $path, $requestOptions);
+                Errors\AsanaError::handleErrorResponse($response);
 
-        Error::handleErrorResponse($response);
+                return $response->body->data;
+            } catch (RetryableAsanaError $e) {
+                if ($retryCount < $options['max_retries']) {
+                    $this->handleRetryableError($e, $retryCount);
+                    $retryCount++;
+                } else {
+                    throw $e;
+                }
+            }
+        }
+    }
 
-        return $response->body->data;
+    private function handleRetryableError($e, $retryCount)
+    {
+        if ($e instanceof Errors\RateLimitEnforcedError) {
+            sleep($e->retryAfter);
+        } else {
+            sleep($time = self::RETRY_DELAY * pow(self::RETRY_BACKOFF, $retryCount));
+        }
     }
 
     public function get($path, $query, $options = array())
