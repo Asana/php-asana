@@ -2,7 +2,7 @@
 
 namespace Asana\Dispatcher;
 
-class BasicAuth extends Dispatcher
+class BasicAuthDispatcher extends Dispatcher
 {
     public function __construct($apiKey)
     {

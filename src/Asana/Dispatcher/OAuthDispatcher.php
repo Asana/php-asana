@@ -1,0 +1,42 @@
+<?php
+
+namespace Asana\Dispatcher;
+
+use \OAuth2;
+
+class OAuthDispatcher extends Dispatcher
+{
+    public static $AUTHORIZATION_ENDPOINT = 'https://app.asana.com/-/oauth_authorize';
+    public static $TOKEN_ENDPOINT = 'https://app.asana.com/-/oauth_token';
+
+    public function __construct($options)
+    {
+        $this->clientId = $options['client_id'];
+        $this->clientSecret = isset($options['client_secret']) ? $options['client_secret'] : null;
+        $this->accessToken = isset($options['token']) ? $options['token'] : null;
+        $this->redirectUri = isset($options['redirect_uri']) ? $options['redirect_uri'] : null;
+
+        $this->oauthClient = new \OAuth2\Client($this->clientId, $this->clientSecret);
+    }
+
+    public function authorizationUrl()
+    {
+        return $this->oauthClient->getAuthenticationUrl(OAuthDispatcher::$AUTHORIZATION_ENDPOINT, $this->redirectUri);
+    }
+
+    public function fetchToken($code)
+    {
+        $params = array('code' => $code, 'redirect_uri' => $this->redirectUri);
+        $result = $this->oauthClient->getAccessToken(OAuthDispatcher::$TOKEN_ENDPOINT, 'authorization_code', $params);
+        $this->accessToken = $result['result']['access_token'];
+        return $this->accessToken;
+    }
+
+    protected function authenticate($request)
+    {
+        if ($this->accessToken == null) {
+            throw new \Error("OAuthDispatcher: access token not set");
+        }
+        return $request->addHeader("Authorization", "Bearer " . $this->accessToken);
+    }
+}

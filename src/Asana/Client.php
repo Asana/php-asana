@@ -2,8 +2,8 @@
 
 namespace Asana;
 
-use Asana\Dispatcher\BaiscAuth;
-use Asana\Resources\Users;
+use Asana\Dispatcher\BasicAuthDispatcher;
+use Asana\Dispatcher\OAuthDispatcher;
 
 use Asana\Errors\AsanaError;
 use Asana\Errors\RetryableAsanaError;
@@ -53,7 +53,12 @@ class Client
 
     public static function basicAuth($apiKey, $options = array())
     {
-        return new Client(new Dispatcher\BasicAuth($apiKey), $options);
+        return new Client(new Dispatcher\BasicAuthDispatcher($apiKey), $options);
+    }
+
+    public static function oauth($credentials = array(), $options = array())
+    {
+        return new Client(new Dispatcher\OAuthDispatcher($credentials), $options);
     }
 
     public function request($method, $path, $options)
