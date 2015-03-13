@@ -15,7 +15,7 @@ abstract class PageIterator implements \Iterator
         $this->client = $client;
         $this->path = $path;
         $this->query = $query;
-        $this->options = array_merge($options, array('full_payload' => true));
+        $this->options = array_merge($client->options, $options, array('full_payload' => true));
 
         $this->itemLimit = isset($this->options['item_limit']) ? $this->options['item_limit'] : null;
         if ($this->itemLimit == null) {
@@ -68,7 +68,7 @@ abstract class PageIterator implements \Iterator
 
     public function valid()
     {
-        return $this->currentPage && count($this->currentPage) > 0;
+        return $this->currentPage !== null;
     }
 
     public function current()
