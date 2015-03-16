@@ -14,8 +14,9 @@ namespace Asana\Test {
             global $sleepCalls;
 
             $this->dispatcher = new MockDispatcher();
-            $this->dispatcher->base = '';
             $this->client = new Client($this->dispatcher);
+            $this->client->options['base_url'] = '';
+
             $sleepCalls = array();
         }
     }

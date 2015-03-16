@@ -65,10 +65,11 @@ class Client
     {
         $options = array_merge($this->options, $options);
         $requestOptions = $this->parseRequestOptions($options);
+        $uri = $options['base_url'] . $path;
         $retryCount = 0;
         while (true) {
             try {
-                $response = $this->dispatcher->request($method, $path, $requestOptions);
+                $response = $this->dispatcher->request($method, $uri, $requestOptions);
 
                 Errors\AsanaError::handleErrorResponse($response);
 

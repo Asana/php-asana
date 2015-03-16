@@ -3,14 +3,12 @@
 namespace Asana\Dispatcher;
 
 use \Httpful;
+use \Httpful\Mime;
 
 class Dispatcher
 {
-    public $base = 'https://app.asana.com/api/1.0';
-
-    public function request($method, $path, $requestOptions)
+    public function request($method, $uri, $requestOptions)
     {
-        $uri = $this->base . $path;
         if (isset($requestOptions['params'])) {
             $qs = http_build_query($requestOptions['params']);
             if (strlen($qs) > 0) {
@@ -29,6 +27,19 @@ class Dispatcher
 
         if (isset($requestOptions['data'])) {
             $request->sendsJson()->body($requestOptions['data']);
+        }
+
+        if (isset($requestOptions['files'])) {
+            foreach ($requestOptions['files'] as $name => $file) {
+                $body[$name] = '@' . $file[0];
+                if (isset($file[1]) && $file[1] != null) {
+                    $body[$name] .= ';filename=' . $file[1];
+                }
+                if (isset($file[2]) && $file[2] != null) {
+                    $body[$name] .= ';type=' . $file[2];
+                }
+            }
+            $request->body($body)->sendsType(\Httpful\Mime::UPLOAD);
         }
 
         $this->authenticate($request);
