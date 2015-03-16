@@ -29,9 +29,13 @@ class Dispatcher
             $request->sendsJson()->body($requestOptions['data']);
         }
 
+        $tmpFiles = array();
         if (isset($requestOptions['files'])) {
             foreach ($requestOptions['files'] as $name => $file) {
-                $body[$name] = '@' . $file[0];
+                $tmpFilePath = tempnam(null, null);
+                $tmpFiles[] = $tmpFilePath;
+                file_put_contents($tmpFilePath, $file[0]);
+                $body[$name] = '@' . $tmpFilePath;
                 if (isset($file[1]) && $file[1] != null) {
                     $body[$name] .= ';filename=' . $file[1];
                 }
@@ -44,7 +48,19 @@ class Dispatcher
 
         $this->authenticate($request);
 
-        return $request->send();
+        try {
+            $result = $request->send();
+            foreach ($tmpFiles as $tmpFilePath) {
+                unlink($tmpFilePath);
+            }
+        } catch (Exception $e) {
+            // fake "finally"
+            foreach ($tmpFiles as $tmpFilePath) {
+                unlink($tmpFilePath);
+            }
+            throw $e;
+        }
+        return $result;
     }
 
     protected function createRequest()
