@@ -19,9 +19,16 @@ class OAuthDispatcher extends Dispatcher
         $this->oauthClient = new \OAuth2\Client($this->clientId, $this->clientSecret);
     }
 
-    public function authorizationUrl()
+    public function authorizationUrl(&$state = null)
     {
-        return $this->oauthClient->getAuthenticationUrl(OAuthDispatcher::$AUTHORIZATION_ENDPOINT, $this->redirectUri);
+        if ($state === null) {
+            $state = rand();
+        }
+        return $this->oauthClient->getAuthenticationUrl(
+            OAuthDispatcher::$AUTHORIZATION_ENDPOINT,
+            $this->redirectUri,
+            array('state' => $state)
+        );
     }
 
     public function fetchToken($code)
