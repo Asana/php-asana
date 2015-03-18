@@ -31,7 +31,7 @@ class ClientTest extends Test\AsanaTest
      */
     public function testInvalidRequest()
     {
-        $this->dispatcher->registerResponse('/tasks', 400, null, '{ "errors": [{ "message": "Missing input" }] }');
+        $this->dispatcher->registerResponse('/tasks?limit=50', 400, null, '{ "errors": [{ "message": "Missing input" }] }');
 
         $this->client->tasks->findAll(null, array('iterator_type' => false));
     }
@@ -110,7 +110,7 @@ class ClientTest extends Test\AsanaTest
 
         $options = array( 'limit' => 5, 'offset' => 'ABCDEF', 'iterator_type' => false );
         $result = $this->client->tasks->findByProject(1337, null, $options);
-        $this->assertEquals($result, json_decode($res)->data);
+        $this->assertEquals($result, json_decode($res));
     }
 
     public function testItemIteratorItemLimitLessThanItems()
@@ -271,11 +271,11 @@ class ClientTest extends Test\AsanaTest
 
     public function testGetNamedParameters()
     {
-        $this->dispatcher->registerResponse('/tasks?workspace=14916&assignee=me', 200, null, '{ "data": "foo" }');
+        $this->dispatcher->registerResponse('/tasks?limit=50&workspace=14916&assignee=me', 200, null, '{ "data": "foo" }');
 
         $options = array('iterator_type' => false);
         $result = $this->client->tasks->findAll(array('workspace' => 14916, 'assignee' => 'me'), $options);
-        $this->assertEquals($result, 'foo');
+        $this->assertEquals($result, json_decode('{ "data": "foo" }'));
     }
 
     public function testPostNamedParameters()

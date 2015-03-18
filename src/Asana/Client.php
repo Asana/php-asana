@@ -22,7 +22,7 @@ class Client
         'page_size' => 50,
         'poll_interval' => 5,
         'max_retries' => 5,
-        'full_payload' => false,
+        'full_payload' => null,
         'iterator_type' => 'items'
     );
 
@@ -120,6 +120,12 @@ class Client
             $pageIterator = new CollectionPageIterator($this, $path, $query, $options);
             return $pageIterator;
         } elseif ($options['iterator_type'] == false) {
+            if (!isset($options['limit'])) {
+                $options['limit'] = $options['page_size'];
+            }
+            if ($options['full_payload'] === null) {
+                $options['full_payload'] = true;
+            }
             return $this->get($path, $query, $options);
         }
         throw Exception('Unknown value for "iterator_type" option: ' . (string)$options['iterator_type']);
