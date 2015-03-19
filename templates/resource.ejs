@@ -7,8 +7,7 @@ class <%= plural(cap(resource.name)) + "Base" %>
     public function __construct($client)
     {
         $this->client = $client;
-    }
-  <% _.forEach(resource.actions, function(action) {
+    }<% _.forEach(resource.actions, function(action) {
     if (action.no_code) {
       return;
     }
@@ -39,12 +38,12 @@ class <%= plural(cap(resource.name)) + "Base" %>
     var documentedParams = explicitParams.concat(params.optionParams);
     var phpPathParamNames = pathParamNames.map(function(p) { return "$" + p; });
   %>
+
     public function <%= action.name %>(<%= phpPathParamNames.concat([""]).join(", ") %>$params = array(), $options = array())
     {<% if (pathParamNames.length > 0) { %>
         $path = sprintf(<%= JSON.stringify(action.path) %>, <%= phpPathParamNames.join(", ") %>);
         return $this->client-><%= method %>($path, $params, $options);
     <% } else { %>
         return $this->client-><%= method %>(<%= JSON.stringify(action.path) %>, $params, $options);
-    <% } %>}
-  <% }); %>
+    <% } %>}<% }); %>
 }
