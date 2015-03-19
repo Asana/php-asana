@@ -14,6 +14,7 @@ class OAuthDispatcher extends Dispatcher
         $this->clientId = $options['client_id'];
         $this->clientSecret = isset($options['client_secret']) ? $options['client_secret'] : null;
         $this->accessToken = isset($options['token']) ? $options['token'] : null;
+        $this->authorized = !!$this->accessToken;
         $this->redirectUri = isset($options['redirect_uri']) ? $options['redirect_uri'] : null;
 
         $this->oauthClient = new \OAuth2\Client($this->clientId, $this->clientSecret);
@@ -36,6 +37,7 @@ class OAuthDispatcher extends Dispatcher
         $params = array('code' => $code, 'redirect_uri' => $this->redirectUri);
         $result = $this->oauthClient->getAccessToken(OAuthDispatcher::$TOKEN_ENDPOINT, 'authorization_code', $params);
         $this->accessToken = $result['result']['access_token'];
+        $this->authorized = !!$this->accessToken;
         return $this->accessToken;
     }
 
