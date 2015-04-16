@@ -6,6 +6,8 @@ use \OAuth2;
 
 class OAuthDispatcher extends Dispatcher
 {
+    const NATIVE_REDIRECT_URI = 'urn:ietf:wg:oauth:2.0:oob';
+
     public static $AUTHORIZATION_ENDPOINT = 'https://app.asana.com/-/oauth_authorize';
     public static $TOKEN_ENDPOINT = 'https://app.asana.com/-/oauth_token';
 

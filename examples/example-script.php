@@ -26,7 +26,7 @@ if ($ASANA_CLIENT_ID !== false) {
         'client_secret' => getenv('ASANA_CLIENT_SECRET'),
         // this special redirect URI will prompt the user to copy/paste the code.
         // useful for command line scripts and other non-web apps
-        'redirect_uri' => 'urn:ietf:wg:oauth:2.0:oob'
+        'redirect_uri' => Asana\Dispatcher\OAuthDispatcher::NATIVE_REDIRECT_URI
     ));
     echo "authorized=" . $client->dispatcher->authorized . "\n";
 
