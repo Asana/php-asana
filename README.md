@@ -67,7 +67,7 @@ Methods that return a single object return that object directly:
     $project = $client->projects->createInWorkspace($workspace_id, array('name' => 'new project'));
     echo "Created project with id: " . $project->
 
-Methods that return multiple items (e.x. `findAll`) return a page iterator by default. See the "Collections" section
+Methods that return multiple items (e.x. `findAll`) return an items iterator by default. See the "Collections" section
 
 Options
 -------
@@ -93,7 +93,7 @@ Various options can be set globally on the `Client.DEFAULTS` object, per-client 
 Collections (methods returning an array as it's 'data' property):
 
 * `iterator_type` (default: "items"): specifies which type of iterator (or not) to return. Valid values are "items" and `null`.
-* `item_limit` (default: null): limits the number of items of a collection to return.
+* `item_limit` (default: null): limits the total number of items of a collection to return (spanning multiple requests in the case of an iterator).
 * `page_size` (default: 50): limits the number of items per page to fetch at a time.
 * `offset`: offset token returned by previous calls to the same method (in `response->next_page->offset`)
 
@@ -113,6 +113,8 @@ By default, methods that return a collection of objects return an item iterator:
     foreach ($workspaces as $workspace) {
         var_dump($workspace);
     }
+
+Internally the iterator may make multiple HTTP requests, with the number of requested results per page being controlled by the `page_size` option.
 
 ### Raw API
 
