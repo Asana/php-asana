@@ -5,6 +5,26 @@ PHP client library for Asana.
 
 ![Build Status](https://api.travis-ci.org/Asana/php-asana.svg)
 
+Installation
+------------
+
+### Composer
+
+If you use [Composer](https://getcomposer.org/) you can include the "asana/asana" package as a depedency.
+
+    "require": {
+        "asana/asana": "1.0.*"
+    }
+
+Alternatively you can specify the version as "dev-master" to get the latest master branch in GitHub.
+
+### Local
+
+If you have downloaded this repository to the "php-asana" directory, for example, you can include the following lines at the top of a PHP file (in the same directory) to begin using it:
+
+    <?php
+    require 'php-asana/vendor/autoload.php';
+
 Authentication
 --------------
 

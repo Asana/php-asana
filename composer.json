@@ -1,10 +1,10 @@
 {
     "name": "asana/asana",
-    "description": "",
+    "description": "A PHP client for the Asana API",
     "type": "library",
-    "keywords": [],
-    "homepage": "http://www.example.org/",
-    "license": "",
+    "keywords": ["asana", "client"],
+    "homepage": "https://github.com/Asana/php-asana",
+    "license": "MIT",
     "require": {
         "php": ">=5.3.3",
         "nategood/httpful": "~0.2",
