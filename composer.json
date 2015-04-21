@@ -8,7 +8,7 @@
     "require": {
         "php": ">=5.3.3",
         "nategood/httpful": "~0.2",
-        "adoy/oauth2": "@dev"
+        "adoy/oauth2": "dev-master"
     },
     "require-dev": {
         "phpunit/PHPUnit": "4.5.*",
