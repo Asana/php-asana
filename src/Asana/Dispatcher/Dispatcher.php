@@ -24,6 +24,7 @@ class Dispatcher
         if (isset($requestOptions['headers'])) {
             $request->addHeaders($requestOptions['headers']);
         }
+        $request->addHeaders($this->versionHeader());
 
         if (isset($requestOptions['data'])) {
             $request->sendsJson()->body($requestOptions['data']);
@@ -71,5 +72,29 @@ class Dispatcher
     protected function authenticate($request)
     {
         return $request;
+    }
+
+    private function getClientVersion()
+    {
+        $version_file = dirname(__FILE__) . "/../../../VERSION";
+        $version_info = file_get_contents($version_file) ?: "0.0.0";
+
+        return str_replace(array("\r", "\n"), "", $version_info);
+    }
+
+    private function versionHeader()
+    {
+        $sys_info = posix_uname();
+        $client_info = array(
+            'version' => $this->getClientVersion(),
+            'language' => 'PHP',
+            'language_version' => phpversion(),
+            'os' => $sys_info['sysname'],
+            'os_version' => $sys_info['release']
+        );
+
+        return array(
+            'X-Asana-Client-Lib' => http_build_query($client_info)
+        );
     }
 }
