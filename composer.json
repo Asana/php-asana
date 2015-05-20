@@ -1,22 +1,6 @@
 {
-    "name": "asana/asana",
-    "description": "A PHP client for the Asana API",
-    "type": "library",
-    "keywords": ["asana", "client"],
-    "homepage": "https://github.com/Asana/php-asana",
-    "license": "MIT",
     "require": {
-        "php": ">=5.3.3",
-        "nategood/httpful": "~0.2",
-        "adoy/oauth2": "dev-master"
+        "asana/asana": "dev-master"
     },
-    "require-dev": {
-        "phpunit/PHPUnit": "4.5.*",
-        "instaclick/php-code-sniffer": "dev-master"
-    },
-    "autoload": {
-        "psr-0": {
-            "Asana\\": "src/"
-        }
-    }
+    "minimum-stability": "dev"
 }

@@ -10,7 +10,7 @@ Installation
 
 ### Composer
 
-If you use [Composer](https://getcomposer.org/), a common dependency management system used for PHP projects, you can include the "asana/asana" package as a dependency.
+If you use [Composer](https://getcomposer.org/) to manage dependencies you can include the "asana/asana" package as a depedency.
 
     "require": {
         "asana/asana": "^1.0.0"
@@ -20,10 +20,21 @@ Alternatively you can specify the version as `dev-master` to get the latest mast
 
 ### Local
 
-If you have downloaded this repository to the "php-asana" directory, for example, you can include the following lines at the top of a PHP file (in the same directory) to begin using it:
+If you have downloaded this repository to the "php-asana" directory, for example, you can run `composer install` within "php-asana" then include the following lines at the top of a PHP file (in the same directory) to begin using it:
 
     <?php
     require 'php-asana/vendor/autoload.php';
+
+Test
+----
+
+After running `composer install` run the tests using:
+
+    ./vendor/bin/phpunit --configuration tests/phpunit.xml
+
+You can also run the phpcs linter:
+
+    ./vendor/bin/phpcs --standard=PSR2 --extensions=php src tests
 
 Authentication
 --------------
