@@ -10,13 +10,13 @@ Installation
 
 ### Composer
 
-If you use [Composer](https://getcomposer.org/) you can include the "asana/asana" package as a depedency.
+If you use [Composer](https://getcomposer.org/), a common dependency management system used for PHP projects, you can include the "asana/asana" package as a dependency.
 
     "require": {
-        "asana/asana": "1.0.*"
+        "asana/asana": "^1.0.0"
     }
 
-Alternatively you can specify the version as "dev-master" to get the latest master branch in GitHub.
+Alternatively you can specify the version as `dev-master` to get the latest master branch in GitHub.
 
 ### Local
 
@@ -50,7 +50,7 @@ Redirect the user to the authorization URL obtained from the client's `session` 
     
     $url = $client->dispatcher->authorizationUrl();
 
-`authorizationUrl` takes an optional state parameter, passed by reference, which will be set to a random number if null, or passed through if not null;
+`authorizationUrl` takes an optional `state` parameter, passed by reference, which will be set to a random number if null, or passed through if not null;
     
     $state = null;
     $url = $client->dispatcher->authorizationUrl($state);
@@ -70,6 +70,8 @@ When the user is redirected back to your callback, check the `state` URL paramet
     } else {
       // error! possible CSRF attack
     }
+
+For webservers, it is common practice to store the `state` in a secure-only, http-only cookie so that it will automatically be sent by the browser in the callback.
 
 Note: if you're writing a non-browser-based application (e.x. a command line tool) you can use the special redirect URI `urn:ietf:wg:oauth:2.0:oob` to prompt the user to copy and paste the code into the application.
 
