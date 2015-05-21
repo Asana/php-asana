@@ -20,9 +20,9 @@ class TagsBase
         return $this->client->post($path, $params, $options);
     }
 
-    public function findById($task, $params = array(), $options = array())
+    public function findById($tag, $params = array(), $options = array())
     {
-        $path = sprintf("/tags/%d", $task);
+        $path = sprintf("/tags/%d", $tag);
         return $this->client->get($path, $params, $options);
     }
 

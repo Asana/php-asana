@@ -26,9 +26,9 @@ class ProjectsBase
         return $this->client->post($path, $params, $options);
     }
 
-    public function findById($task, $params = array(), $options = array())
+    public function findById($project, $params = array(), $options = array())
     {
-        $path = sprintf("/projects/%d", $task);
+        $path = sprintf("/projects/%d", $project);
         return $this->client->get($path, $params, $options);
     }
 
