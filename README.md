@@ -1,19 +1,15 @@
-php-asana
-=========
+# php-asana [![Build Status][travis-image]][travis-url] [![Packagist Version][packagist-image]][packagist-url]
 
 PHP client library for Asana.
 
-![Build Status](https://api.travis-ci.org/Asana/php-asana.svg)
-
-Installation
-------------
+## Installation
 
 ### Composer
 
 If you use [Composer](https://getcomposer.org/) to manage dependencies you can include the "asana/asana" package as a depedency.
 
     "require": {
-        "asana/asana": "^1.0.0"
+        "asana/asana": "^0.1.2"
     }
 
 Alternatively you can specify the version as `dev-master` to get the latest master branch in GitHub.
@@ -164,3 +160,8 @@ You can also use the raw API to fetch a page at a time:
       }
     }
 
+[travis-url]: http://travis-ci.org/Asana/php-asana
+[travis-image]: https://api.travis-ci.org/Asana/php-asana.svg?style=flat-square
+
+[packagist-url]: https://packagist.org/packages/asana/asana
+[packagist-image]: https://img.shields.io/packagist/v/asana/asana.svg?style=flat-square
