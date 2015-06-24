@@ -1,4 +1,6 @@
-# php-asana [![Build Status][travis-image]][travis-url] [![Packagist Version][packagist-image]][packagist-url]
+# php-asana 
+[![Build Status](https://travis-ci.org/Asana/php-asana.svg?branch=master)](https://travis-ci.org/Asana/php-asana)
+[![Packagist Version][packagist-image]][packagist-url]
 
 PHP client library for Asana.
 
