@@ -48,10 +48,4 @@ class TagsBase
         $path = sprintf("/workspaces/%d/tags", $workspace);
         return $this->client->getCollection($path, $params, $options);
     }
-
-    public function getTasksWithTag($tag, $params = array(), $options = array())
-    {
-        $path = sprintf("/tags/%d/tasks", $tag);
-        return $this->client->getCollection($path, $params, $options);
-    }
 }
