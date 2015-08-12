@@ -60,4 +60,16 @@ class ProjectsBase
         $path = sprintf("/teams/%d/projects", $team);
         return $this->client->getCollection($path, $params, $options);
     }
+
+    public function sections($project, $params = array(), $options = array())
+    {
+        $path = sprintf("/projects/%d/sections", $project);
+        return $this->client->getCollection($path, $params, $options);
+    }
+
+    public function getTasksInProject($projectId, $params = array(), $options = array())
+    {
+        $path = sprintf("/projects/%d/tasks", $projectId);
+        return $this->client->getCollection($path, $params, $options);
+    }
 }
