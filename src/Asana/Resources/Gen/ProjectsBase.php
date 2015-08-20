@@ -67,7 +67,7 @@ class ProjectsBase
         return $this->client->getCollection($path, $params, $options);
     }
 
-    public function getTasksInProject($project, $params = array(), $options = array())
+    public function tasks($project, $params = array(), $options = array())
     {
         $path = sprintf("/projects/%d/tasks", $project);
         return $this->client->getCollection($path, $params, $options);
