@@ -20,9 +20,9 @@ class TagsBase
         return $this->client->post($path, $params, $options);
     }
 
-    public function findById($task, $params = array(), $options = array())
+    public function findById($tag, $params = array(), $options = array())
     {
-        $path = sprintf("/tags/%d", $task);
+        $path = sprintf("/tags/%d", $tag);
         return $this->client->get($path, $params, $options);
     }
 
@@ -46,6 +46,12 @@ class TagsBase
     public function findByWorkspace($workspace, $params = array(), $options = array())
     {
         $path = sprintf("/workspaces/%d/tags", $workspace);
+        return $this->client->getCollection($path, $params, $options);
+    }
+
+    public function getTasksWithTag($tag, $params = array(), $options = array())
+    {
+        $path = sprintf("/tags/%d/tasks", $tag);
         return $this->client->getCollection($path, $params, $options);
     }
 }

@@ -15,15 +15,15 @@ class TeamsBase
         return $this->client->get($path, $params, $options);
     }
 
-    public function findByOrganization($team, $params = array(), $options = array())
+    public function findByOrganization($organization, $params = array(), $options = array())
     {
-        $path = sprintf("/organizations/%d/teams", $team);
+        $path = sprintf("/organizations/%d/teams", $organization);
         return $this->client->getCollection($path, $params, $options);
     }
 
     public function users($team, $params = array(), $options = array())
     {
-        $path = sprintf("/team/%d/users", $team);
+        $path = sprintf("/teams/%d/users", $team);
         return $this->client->getCollection($path, $params, $options);
     }
 }
