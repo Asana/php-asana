@@ -161,6 +161,12 @@ You can also use the raw API to fetch a page at a time:
         break;
       }
     }
+    
+### Development
+
+* `git clone git@github.com:Asana/php-asana.git`
+* `composer install`
+* `phpunit --configuration tests/phpunit.xml`
 
 [travis-url]: http://travis-ci.org/Asana/php-asana
 [travis-image]: https://api.travis-ci.org/Asana/php-asana.svg?style=flat-square
