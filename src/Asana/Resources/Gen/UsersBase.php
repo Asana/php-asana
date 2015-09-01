@@ -30,4 +30,16 @@ class UsersBase
     {
         return $this->client->getCollection("/users", $params, $options);
     }
+
+    public function add($workspace, $params = array(), $options = array())
+    {
+        $path = sprintf("/workspaces/%s/addUser", $workspace);
+        return $this->client->post($path, $params, $options);
+    }
+
+    public function remove($workspace, $params = array(), $options = array())
+    {
+        $path = sprintf("/workspaces/%s/removeUser", $workspace);
+        return $this->client->post($path, $params, $options);
+    }
 }
