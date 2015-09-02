@@ -11,13 +11,13 @@ class AttachmentsBase
 
     public function findById($attachment, $params = array(), $options = array())
     {
-        $path = sprintf("/attachments/%d", $attachment);
+        $path = sprintf("/attachments/%s", $attachment);
         return $this->client->get($path, $params, $options);
     }
 
     public function findByTask($task, $params = array(), $options = array())
     {
-        $path = sprintf("/tasks/%d/attachments", $task);
+        $path = sprintf("/tasks/%s/attachments", $task);
         return $this->client->getCollection($path, $params, $options);
     }
 }

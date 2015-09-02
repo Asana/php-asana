@@ -11,7 +11,7 @@ class WorkspacesBase
 
     public function findById($workspace, $params = array(), $options = array())
     {
-        $path = sprintf("/workspaces/%d", $workspace);
+        $path = sprintf("/workspaces/%s", $workspace);
         return $this->client->get($path, $params, $options);
     }
 
@@ -22,13 +22,13 @@ class WorkspacesBase
 
     public function update($workspace, $params = array(), $options = array())
     {
-        $path = sprintf("/workspaces/%d", $workspace);
+        $path = sprintf("/workspaces/%s", $workspace);
         return $this->client->put($path, $params, $options);
     }
 
     public function typeahead($workspace, $params = array(), $options = array())
     {
-        $path = sprintf("/workspaces/%d/typeahead", $workspace);
+        $path = sprintf("/workspaces/%s/typeahead", $workspace);
         return $this->client->getCollection($path, $params, $options);
     }
 }

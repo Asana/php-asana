@@ -11,19 +11,19 @@ class StoriesBase
 
     public function findById($story, $params = array(), $options = array())
     {
-        $path = sprintf("/stories/%d", $story);
+        $path = sprintf("/stories/%s", $story);
         return $this->client->get($path, $params, $options);
     }
 
     public function findByTask($task, $params = array(), $options = array())
     {
-        $path = sprintf("/tasks/%d/stories", $task);
+        $path = sprintf("/tasks/%s/stories", $task);
         return $this->client->getCollection($path, $params, $options);
     }
 
     public function createOnTask($task, $params = array(), $options = array())
     {
-        $path = sprintf("/tasks/%d/stories", $task);
+        $path = sprintf("/tasks/%s/stories", $task);
         return $this->client->post($path, $params, $options);
     }
 }

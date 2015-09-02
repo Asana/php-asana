@@ -16,25 +16,25 @@ class TagsBase
 
     public function createInWorkspace($workspace, $params = array(), $options = array())
     {
-        $path = sprintf("/workspaces/%d/tags", $workspace);
+        $path = sprintf("/workspaces/%s/tags", $workspace);
         return $this->client->post($path, $params, $options);
     }
 
     public function findById($tag, $params = array(), $options = array())
     {
-        $path = sprintf("/tags/%d", $tag);
+        $path = sprintf("/tags/%s", $tag);
         return $this->client->get($path, $params, $options);
     }
 
     public function update($tag, $params = array(), $options = array())
     {
-        $path = sprintf("/tags/%d", $tag);
+        $path = sprintf("/tags/%s", $tag);
         return $this->client->put($path, $params, $options);
     }
 
     public function delete($tag, $params = array(), $options = array())
     {
-        $path = sprintf("/tags/%d", $tag);
+        $path = sprintf("/tags/%s", $tag);
         return $this->client->delete($path, $params, $options);
     }
 
@@ -45,13 +45,13 @@ class TagsBase
 
     public function findByWorkspace($workspace, $params = array(), $options = array())
     {
-        $path = sprintf("/workspaces/%d/tags", $workspace);
+        $path = sprintf("/workspaces/%s/tags", $workspace);
         return $this->client->getCollection($path, $params, $options);
     }
 
     public function getTasksWithTag($tag, $params = array(), $options = array())
     {
-        $path = sprintf("/tags/%d/tasks", $tag);
+        $path = sprintf("/tags/%s/tasks", $tag);
         return $this->client->getCollection($path, $params, $options);
     }
 }
