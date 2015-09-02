@@ -16,13 +16,13 @@ class UsersBase
 
     public function findById($user, $params = array(), $options = array())
     {
-        $path = sprintf("/users/%d", $user);
+        $path = sprintf("/users/%s", $user);
         return $this->client->get($path, $params, $options);
     }
 
     public function findByWorkspace($workspace, $params = array(), $options = array())
     {
-        $path = sprintf("/workspaces/%d/users", $workspace);
+        $path = sprintf("/workspaces/%s/users", $workspace);
         return $this->client->getCollection($path, $params, $options);
     }
 
