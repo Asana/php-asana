@@ -18,7 +18,8 @@ class OAuthDispatcherTest extends \PHPUnit_Framework_TestCase
 {
     protected function setUp()
     {
-        $this->dispatcher = new FakeOAuthDispatcher(array());
+        $this->dispatcher = new FakeOAuthDispatcher(array(
+            'client_id' => 'fake_client_id'));
     }
 
     /**
