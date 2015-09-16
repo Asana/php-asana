@@ -46,7 +46,7 @@ class OAuthDispatcher extends Dispatcher
     protected function authenticate($request)
     {
         if ($this->accessToken == null) {
-            throw new \Error("OAuthDispatcher: access token not set");
+            throw new \Exception("OAuthDispatcher: access token not set");
         }
         return $request->addHeader("Authorization", "Bearer " . $this->accessToken);
     }
