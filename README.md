@@ -161,12 +161,39 @@ You can also use the raw API to fetch a page at a time:
         break;
       }
     }
-    
-### Development
+
+ 
+## Contributing
+
+Feel free to fork and submit pull requests for the code! Please follow the
+existing code as an example of style and make sure that all your code passes
+lint and tests.
+
+To develop:
 
 * `git clone git@github.com:Asana/php-asana.git`
 * `composer install`
 * `phpunit --configuration tests/phpunit.xml`
+
+### Code generation
+
+The specific Asana resource classes (`Tag`, `Workspace`, `Task`, etc) are
+generated code, hence they shouldn't be modified by hand. See the [asana-api-meta][meta] repo for details.
+
+### Deployment
+
+**Repo Owners Only.** Take the following steps to issue a new release of the library.
+
+  1. Merge in the desired changes into the `master` branch and commit them.
+  2. Clone the repo, work on master.
+  3. Bump the package version in the `VERSION` file to indicate the [semantic version](http://semver.org/) change.
+  4. Commit the change.
+  5. Tag the commit with `v` plus the same version number you set in the file.
+     `git tag v1.2.3`
+  6. Push changes to origin, including tags:
+     `git push origin master --tags` 
+
+The rest is automatically done by Composer / Packagist. Visit [the asana package](https://packagist.org/packages/asana/asana) to verify the package was published.
 
 [travis-url]: http://travis-ci.org/Asana/php-asana
 [travis-image]: https://api.travis-ci.org/Asana/php-asana.svg?style=flat-square
