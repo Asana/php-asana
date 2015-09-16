@@ -5,20 +5,20 @@ namespace Asana;
 use Asana\Test\AsanaTest;
 use Asana\Test\MockRequest;
 
-use Asana\Dispatcher\OauthDispatcher;
+use Asana\Dispatcher\OAuthDispatcher;
 
 // Extend dispatcher to expose protected methods for testing.
-class FakeOauthDispatcher extends \Asana\Dispatcher\OauthDispatcher {
+class FakeOauthDispatcher extends OAuthDispatcher {
   public function authenticate($request) {
     return parent::authenticate($request);
   }
 };
 
-class OauthDispatcherTest extends \PHPUnit_Framework_TestCase
+class OAuthDispatcherTest extends \PHPUnit_Framework_TestCase
 {
     protected function setUp()
     {
-        $this->dispatcher = new FakeOauthDispatcher(array());
+        $this->dispatcher = new FakeOAuthDispatcher(array());
     }
 
     /**

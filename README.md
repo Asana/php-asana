@@ -178,7 +178,7 @@ To develop:
 ### Code generation
 
 The specific Asana resource classes (`Tag`, `Workspace`, `Task`, etc) are
-generated code, hence they shouldn't be modified by hand. See the [asana-api-meta][meta] repo for details.
+generated code, hence they shouldn't be modified by hand. See the [asana-api-meta](https://github.com/Asana/asana-api-meta) repo for details.
 
 ### Deployment
 
