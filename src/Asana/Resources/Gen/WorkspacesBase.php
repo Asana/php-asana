@@ -31,4 +31,16 @@ class WorkspacesBase
         $path = sprintf("/workspaces/%s/typeahead", $workspace);
         return $this->client->getCollection($path, $params, $options);
     }
+
+    public function addUser($workspace, $params = array(), $options = array())
+    {
+        $path = sprintf("/workspaces/%s/addUser", $workspace);
+        return $this->client->post($path, $params, $options);
+    }
+
+    public function removeUser($workspace, $params = array(), $options = array())
+    {
+        $path = sprintf("/workspaces/%s/removeUser", $workspace);
+        return $this->client->post($path, $params, $options);
+    }
 }
