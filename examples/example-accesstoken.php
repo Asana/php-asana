@@ -8,7 +8,7 @@ $ASANA_ACCESS_TOKEN = getenv('ASANA_ACCESS_TOKEN');
 
 // API Key Instructions:
 
-// 1. set your ASANA_API_KEY environment variable to the API key found in Asana Account Settings
+// 1. set your ASANA_ACCESS_TOKEN environment variable to a Personal Access Token found in Asana Account Settings
 
 if ($ASANA_ACCESS_TOKEN === false) {
     echo "Please set the ASANA_ACCESS_TOKEN environment variable.\n";
