@@ -11,7 +11,7 @@ class OAuthDispatcher extends Dispatcher
     public static $AUTHORIZATION_ENDPOINT = 'https://app.asana.com/-/oauth_authorize';
     public static $TOKEN_ENDPOINT = 'https://app.asana.com/-/oauth_token';
 
-    private $expirationTimeMillis = 0;
+    private $expirationTimeMillis = null;
 
     public function __construct($options)
     {
@@ -68,12 +68,17 @@ class OAuthDispatcher extends Dispatcher
 
     public function getExpiresInSeconds()
     {
-        return ($this->expirationTimeMillis - $this->currentTimeMillis()) / 1000;
+        if ($this->expirationTimeMillis == null) {
+            return null;
+        } else {
+            return ($this->expirationTimeMillis - $this->currentTimeMillis()) / 1000;
+        }
     }
 
     protected function authenticate($request)
     {
-        if ($this->expiresIn != null && $this->expiresIn < 60) {
+        $expiresIn = $this->getExpiresInSeconds();
+        if ($expiresIn != null && $expiresIn < 60) {
             $this->refreshAccessToken();
         }
 
