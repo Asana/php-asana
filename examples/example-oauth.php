@@ -57,7 +57,7 @@ echo "Your access token is: " . json_encode($token) . "\n";
 echo "Exchanging your refresh token for a new access token because access tokens expire\n";
 
 // access tokens will expire, use a refresh token to get a fresh access token
-$token = $client->dispatcher->refreshToken();
+$token = $client->dispatcher->refreshAccessToken();
 
 echo "Your new access token is: " . json_encode($token) . "\n";
 echo "You are a member of the following workspaces:\n";
