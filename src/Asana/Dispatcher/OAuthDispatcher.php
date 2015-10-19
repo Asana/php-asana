@@ -11,7 +11,7 @@ class OAuthDispatcher extends Dispatcher
     public static $AUTHORIZATION_ENDPOINT = 'https://app.asana.com/-/oauth_authorize';
     public static $TOKEN_ENDPOINT = 'https://app.asana.com/-/oauth_token';
 
-    private $expirationTimeMillis = null;
+    private $expirationTimeSeconds = null;
 
     public function __construct($options)
     {
@@ -40,10 +40,10 @@ class OAuthDispatcher extends Dispatcher
     public function fetchToken($code)
     {
         $params = array('code' => $code, 'redirect_uri' => $this->redirectUri);
-        $result = $this->oauthClient->getAccessToken(OAuthDispatcher::$TOKEN_ENDPOINT, 'authorization_code', $params)['result'];
-        $this->accessToken = $result['access_token'];
-        $this->refreshToken = $result['refresh_token'];
-        $this->expiresIn = $result['expires_in'];
+        $result = $this->oauthClient->getAccessToken(OAuthDispatcher::$TOKEN_ENDPOINT, 'authorization_code', $params);
+        $this->accessToken = $result['result']['access_token'];
+        $this->refreshToken = $result['result']['refresh_token'];
+        $this->expiresIn = $result['result']['expires_in'];
         $this->authorized = !!$this->accessToken;
         return $this->accessToken;
     }
@@ -54,24 +54,24 @@ class OAuthDispatcher extends Dispatcher
             throw new \Exception("OAuthDispatcher: cannot refresh access token without a refresh token.");
         } else {
             $params = array('refresh_token' => $this->refreshToken, 'redirect_uri' => $this->redirectUri);
-            $result = $this->oauthClient->getAccessToken(OAuthDispatcher::$TOKEN_ENDPOINT, 'refresh_token', $params)['result'];
-            $this->accessToken = $result['access_token'];
-            $this->expiresIn = $result['expires_in'];
+            $result = $this->oauthClient->getAccessToken(OAuthDispatcher::$TOKEN_ENDPOINT, 'refresh_token', $params);
+            $this->accessToken = $result['result']['access_token'];
+            $this->expiresIn = $result['result']['expires_in'];
             return $this->accessToken;
         }
     }
 
     public function setExpiresInSeconds($expiresIn)
     {
-        $this->expirationTimeMillis = $this->currentTimeMillis() + ($expiresIn * 1000);
+        $this->expirationTimeSeconds = time() + $expiresIn;
     }
 
     public function getExpiresInSeconds()
     {
-        if ($this->expirationTimeMillis == null) {
+        if ($this->expirationTimeSeconds == null) {
             return null;
         } else {
-            return ($this->expirationTimeMillis - $this->currentTimeMillis()) / 1000;
+            return $this->expirationTimeSeconds - time();
         }
     }
 
@@ -86,10 +86,5 @@ class OAuthDispatcher extends Dispatcher
             throw new \Exception("OAuthDispatcher: access token not set");
         }
         return $request->addHeader("Authorization", "Bearer " . $this->accessToken);
-    }
-
-    private function currentTimeMillis()
-    {
-        return round(microtime(true) * 1000);
     }
 }
