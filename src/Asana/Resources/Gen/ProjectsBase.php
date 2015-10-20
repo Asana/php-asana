@@ -72,4 +72,28 @@ class ProjectsBase
         $path = sprintf("/projects/%s/tasks", $project);
         return $this->client->getCollection($path, $params, $options);
     }
+
+    public function addFollowers($project, $params = array(), $options = array())
+    {
+        $path = sprintf("/projects/%s/addFollowers", $project);
+        return $this->client->post($path, $params, $options);
+    }
+
+    public function removeFollowers($project, $params = array(), $options = array())
+    {
+        $path = sprintf("/projects/%s/removeFollowers", $project);
+        return $this->client->post($path, $params, $options);
+    }
+
+    public function addMembers($project, $params = array(), $options = array())
+    {
+        $path = sprintf("/projects/%s/addMembers", $project);
+        return $this->client->post($path, $params, $options);
+    }
+
+    public function removeMembers($project, $params = array(), $options = array())
+    {
+        $path = sprintf("/projects/%s/removeMembers", $project);
+        return $this->client->post($path, $params, $options);
+    }
 }
