@@ -2,8 +2,6 @@
 
 require dirname(__FILE__) . '/../vendor/autoload.php';
 
-use Asana\Client;
-
 $ASANA_CLIENT_ID = getenv('ASANA_CLIENT_ID');
 $ASANA_CLIENT_SECRET = getenv('ASANA_CLIENT_SECRET');
 
@@ -20,7 +18,7 @@ if ($ASANA_CLIENT_ID === false || $ASANA_CLIENT_SECRET === false) {
 
 echo "== Example using OAuth Client ID and Client Secret:\n";
 
- // create a $client->with the OAuth credentials:
+// create a $client->with the OAuth credentials:
 $client = Asana\Client::oauth(array(
     'client_id' => getenv('ASANA_CLIENT_ID'),
     'client_secret' => getenv('ASANA_CLIENT_SECRET'),
@@ -44,13 +42,29 @@ try {
 
 echo "Copy and paste the returned code from the browser and press enter:\n";
 
-$code = trim(fgets(fopen("php://stdin","r")));
+$code = trim(fgets(fopen("php://stdin", "r")));
 // exchange the code for a bearer token
 $token = $client->dispatcher->fetchToken($code);
-echo "authorized=" . $client->dispatcher->authorized . "\n";
+if ($client->dispatcher->authorized) {
+    echo "Authorization successful\n";
+} else {
+    echo "Authorization failed, exiting...";
+    exit(1);
+}
 
-echo "token=" . json_encode($token) . "\n";
-echo "me="; var_dump($client->users->me());
+echo "Hello " . $client->users->me()->name . "\n";
+echo "Your access token is: " . json_encode($token) . "\n";
+echo "Exchanging your refresh token for a new access token because access tokens expire\n";
+
+// access tokens will expire, use a refresh token to get a fresh access token
+$token = $client->dispatcher->refreshAccessToken();
+
+echo "Your new access token is: " . json_encode($token) . "\n";
+echo "You are a member of the following workspaces:\n";
+$workspaces = $client->workspaces->findAll();
+foreach ($workspaces as $workspace) {
+    echo $workspace->name . "\n";
+}
 
 // normally you'd persist this token somewhere
 $token = json_encode($token); // (see below)
@@ -61,5 +75,5 @@ $client = Asana\Client::oauth(array(
     'client_id' => $ASANA_CLIENT_ID,
     'token' => json_decode($token)
 ));
-echo "authorized=" . $client->dispatcher->authorized . "\n";
-echo "me="; var_dump($client->users->me());
+
+echo "Your registered email address is: " . $client->users->me()->email;
