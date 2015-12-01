@@ -92,7 +92,7 @@ class WebhooksBase
      */
     public function getAll($params = array(), $options = array())
     {
-        return $this->client->get("/webhooks", $params, $options);
+        return $this->client->getCollection("/webhooks", $params, $options);
     }
 
     /**

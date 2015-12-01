@@ -49,6 +49,7 @@ class Client
         $this->teams = new Resources\Teams($this);
         $this->users = new Resources\Users($this);
         $this->workspaces = new Resources\Workspaces($this);
+        $this->webhooks = new Resources\Webhooks($this);
     }
 
     public static function accessToken($accessToken, $options = array())
