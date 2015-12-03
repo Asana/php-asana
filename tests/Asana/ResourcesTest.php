@@ -15,7 +15,8 @@ class ResourcesTest extends Test\AsanaTest
         'tasks',
         'teams',
         'users',
-        'workspaces'
+        'workspaces',
+        'webhooks'
     );
 
     public function testResourcesExist()
