@@ -36,12 +36,23 @@ class Dispatcher
                 $tmpFilePath = tempnam(null, null);
                 $tmpFiles[] = $tmpFilePath;
                 file_put_contents($tmpFilePath, $file[0]);
-                $body[$name] = '@' . $tmpFilePath;
-                if (isset($file[1]) && $file[1] != null) {
-                    $body[$name] .= ';filename=' . $file[1];
+
+                // If the user's PHP version supports curl_file_create, use it.
+                if (function_exists('curl_file_create')) {
+                    if ( (isset($file[1]) && $file[1] != null) &&
+                         (isset($file[2]) && $file[2] != null))  {
+                        $body[$name] = curl_file_create($tmpFilePath, $file[2], $file[1]);
+                    }
                 }
-                if (isset($file[2]) && $file[2] != null) {
-                    $body[$name] .= ';type=' . $file[2];
+                // Otherwise we can still use the '@' notation.
+                else {
+                    $body[$name] = '@' . $tmpFilePath;
+                    if (isset($file[1]) && $file[1] != null) {
+                        $body[$name] .= ';filename=' . $file[1];
+                    }
+                    if (isset($file[2]) && $file[2] != null) {
+                        $body[$name] .= ';type=' . $file[2];
+                    }
                 }
             }
             $request->body($body)->sendsType(\Httpful\Mime::UPLOAD);
