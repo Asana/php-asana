@@ -39,9 +39,12 @@ class Dispatcher
 
                 // If the user's PHP version supports curl_file_create, use it.
                 if (function_exists('curl_file_create')) {
-                    if ( (isset($file[1]) && $file[1] != null) &&
-                         (isset($file[2]) && $file[2] != null))  {
-                        $body[$name] = curl_file_create($tmpFilePath, $file[2], $file[1]);
+                    if ( (isset($file[1]) && $file[1] != null) )  {
+                        $mimetype = '';
+                        if ( (isset($file[2]) && $file[2] != null) )  {
+                            $mimetype = $file[2];
+                        }
+                        $body[$name] = curl_file_create($tmpFilePath, $mimetype, $file[1]);
                     }
                 }
                 // Otherwise we can still use the '@' notation.
