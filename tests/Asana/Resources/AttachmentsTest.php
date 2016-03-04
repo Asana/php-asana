@@ -14,10 +14,17 @@ class AttachmentsTest extends Test\AsanaTest
         $result = $this->client->attachments->createOnTask(1337, 'file contents', 'file name', 'file content-type');
         $this->assertEquals($result, json_decode($res)->data);
 
-        $str = $this->dispatcher->calls[0]['request']->payload['file'];
+        $fileDescription = $this->dispatcher->calls[0]['request']->payload['file'];
         $this->assertEquals('multipart/form-data', $this->dispatcher->calls[0]['request']->content_type);
 
-        $this->assertStringMatchesFormat('%Sfilename=file name%S', $str);
-        $this->assertStringMatchesFormat('%Stype=file content-type%S', $str);
+        // If the user's PHP version supports curl_file_create, use it.
+        if (function_exists('curl_file_create')) {
+                $this->assertInstanceOf('CURLFile',$fileDescription);
+                $this->assertEquals('file name',$fileDescription->getPostFilename());
+                $this->assertEquals('file content-type',$fileDescription->getMimeType());
+        } else {
+                $this->assertStringMatchesFormat('%Sfilename=file name%S', $fileDescription);
+                $this->assertStringMatchesFormat('%Stype=file content-type%S', $fileDescription);
+        }
     }
 }
