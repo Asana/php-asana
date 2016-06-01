@@ -98,13 +98,14 @@ class Dispatcher
 
     private function versionHeader()
     {
-        $sys_info = posix_uname();
+        $posix_available = function_exists('posix_uname');
+        $sys_info = $posix_available ? posix_uname() : null;
         $client_info = array(
             'version' => $this->getClientVersion(),
             'language' => 'PHP',
             'language_version' => phpversion(),
-            'os' => $sys_info['sysname'],
-            'os_version' => $sys_info['release']
+            'os' => $posix_available ? $sys_info['sysname'] : php_uname('s'),
+            'os_version' => $posix_available ? $sys_info['release'] : php_uname('r')
         );
 
         return array(
