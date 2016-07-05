@@ -6,7 +6,7 @@ use Asana\Client;
 
 $ASANA_ACCESS_TOKEN = getenv('ASANA_ACCESS_TOKEN');
 
-// API Key Instructions:
+// Access Token Instructions:
 
 // 1. set your ASANA_ACCESS_TOKEN environment variable to a Personal Access Token found in Asana Account Settings
 

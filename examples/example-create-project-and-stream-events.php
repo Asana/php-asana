@@ -4,19 +4,19 @@ require dirname(__FILE__) . '/../vendor/autoload.php';
 
 use Asana\Client;
 
-$ASANA_API_KEY = getenv('ASANA_API_KEY');
+$ASANA_ACCESS_TOKEN = getenv('ASANA_ACCESS_TOKEN');
 
-// API Key Instructions:
+// Access Token Instructions:
 
-// 1. set your ASANA_API_KEY environment variable to the API key found in Asana Account Settings
+// 1. set your ASANA_ACCESS_TOKEN environment variable to a Personal Access Token found in Asana Account Settings
 
-if ($ASANA_API_KEY === false) {
-    echo "Please set the ASANA_API_KEY environment variable.\n";
+if ($ASANA_ACCESS_TOKEN === false) {
+    echo "Please set the ASANA_ACCESS_TOKEN environment variable.\n";
     exit;
 }
 
-// create a $client->with your Asana API key
-$client = Asana\Client::basicAuth($ASANA_API_KEY);
+// create a $client->with a Personal Access Token
+$client = Asana\Client::accessToken($ASANA_ACCESS_TOKEN);
 $me = $client->users->me();
 echo "me="; var_dump($client->users->me());
 
