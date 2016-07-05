@@ -37,11 +37,11 @@ You can also run the phpcs linter:
 Authentication
 --------------
 
-### Basic Auth
+### Personal Access Token
 
-Create a client using your Asana API key:
+Create a client using a personal access token:
 
-    $client = Asana\Client::basicAuth('ASANA_API_KEY');
+    $client = Asana\Client::accessToken('ASANA_PERSONAL_ACCESS_TOKEN');
 
 ### OAuth 2
 
