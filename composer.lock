@@ -1,10 +1,11 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "26c7cfaad283757876b84b6239b86ce1",
+    "hash": "9a16b5d67bd631b27f415467cf62b927",
+    "content-hash": "4826f1dc5c09500ec94ad0b8fcd9ed43",
     "packages": [
         {
             "name": "adoy/oauth2",
@@ -1123,7 +1124,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.3.3"
+        "php": ">=5.4.0"
     },
     "platform-dev": []
 }
