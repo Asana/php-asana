@@ -15,6 +15,8 @@ class OAuthDispatcher extends Dispatcher
 
     public function __construct($options)
     {
+        parent::__construct();
+
         $this->clientId = $options['client_id'];
         $this->clientSecret = isset($options['client_secret']) ? $options['client_secret'] : null;
         $this->accessToken = isset($options['token']) ? $options['token'] : null;

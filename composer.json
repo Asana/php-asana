@@ -6,7 +6,7 @@
     "homepage": "https://github.com/Asana/php-asana",
     "license": "MIT",
     "require": {
-        "php": ">=5.3.3",
+        "php": ">=5.4.0",
         "nategood/httpful": "~0.2",
         "adoy/oauth2": "^1.2.0"
     },

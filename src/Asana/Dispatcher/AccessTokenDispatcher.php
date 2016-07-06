@@ -6,6 +6,8 @@ class AccessTokenDispatcher extends Dispatcher
 {
     public function __construct($accessToken)
     {
+        parent::__construct();
+
         $this->accessToken = $accessToken;
     }
 
