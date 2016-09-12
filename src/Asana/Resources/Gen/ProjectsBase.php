@@ -228,4 +228,28 @@ class ProjectsBase
         $path = sprintf("/projects/%s/removeMembers", $project);
         return $this->client->post($path, $params, $options);
     }
+
+    /**
+     * Create a new custom field setting on the project.
+     *
+     * @param  project The project to associate the custom field with
+     * @return response
+     */
+    public function addCustomFieldSetting($project, $params = array(), $options = array())
+    {
+        $path = sprintf("/projects/%s/addCustomFieldSetting", $project);
+        return $this->client->post($path, $params, $options);
+    }
+
+    /**
+     * Remove a custom field setting on the project.
+     *
+     * @param  project The project to associate the custom field with
+     * @return response
+     */
+    public function removeCustomFieldSetting($project, $params = array(), $options = array())
+    {
+        $path = sprintf("/projects/%s/removeCustomFieldSetting", $project);
+        return $this->client->post($path, $params, $options);
+    }
 }
