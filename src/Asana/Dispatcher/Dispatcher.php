@@ -7,6 +7,22 @@ use \Httpful\Mime;
 
 class Dispatcher
 {
+    public function __construct()
+    {
+        // All of Asana's IDs are int64. If the current build of PHP does not
+        // support integers that large, we specify that integers that are too
+        // large should be represented as strings instead. Otherwise PHP would 
+        // convert them to floats.
+        // Note that Httpful's JsonHandler does not support that option which 
+        // is why we have to register our own JSON handler.
+        if (PHP_INT_SIZE < 8) {
+            \Httpful\Httpful::register(
+                \Httpful\Mime::JSON, 
+                new \Asana\Dispatcher\Handlers\JsonHandler(array('parse_options' => JSON_BIGINT_AS_STRING))
+            );
+        }
+    }
+
     public function request($method, $uri, $requestOptions)
     {
         if (isset($requestOptions['params'])) {
@@ -98,13 +114,14 @@ class Dispatcher
 
     private function versionHeader()
     {
-        $sys_info = posix_uname();
+        $posix_available = function_exists('posix_uname');
+        $sys_info = $posix_available ? posix_uname() : null;
         $client_info = array(
             'version' => $this->getClientVersion(),
             'language' => 'PHP',
             'language_version' => phpversion(),
-            'os' => $sys_info['sysname'],
-            'os_version' => $sys_info['release']
+            'os' => $posix_available ? $sys_info['sysname'] : php_uname('s'),
+            'os_version' => $posix_available ? $sys_info['release'] : php_uname('r')
         );
 
         return array(
