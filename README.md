@@ -11,7 +11,7 @@ PHP client library for Asana.
 If you use [Composer](https://getcomposer.org/) to manage dependencies you can include the "asana/asana" package as a depedency.
 
     "require": {
-        "asana/asana": "^0.1.2"
+        "asana/asana": "^0.5.0"
     }
 
 Alternatively you can specify the version as `dev-master` to get the latest master branch in GitHub.
