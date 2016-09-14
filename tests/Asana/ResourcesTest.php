@@ -34,6 +34,14 @@ class ResourcesTest extends Test\AsanaTest
         $this->assertEquals($result, 'foo');
     }
 
+    public function testCustomFieldsFindById()
+    {
+        $this->dispatcher->registerResponse('/custom_fields/1', 200, null, '{ "data": "foo" }');
+
+        $result = $this->client->custom_fields->findById(1);
+        $this->assertEquals($result, 'foo');
+    }
+
     public function testProjectsFindById()
     {
         $this->dispatcher->registerResponse('/projects/1', 200, null, '{ "data": "foo" }');

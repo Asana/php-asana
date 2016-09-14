@@ -50,6 +50,8 @@ class Client
         $this->users = new Resources\Users($this);
         $this->workspaces = new Resources\Workspaces($this);
         $this->webhooks = new Resources\Webhooks($this);
+        $this->custom_fields = new Resources\CustomFields($this);
+        $this->custom_field_settings = new Resources\CustomFieldSettings($this);
     }
 
     public static function accessToken($accessToken, $options = array())
