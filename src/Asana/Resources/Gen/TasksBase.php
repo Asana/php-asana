@@ -130,6 +130,18 @@ class TasksBase
     }
 
     /**
+     * <b>Board view only:</b> Returns the compact section records for all tasks within the given section.
+     *
+     * @param  section The section in which to search for tasks.
+     * @return response
+     */
+    public function findBySection($section, $params = array(), $options = array())
+    {
+        $path = sprintf("/sections/%s/tasks", $section);
+        return $this->client->getCollection($path, $params, $options);
+    }
+
+    /**
      * Returns the compact task records for some filtered set of tasks. Use one
      * or more of the parameters provided to filter the tasks returned. You must
      * specify a `project` or `tag` if you do not specify `assignee` and `workspace`.

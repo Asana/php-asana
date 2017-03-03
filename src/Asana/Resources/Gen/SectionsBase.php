@@ -97,14 +97,15 @@ class SectionsBase
 
     /**
      * Move sections relative to each other in a board view. One of
-     * before_section or after_section is required (or else the request will
-     * behave as a no-op).
+     * `before_section` or `after_section` is required.
      * 
-     * At this point in time, moving sections is not supported in list views.
+     * Sections cannot be moved between projects.
+     * 
+     * At this point in time, moving sections is not supported in list views, only board views.
      * 
      * Returns an empty data block.
      *
-     * @param  project The project in which to reorder this section
+     * @param  project The project in which to reorder the given section
      * @return response
      */
     public function insertInProject($project, $params = array(), $options = array())
