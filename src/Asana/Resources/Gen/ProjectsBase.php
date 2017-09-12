@@ -166,6 +166,18 @@ class ProjectsBase
     }
 
     /**
+     * Creates a section in the given project.
+     *
+     * @param  project The project to create the section.
+     * @return response
+     */
+    public function addSection($project, $params = array(), $options = array())
+    {
+        $path = sprintf("/projects/%s/sections", $project);
+        return $this->client->post($path, $params, $options);
+    }
+
+    /**
      * Returns the compact task records for all tasks within the given project,
      * ordered by their priority within the project. Tasks can exist in more than one project at a time.
      *
