@@ -37,6 +37,12 @@ class Dispatcher
             ->uri($uri)
             ->expectsJson();
 
+        if (isset($requestOptions['curl'])) {
+            foreach($requestOptions['curl'] as $curlopt => $curlval){
+                $request->addOnCurlOption($curlopt,$curlval);    
+            }
+        }
+
         if (isset($requestOptions['headers'])) {
             $request->addHeaders($requestOptions['headers']);
         }
