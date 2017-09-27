@@ -27,7 +27,7 @@ class Client
     );
 
     private static $QUERY_OPTIONS   = array('limit', 'offset' , 'sync');
-    private static $REQUEST_OPTIONS = array('params', 'data', 'headers', 'files');
+    private static $REQUEST_OPTIONS = array('params', 'data', 'headers', 'files','curl');
     private static $API_OPTIONS     = array('pretty', 'fields', 'expand');
     private static $CLIENT_OPTIONS  = null;
     private static $ALL_OPTIONS     = null;
