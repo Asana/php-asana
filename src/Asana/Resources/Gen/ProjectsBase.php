@@ -3,14 +3,15 @@
 namespace Asana\Resources\Gen;
 
 /**
- * A _project_ represents a prioritized list of tasks in Asana. It exists in a
- * single workspace or organization and is accessible to a subset of users in
- * that workspace or organization, depending on its permissions.
+ * A _project_ represents a prioritized list of tasks in Asana or a board with
+ * columns of tasks represented as cards. It exists in a single workspace or
+ * organization and is accessible to a subset of users in that workspace or
+ * organization, depending on its permissions.
  * 
  * Projects in organizations are shared with a single team. You cannot currently
  * change the team of a project via the API. Non-organization workspaces do not
- * have teams and so you should not specify the team of project in a
- * regular workspace.
+ * have teams and so you should not specify the team of project in a regular
+ * workspace.
 */
 class ProjectsBase
 {
@@ -150,18 +151,6 @@ class ProjectsBase
     public function findByTeam($team, $params = array(), $options = array())
     {
         $path = sprintf("/teams/%s/projects", $team);
-        return $this->client->getCollection($path, $params, $options);
-    }
-
-    /**
-     * Returns compact records for all sections in the specified project.
-     *
-     * @param  project The project to get sections from.
-     * @return response
-     */
-    public function sections($project, $params = array(), $options = array())
-    {
-        $path = sprintf("/projects/%s/sections", $project);
         return $this->client->getCollection($path, $params, $options);
     }
 

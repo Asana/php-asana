@@ -40,6 +40,6 @@ class CustomFieldsBase
     public function findByWorkspace($workspace, $params = array(), $options = array())
     {
         $path = sprintf("/workspaces/%s/custom_fields", $workspace);
-        return $this->client->get($path, $params, $options);
+        return $this->client->getCollection($path, $params, $options);
     }
 }
