@@ -41,8 +41,13 @@ class Client
         $this->options = array_merge(Client::$DEFAULTS, $options);
 
         $this->attachments = new Resources\Attachments($this);
+        $this->custom_fields = new Resources\CustomFields($this);
+        $this->custom_field_settings = new Resources\CustomFieldSettings($this);
         $this->events = new Resources\Events($this);
+        $this->organization_exports = new Resources\OrganizationExports($this);
         $this->projects = new Resources\Projects($this);
+        $this->project_memberships = new Resources\ProjectMemberships($this);
+        $this->project_statuses = new Resources\ProjectStatuses($this);
         $this->stories = new Resources\Stories($this);
         $this->tags = new Resources\Tags($this);
         $this->tasks = new Resources\Tasks($this);
@@ -50,8 +55,6 @@ class Client
         $this->users = new Resources\Users($this);
         $this->workspaces = new Resources\Workspaces($this);
         $this->webhooks = new Resources\Webhooks($this);
-        $this->custom_fields = new Resources\CustomFields($this);
-        $this->custom_field_settings = new Resources\CustomFieldSettings($this);
     }
 
     public static function accessToken($accessToken, $options = array())
