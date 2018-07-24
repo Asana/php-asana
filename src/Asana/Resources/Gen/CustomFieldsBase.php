@@ -99,7 +99,7 @@ class CustomFieldsBase
      * @param  custom_field Globally unique identifier for the custom field.
      * @return response
      */
-    public function addOption($customField, $params = array(), $options = array())
+    public function addEnumOption($customField, $params = array(), $options = array())
     {
         $path = sprintf("/custom_fields/%s/enum_options", $customField);
         return $this->client->post($path, $params, $options);
@@ -113,7 +113,7 @@ class CustomFieldsBase
      * @param  enum_option Globally unique identifier for the enum option.
      * @return response
      */
-    public function updateOption($enumOption, $params = array(), $options = array())
+    public function updateEnumOption($enumOption, $params = array(), $options = array())
     {
         $path = sprintf("/enum_options/%s", $enumOption);
         return $this->client->put($path, $params, $options);
@@ -125,7 +125,7 @@ class CustomFieldsBase
      * @param  custom_field Globally unique identifier for the custom field.
      * @return response
      */
-    public function reorderOption($customField, $params = array(), $options = array())
+    public function reorderEnumOption($customField, $params = array(), $options = array())
     {
         $path = sprintf("/custom_fields/%s/enum_options/insert", $customField);
         return $this->client->post($path, $params, $options);
