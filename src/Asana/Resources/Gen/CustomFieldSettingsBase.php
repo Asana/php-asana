@@ -28,6 +28,6 @@ class CustomFieldSettingsBase
     public function findByProject($project, $params = array(), $options = array())
     {
         $path = sprintf("/projects/%s/custom_field_settings", $project);
-        return $this->client->get($path, $params, $options);
+        return $this->client->getCollection($path, $params, $options);
     }
 }

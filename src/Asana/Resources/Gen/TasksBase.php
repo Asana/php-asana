@@ -130,6 +130,18 @@ class TasksBase
     }
 
     /**
+     * <b>Board view only:</b> Returns the compact section records for all tasks within the given section.
+     *
+     * @param  section The section in which to search for tasks.
+     * @return response
+     */
+    public function findBySection($section, $params = array(), $options = array())
+    {
+        $path = sprintf("/sections/%s/tasks", $section);
+        return $this->client->getCollection($path, $params, $options);
+    }
+
+    /**
      * Returns the compact task records for some filtered set of tasks. Use one
      * or more of the parameters provided to filter the tasks returned. You must
      * specify a `project` or `tag` if you do not specify `assignee` and `workspace`.
@@ -139,6 +151,92 @@ class TasksBase
     public function findAll($params = array(), $options = array())
     {
         return $this->client->getCollection("/tasks", $params, $options);
+    }
+
+    /**
+     * The search endpoint allows you to build complex queries to find and fetch exactly the data you need from Asana. For a more comprehensive description of all the query parameters and limitations of this endpoint, see our [long-form documentation](/developers/documentation/getting-started/search-api) for this feature.
+     *
+     * @param  workspace The workspace or organization in which to search for tasks.
+     * @return response
+     */
+    public function search($workspace, $params = array(), $options = array())
+    {
+        $path = sprintf("/workspaces/%s/tasks/search", $workspace);
+        return $this->client->getCollection($path, $params, $options);
+    }
+
+    /**
+     * Returns the compact representations of all of the dependencies of a task.
+     *
+     * @param  task The task to get dependencies on.
+     * @return response
+     */
+    public function dependencies($task, $params = array(), $options = array())
+    {
+        $path = sprintf("/tasks/%s/dependencies", $task);
+        return $this->client->get($path, $params, $options);
+    }
+
+    /**
+     * Returns the compact representations of all of the dependents of a task.
+     *
+     * @param  task The task to get dependents on.
+     * @return response
+     */
+    public function dependents($task, $params = array(), $options = array())
+    {
+        $path = sprintf("/tasks/%s/dependents", $task);
+        return $this->client->get($path, $params, $options);
+    }
+
+    /**
+     * Marks a set of tasks as dependencies of this task, if they are not
+     * already dependencies. *A task can have at most 15 dependencies.*
+     *
+     * @param  task The task to add dependencies to.
+     * @return response
+     */
+    public function addDependencies($task, $params = array(), $options = array())
+    {
+        $path = sprintf("/tasks/%s/addDependencies", $task);
+        return $this->client->post($path, $params, $options);
+    }
+
+    /**
+     * Marks a set of tasks as dependents of this task, if they are not already
+     * dependents. *A task can have at most 30 dependents.*
+     *
+     * @param  task The task to add dependents to.
+     * @return response
+     */
+    public function addDependents($task, $params = array(), $options = array())
+    {
+        $path = sprintf("/tasks/%s/addDependents", $task);
+        return $this->client->post($path, $params, $options);
+    }
+
+    /**
+     * Unlinks a set of dependencies from this task.
+     *
+     * @param  task The task to remove dependencies from.
+     * @return response
+     */
+    public function removeDependencies($task, $params = array(), $options = array())
+    {
+        $path = sprintf("/tasks/%s/removeDependencies", $task);
+        return $this->client->post($path, $params, $options);
+    }
+
+    /**
+     * Unlinks a set of dependents from this task.
+     *
+     * @param  task The task to remove dependents from.
+     * @return response
+     */
+    public function removeDependents($task, $params = array(), $options = array())
+    {
+        $path = sprintf("/tasks/%s/removeDependents", $task);
+        return $this->client->post($path, $params, $options);
     }
 
     /**
@@ -182,10 +280,16 @@ class TasksBase
     /**
      * Adds the task to the specified project, in the optional location
      * specified. If no location arguments are given, the task will be added to
-     * the beginning of the project.
+     * the end of the project.
      * 
-     * `addProject` can also be used to reorder a task within a project that
+     * `addProject` can also be used to reorder a task within a project or section that
      * already contains it.
+     * 
+     * At most one of `insert_before`, `insert_after`, or `section` should be
+     * specified. Inserting into a section in an non-order-dependent way can be
+     * done by specifying `section`, otherwise, to insert within a section in a
+     * particular place, specify `insert_before` or `insert_after` and a task
+     * within the section to anchor the position of this task.
      * 
      * Returns an empty data block.
      *
