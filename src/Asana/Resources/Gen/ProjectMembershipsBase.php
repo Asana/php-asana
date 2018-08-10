@@ -24,7 +24,7 @@ class ProjectMembershipsBase
      * @param  project The project for which to fetch memberships.
      * @return response
      */
-    public function getMany($project, $params = array(), $options = array())
+    public function findByProject($project, $params = array(), $options = array())
     {
         $path = sprintf("/projects/%s/project_memberships", $project);
         return $this->client->getCollection($path, $params, $options);
@@ -33,12 +33,12 @@ class ProjectMembershipsBase
     /**
      * Returns the project membership record.
      *
-     * @param  project Globally unique identifier for the project membership.
+     * @param  project_membership Globally unique identifier for the project membership.
      * @return response
      */
-    public function getSingle($project, $params = array(), $options = array())
+    public function findById($projectMembership, $params = array(), $options = array())
     {
-        $path = sprintf("/project_memberships/%s", $project);
+        $path = sprintf("/project_memberships/%s", $projectMembership);
         return $this->client->get($path, $params, $options);
     }
 }
