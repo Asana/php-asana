@@ -8,18 +8,23 @@ use Asana\Test\MockRequest;
 use Asana\Dispatcher\OAuthDispatcher;
 
 // Extend dispatcher to expose protected methods for testing.
-class FakeOauthDispatcher extends OAuthDispatcher {
-  public function authenticate($request) {
-    return parent::authenticate($request);
-  }
-};
+class FakeOauthDispatcher extends OAuthDispatcher
+{
+    public function authenticate($request)
+    {
+        return parent::authenticate($request);
+    }
+}
 
 class OAuthDispatcherTest extends \PHPUnit_Framework_TestCase
 {
     protected function setUp()
     {
-        $this->dispatcher = new FakeOAuthDispatcher(array(
-            'client_id' => 'fake_client_id'));
+        $this->dispatcher = new FakeOAuthDispatcher(
+            array(
+                'client_id' => 'fake_client_id'
+            )
+        );
     }
 
     /**
@@ -38,6 +43,8 @@ class OAuthDispatcherTest extends \PHPUnit_Framework_TestCase
         $request = new MockRequest($this->dispatcher);
         $this->dispatcher->authenticate($request);
         $this->assertEquals(
-            $request->headers, array('Authorization' => 'Bearer fake_token'));
+            $request->headers,
+            array('Authorization' => 'Bearer fake_token')
+        );
     }
 }

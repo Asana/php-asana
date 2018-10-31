@@ -11,13 +11,13 @@ class Dispatcher
     {
         // All of Asana's IDs are int64. If the current build of PHP does not
         // support integers that large, we specify that integers that are too
-        // large should be represented as strings instead. Otherwise PHP would 
+        // large should be represented as strings instead. Otherwise PHP would
         // convert them to floats.
-        // Note that Httpful's JsonHandler does not support that option which 
+        // Note that Httpful's JsonHandler does not support that option which
         // is why we have to register our own JSON handler.
         if (PHP_INT_SIZE < 8) {
             \Httpful\Httpful::register(
-                \Httpful\Mime::JSON, 
+                \Httpful\Mime::JSON,
                 new \Asana\Dispatcher\Handlers\JsonHandler(array('parse_options' => JSON_BIGINT_AS_STRING))
             );
         }
@@ -38,8 +38,8 @@ class Dispatcher
             ->expectsJson();
 
         if (isset($requestOptions['curl'])) {
-            foreach($requestOptions['curl'] as $curlopt => $curlval){
-                $request->addOnCurlOption($curlopt,$curlval);    
+            foreach ($requestOptions['curl'] as $curlopt => $curlval) {
+                $request->addOnCurlOption($curlopt, $curlval);
             }
         }
 
@@ -61,16 +61,14 @@ class Dispatcher
 
                 // If the user's PHP version supports curl_file_create, use it.
                 if (function_exists('curl_file_create')) {
-                    if ( (isset($file[1]) && $file[1] != null) )  {
+                    if ((isset($file[1]) && $file[1] != null)) {
                         $mimetype = '';
-                        if ( (isset($file[2]) && $file[2] != null) )  {
+                        if ((isset($file[2]) && $file[2] != null)) {
                             $mimetype = $file[2];
                         }
                         $body[$name] = curl_file_create($tmpFilePath, $mimetype, $file[1]);
                     }
-                }
-                // Otherwise we can still use the '@' notation.
-                else {
+                } else { // Otherwise we can still use the '@' notation.
                     $body[$name] = '@' . $tmpFilePath;
                     if (isset($file[1]) && $file[1] != null) {
                         $body[$name] .= ';filename=' . $file[1];

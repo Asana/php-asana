@@ -20,7 +20,11 @@ class CustomFieldSettingsBase
     }
 
     /**
-     * Returns a list of all of the custom fields settings on a project, in compact form. Note that, as in all queries to collections which return compact representation, `opt_fields` and `opt_expand` can be used to include more data than is returned in the compact representation. See the getting started guide on [input/output options](/developers/documentation/getting-started/input-output-options) for more information.
+     * Returns a list of all of the custom fields settings on a project, in compact form.
+     * Note that, as in all queries to collections which return compact representation,
+     * `opt_fields` and `opt_expand` can be used to include more data than is returned in the compact representation.
+     * See the getting started guide on
+     * [input/output options](/developers/documentation/getting-started/input-output-options) for more information.
      *
      * @param  project The ID of the project for which to list custom field settings
      * @return response

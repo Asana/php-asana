@@ -154,7 +154,9 @@ class TasksBase
     }
 
     /**
-     * The search endpoint allows you to build complex queries to find and fetch exactly the data you need from Asana. For a more comprehensive description of all the query parameters and limitations of this endpoint, see our [long-form documentation](/developers/documentation/getting-started/search-api) for this feature.
+     * The search endpoint allows you to build complex queries to find and fetch exactly the data you need from Asana.
+     * For a more comprehensive description of all the query parameters and limitations of this endpoint,
+     * see our [long-form documentation](/developers/documentation/getting-started/search-api) for this feature.
      *
      * @param  workspace The workspace or organization in which to search for tasks.
      * @return response
