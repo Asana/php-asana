@@ -8,6 +8,11 @@ namespace Asana\Resources\Gen;
  * Fields](/developers/documentation/getting-started/custom-fields) developer
  * documentation for more information about how custom fields relate to various
  * resources in Asana.
+ * 
+ * Users in Asana can [lock custom
+ * fields](/guide/help/premium/custom-fields#gl-lock-fields), which will make
+ * them read-only when accessed by other users. Attempting to edit a locked
+ * custom field will return HTTP error code `403 Forbidden`.
 */
 class CustomFieldsBase
 {
@@ -62,9 +67,9 @@ class CustomFieldsBase
      * 
      * When using this method, it is best to specify only those fields you wish to change, or else you may overwrite changes made by another user since you last retrieved the custom field.
      * 
-     * A custom field's `type` cannot be updated.
-     * 
      * An enum custom field's `enum_options` cannot be updated with this endpoint. Instead see "Work With Enum Options" for information on how to update `enum_options`.
+     * 
+     * Locked custom fields can only be updated by the user who locked the field.
      * 
      * Returns the complete updated custom field record.
      *
@@ -80,6 +85,8 @@ class CustomFieldsBase
     /**
      * A specific, existing custom field can be deleted by making a DELETE request on the URL for that custom field.
      * 
+     * Locked custom fields can only be deleted by the user who locked the field.
+     * 
      * Returns an empty data record.
      *
      * @param  custom_field Globally unique identifier for the custom field.
@@ -94,12 +101,14 @@ class CustomFieldsBase
     /**
      * Creates an enum option and adds it to this custom field's list of enum options. A custom field can have at most 50 enum options (including disabled options). By default new enum options are inserted at the end of a custom field's list.
      * 
+     * Locked custom fields can only have enum options added by the user who locked the field.
+     * 
      * Returns the full record of the newly created enum option.
      *
      * @param  custom_field Globally unique identifier for the custom field.
      * @return response
      */
-    public function addEnumOption($customField, $params = array(), $options = array())
+    public function createEnumOption($customField, $params = array(), $options = array())
     {
         $path = sprintf("/custom_fields/%s/enum_options", $customField);
         return $this->client->post($path, $params, $options);
@@ -107,6 +116,8 @@ class CustomFieldsBase
 
     /**
      * Updates an existing enum option. Enum custom fields require at least one enabled enum option.
+     * 
+     * Locked custom fields can only be updated by the user who locked the field.
      * 
      * Returns the full record of the updated enum option.
      *
@@ -121,11 +132,13 @@ class CustomFieldsBase
 
     /**
      * Moves a particular enum option to be either before or after another specified enum option in the custom field.
+     * 
+     * Locked custom fields can only be reordered by the user who locked the field.
      *
      * @param  custom_field Globally unique identifier for the custom field.
      * @return response
      */
-    public function reorderEnumOption($customField, $params = array(), $options = array())
+    public function insertEnumOption($customField, $params = array(), $options = array())
     {
         $path = sprintf("/custom_fields/%s/enum_options/insert", $customField);
         return $this->client->post($path, $params, $options);

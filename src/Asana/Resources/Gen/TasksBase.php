@@ -22,11 +22,11 @@ class TasksBase
      * Creating a new task is as easy as POSTing to the `/tasks` endpoint
      * with a data block containing the fields you'd like to set on the task.
      * Any unspecified fields will take on default values.
-     * 
+     *
      * Every task is required to be created in a specific workspace, and this
      * workspace cannot be changed once set. The workspace need not be set
      * explicitly if you specify `projects` or a `parent` task instead.
-     * 
+     *
      * `projects` can be a comma separated list of projects, or just a single
      * project the task should belong to.
      *
@@ -41,7 +41,7 @@ class TasksBase
      * Creating a new task is as easy as POSTing to the `/tasks` endpoint
      * with a data block containing the fields you'd like to set on the task.
      * Any unspecified fields will take on default values.
-     * 
+     *
      * Every task is required to be created in a specific workspace, and this
      * workspace cannot be changed once set. The workspace need not be set
      * explicitly if you specify a `project` or a `parent` task instead.
@@ -71,11 +71,11 @@ class TasksBase
      * A specific, existing task can be updated by making a PUT request on the
      * URL for that task. Only the fields provided in the `data` block will be
      * updated; any unspecified fields will remain unchanged.
-     * 
+     *
      * When using this method, it is best to specify only those fields you wish
      * to change, or else you may overwrite changes made by another user since
      * you last retrieved the task.
-     * 
+     *
      * Returns the complete updated task record.
      *
      * @param  task The task to update.
@@ -92,7 +92,7 @@ class TasksBase
      * URL for that task. Deleted tasks go into the "trash" of the user making
      * the delete request. Tasks can be recovered from the trash within a period
      * of 30 days; afterward they are completely removed from the system.
-     * 
+     *
      * Returns an empty data record.
      *
      * @param  task The task to delete.
@@ -105,15 +105,27 @@ class TasksBase
     }
 
     /**
+     * Creates and returns a job that will asynchronously handle the duplication.
+     *
+     * @param  task The task to duplicate.
+     * @return response
+     */
+    public function duplicateTask($task, $params = array(), $options = array())
+    {
+        $path = sprintf("/tasks/%s/duplicate", $task);
+        return $this->client->post($path, $params, $options);
+    }
+
+    /**
      * Returns the compact task records for all tasks within the given project,
      * ordered by their priority within the project.
      *
-     * @param  projectId The project in which to search for tasks.
+     * @param  project The project in which to search for tasks.
      * @return response
      */
-    public function findByProject($projectId, $params = array(), $options = array())
+    public function findByProject($project, $params = array(), $options = array())
     {
-        $path = sprintf("/projects/%s/tasks", $projectId);
+        $path = sprintf("/projects/%s/tasks", $project);
         return $this->client->getCollection($path, $params, $options);
     }
 
@@ -142,9 +154,38 @@ class TasksBase
     }
 
     /**
+     * Returns the compact list of tasks in a user's My Tasks list. The returned
+     * tasks will be in order within each assignee status group of `Inbox`,
+     * `Today`, and `Upcoming`.
+     *
+     * **Note:** tasks in `Later` have a different ordering in the Asana web app
+     * than the other assignee status groups; this endpoint will still return
+     * them in list order in `Later` (differently than they show up in Asana,
+     * but the same order as in Asana's mobile apps).
+     *
+     * **Note:** Access control is enforced for this endpoint as with all Asana
+     * API endpoints, meaning a user's private tasks will be filtered out if the
+     * API-authenticated user does not have access to them.
+     *
+     * **Note:** Both complete and incomplete tasks are returned by default
+     * unless they are filtered out (for example, setting `completed_since=now`
+     * will return only incomplete tasks, which is the default view for "My
+     * Tasks" in Asana.)
+     *
+     * @param  user_task_list The user task list in which to search for tasks.
+     * @return response
+     */
+    public function findByUserTaskList($userTaskList, $params = array(), $options = array())
+    {
+        $path = sprintf("/user_task_lists/%s/tasks", $userTaskList);
+        return $this->client->getCollection($path, $params, $options);
+    }
+
+    /**
      * Returns the compact task records for some filtered set of tasks. Use one
      * or more of the parameters provided to filter the tasks returned. You must
-     * specify a `project` or `tag` if you do not specify `assignee` and `workspace`.
+     * specify a `project`, `section`, `tag`, or `user_task_list` if you do not
+     * specify `assignee` and `workspace`.
      *
      * @return response
      */
@@ -154,12 +195,25 @@ class TasksBase
     }
 
     /**
+     * Returns the compact task records for all tasks with the given tag.
+     * Tasks can have more than one tag at a time.
+     *
+     * @param  tag The tag to fetch tasks from.
+     * @return response
+     */
+    public function getTasksWithTag($tag, $params = array(), $options = array())
+    {
+        $path = sprintf("/tags/%s/tasks", $tag);
+        return $this->client->getCollection($path, $params, $options);
+    }
+
+    /**
      * The search endpoint allows you to build complex queries to find and fetch exactly the data you need from Asana. For a more comprehensive description of all the query parameters and limitations of this endpoint, see our [long-form documentation](/developers/documentation/getting-started/search-api) for this feature.
      *
      * @param  workspace The workspace or organization in which to search for tasks.
      * @return response
      */
-    public function search($workspace, $params = array(), $options = array())
+    public function searchInWorkspace($workspace, $params = array(), $options = array())
     {
         $path = sprintf("/workspaces/%s/tasks/search", $workspace);
         return $this->client->getCollection($path, $params, $options);
@@ -281,16 +335,16 @@ class TasksBase
      * Adds the task to the specified project, in the optional location
      * specified. If no location arguments are given, the task will be added to
      * the end of the project.
-     * 
+     *
      * `addProject` can also be used to reorder a task within a project or section that
      * already contains it.
-     * 
+     *
      * At most one of `insert_before`, `insert_after`, or `section` should be
      * specified. Inserting into a section in an non-order-dependent way can be
      * done by specifying `section`, otherwise, to insert within a section in a
      * particular place, specify `insert_before` or `insert_after` and a task
      * within the section to anchor the position of this task.
-     * 
+     *
      * Returns an empty data block.
      *
      * @param  task The task to add to a project.
@@ -305,7 +359,7 @@ class TasksBase
     /**
      * Removes the task from the specified project. The task will still exist
      * in the system, but it will not be in the project anymore.
-     * 
+     *
      * Returns an empty data block.
      *
      * @param  task The task to remove from a project.
@@ -394,7 +448,7 @@ class TasksBase
      * Adds a comment to a task. The comment will be authored by the
      * currently authenticated user, and timestamped when the server receives
      * the request.
-     * 
+     *
      * Returns the full record for the new story added to the task.
      *
      * @param  task Globally unique identifier for the task.
@@ -403,6 +457,24 @@ class TasksBase
     public function addComment($task, $params = array(), $options = array())
     {
         $path = sprintf("/tasks/%s/stories", $task);
+        return $this->client->post($path, $params, $options);
+    }
+
+    /**
+     * Insert or reorder tasks in a user's My Tasks list. If the task was not
+     * assigned to the owner of the user task list it will be reassigned when
+     * this endpoint is called. If neither `insert_before` nor `insert_after`
+     * are provided the task will be inserted at the top of the assignee's
+     * inbox.
+     *
+     * Returns an empty data block.
+     *
+     * @param  user_task_list Globally unique identifier for the user task list.
+     * @return response
+     */
+    public function insertInUserTaskList($userTaskList, $params = array(), $options = array())
+    {
+        $path = sprintf("/user_task_lists/%s/tasks/insert", $userTaskList);
         return $this->client->post($path, $params, $options);
     }
 }

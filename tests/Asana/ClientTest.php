@@ -5,9 +5,12 @@ namespace Asana;
 use Asana\Test\AsanaTest;
 use Asana\Errors\Error;
 use Asana\Errors\ServerError;
+use PHPUnit_Framework_Error_Warning;
 
 class ClientTest extends Test\AsanaTest
 {
+    var $errors = array();
+
     public function testClientGet()
     {
         $this->dispatcher->registerResponse('/users/me', 200, null, '{ "data": "foo" }');
@@ -313,5 +316,106 @@ class ClientTest extends Test\AsanaTest
         );
         $this->assertEquals($result, 'foo');
         $this->assertEquals(json_decode($this->dispatcher->calls[0]['request']->payload), json_decode($req));
+    }
+
+    public function testAsanaChangeHeaderNone()
+    {
+        $this->errors = array();
+        set_error_handler(array($this,'handleError'));
+        PHPUnit_Framework_Error_Warning::$enabled = false;
+
+        $this->dispatcher->registerResponse('/tasks/1001',
+            200,
+            null,
+            '{ "data": "foo" }');
+
+        $this->client->tasks->update(
+            1001,
+            array('assignee' => 1235, 'followers' => array(5678), 'name' => "Hello, world.")
+        );
+
+        $this->assertEquals(0, count($this->errors));
+    }
+
+    public function testAsanaChangeHeaderEnable()
+    {
+        $this->errors = array();
+        set_error_handler(array($this,'handleError'));
+        PHPUnit_Framework_Error_Warning::$enabled = false;
+
+        $this->dispatcher->registerResponse('/tasks/1001',
+            200,
+            array('asana-change' => 'name=string_ids;info=something;affected=true'),
+            '{ "data": "foo" }');
+
+        $this->client->tasks->update(
+            1001,
+            array('assignee' => 1235, 'followers' => array(5678), 'name' => "Hello, world."),
+            array('headers' => array('asana-enable' => 'string_ids'))
+        );
+
+        $this->assertEquals(0, count($this->errors));
+    }
+
+    public function testAsanaChangeHeaderDisable()
+    {
+        $this->errors = array();
+        set_error_handler(array($this,'handleError'));
+        PHPUnit_Framework_Error_Warning::$enabled = false;
+
+        $this->dispatcher->registerResponse('/tasks/1001',
+            200,
+            array('asana-change' => 'name=string_ids;info=something;affected=true'),
+            '{ "data": "foo" }');
+
+        $this->client->tasks->update(
+            1001,
+            array('assignee' => 1235, 'followers' => array(5678), 'name' => "Hello, world."),
+            array('headers' => array('asana-disable' => 'string_ids'))
+        );
+
+        $this->assertEquals(0, count($this->errors));
+    }
+
+    public function testAsanaChangeHeaderSingle()
+    {
+        $this->errors = array();
+        set_error_handler(array($this,'handleError'));
+        PHPUnit_Framework_Error_Warning::$enabled = false;
+
+        $this->dispatcher->registerResponse('/tasks/1001',
+            200,
+            array('asana-change' => 'name=string_ids;info=something;affected=true'),
+            '{ "data": "foo" }');
+
+        $this->client->tasks->update(
+            1001,
+            array('assignee' => 1235, 'followers' => array(5678), 'name' => "Hello, world.")
+        );
+
+        $this->assertEquals(1, count($this->errors));
+    }
+
+    public function testAsanaChangeHeaderMultiple()
+    {
+        $this->errors = array();
+        set_error_handler(array($this,'handleError'));
+        PHPUnit_Framework_Error_Warning::$enabled = false;
+
+        $this->dispatcher->registerResponse('/tasks/1001',
+            200,
+            array('asana-change' => 'name=string_ids;info=something;affected=true,name=new_sections;info=something;affected=true'),
+            '{ "data": "foo" }');
+
+        $this->client->tasks->update(
+            1001,
+            array('assignee' => 1235, 'followers' => array(5678), 'name' => "Hello, world.")
+        );
+
+        $this->assertEquals(2, count($this->errors));
+    }
+
+    public function handleError($n, $m, $f, $l) {
+        array_push($this->errors, array($n, $m, $f, $l));
     }
 }

@@ -40,7 +40,7 @@ class SectionsBase
     public function findByProject($project, $params = array(), $options = array())
     {
         $path = sprintf("/projects/%s/sections", $project);
-        return $this->client->get($path, $params, $options);
+        return $this->client->getCollection($path, $params, $options);
     }
 
     /**
@@ -93,6 +93,22 @@ class SectionsBase
     {
         $path = sprintf("/sections/%s", $section);
         return $this->client->delete($path, $params, $options);
+    }
+
+    /**
+     * Add a task to a specific, existing section. This will remove the task from other sections of the project.
+     * 
+     * The task will be inserted at the top of a section unless an `insert_before` or `insert_after` parameter is declared.
+     * 
+     * This does not work for separators (tasks with the `resource_subtype` of section).
+     *
+     * @param  task The task to add to this section
+     * @return response
+     */
+    public function addTask($task, $params = array(), $options = array())
+    {
+        $path = sprintf("/sections/%s/addTask", $task);
+        return $this->client->post($path, $params, $options);
     }
 
     /**

@@ -45,6 +45,21 @@ class UsersBase
     }
 
     /**
+     * Returns all of a user's favorites in the given workspace, of the given type.
+     * Results are given in order (The same order as Asana's sidebar).
+     *
+     * @param  user An identifier for the user. Can be one of an email address,
+     * the globally unique identifier for the user, or the keyword `me`
+     * to indicate the current user making the request.
+     * @return response
+     */
+    public function getUserFavorites($user, $params = array(), $options = array())
+    {
+        $path = sprintf("/users/%s/favorites", $user);
+        return $this->client->get($path, $params, $options);
+    }
+
+    /**
      * Returns the user records for all users in the specified workspace or
      * organization.
      *

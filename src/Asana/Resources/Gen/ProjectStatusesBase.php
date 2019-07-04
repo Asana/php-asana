@@ -28,7 +28,7 @@ class ProjectStatusesBase
      * @param  project The project on which to create a status update.
      * @return response
      */
-    public function create($project, $params = array(), $options = array())
+    public function createInProject($project, $params = array(), $options = array())
     {
         $path = sprintf("/projects/%s/project_statuses", $project);
         return $this->client->post($path, $params, $options);
