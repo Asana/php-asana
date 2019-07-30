@@ -7,7 +7,7 @@ namespace Asana\Resources\Gen;
  * initiatives in Asana.  Portfolios provide a dashboard overview of the state
  * of multiple items, including a progress report and the most recent
  * [project status](/developers/api-reference/project_statuses) update.
- * 
+ *
  * Portfolios have some restrictions on size. Each portfolio has a maximum of 250
  * items and, like projects, a maximum of 20 custom fields.
 */
@@ -23,7 +23,7 @@ class PortfoliosBase
 
     /**
      * Creates a new portfolio in the given workspace with the supplied name.
-     * 
+     *
      * Note that portfolios created in the Asana UI may have some state
      * (like the "Priority" custom field) which is automatically added to the
      * portfolio when it is created. Portfolios created via our API will **not**
@@ -53,7 +53,7 @@ class PortfoliosBase
      * An existing portfolio can be updated by making a PUT request on the
      * URL for that portfolio. Only the fields provided in the `data` block will be
      * updated; any unspecified fields will remain unchanged.
-     * 
+     *
      * Returns the complete updated portfolio record.
      *
      * @param  portfolio The portfolio to update.
@@ -68,7 +68,7 @@ class PortfoliosBase
     /**
      * An existing portfolio can be deleted by making a DELETE request
      * on the URL for that portfolio.
-     * 
+     *
      * Returns an empty data record.
      *
      * @param  portfolio The portfolio to delete.
@@ -100,12 +100,12 @@ class PortfoliosBase
     public function getItems($portfolio, $params = array(), $options = array())
     {
         $path = sprintf("/portfolios/%s/items", $portfolio);
-        return $this->client->get($path, $params, $options);
+        return $this->client->getCollection($path, $params, $options);
     }
 
     /**
      * Add an item to a portfolio.
-     * 
+     *
      * Returns an empty data block.
      *
      * @param  portfolio The portfolio to which to add an item.
@@ -119,7 +119,7 @@ class PortfoliosBase
 
     /**
      * Remove an item to a portfolio.
-     * 
+     *
      * Returns an empty data block.
      *
      * @param  portfolio The portfolio from which to remove the item.
@@ -164,7 +164,7 @@ class PortfoliosBase
     public function customFieldSettings($portfolio, $params = array(), $options = array())
     {
         $path = sprintf("/portfolios/%s/custom_field_settings", $portfolio);
-        return $this->client->get($path, $params, $options);
+        return $this->client->getCollection($path, $params, $options);
     }
 
     /**
