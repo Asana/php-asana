@@ -120,6 +120,18 @@ class ProjectsBase
     }
 
     /**
+     * Creates and returns a job that will asynchronously handle the duplication.
+     *
+     * @param  project The project to duplicate.
+     * @return response
+     */
+    public function duplicateProject($project, $params = array(), $options = array())
+    {
+        $path = sprintf("/projects/%s/duplicate", $project);
+        return $this->client->post($path, $params, $options);
+    }
+
+    /**
      * Returns the compact project records for some filtered set of projects.
      * Use one or more of the parameters provided to filter the projects returned.
      *
