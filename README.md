@@ -152,6 +152,29 @@ Events:
 * `poll_interval` (default: 5): polling interval for getting new events via `events->getNext` and `events->getIterator`
 * `sync`: sync token returned by previous calls to `events->get` (in `response->sync`)
 
+## Asana Change Warnings
+You will receive warning logs if performing requests that may be affected by a deprecation. The warning contains a link that explains the deprecation.
+
+If you receive one of these warnings, you should:
+
+Read about the deprecation.
+Resolve sections of your code that would be affected by the deprecation.
+Add the deprecation flag to your "asana-enable" header.
+You can place it on the client for all requests, or place it on a single request.
+
+    $client = Asana\Client::accessToken('ASANA_PERSONAL_ACCESS_TOKEN', 
+        array('headers' => array('asana-disable' => 'string_ids')))
+    
+or
+
+    $client = Asana\Client::accessToken('ASANA_PERSONAL_ACCESS_TOKEN', 
+        array('headers' => array('asana-enable' => 'string_ids,new_sections')))
+
+If you would rather suppress these warnings, you can set
+    
+    $client = Asana\Client::accessToken('ASANA_PERSONAL_ACCESS_TOKEN', 
+        array('log_asana_change_warnings' => false))
+
 ## Collections
 
 ### Items Iterator

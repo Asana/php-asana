@@ -28,7 +28,8 @@ class Client
         'poll_interval' => 5,
         'max_retries' => 5,
         'full_payload' => null,
-        'iterator_type' => 'items'
+        'iterator_type' => 'items',
+        'log_asana_change_warnings' => true
     );
 
     private static $QUERY_OPTIONS   = array('limit', 'offset' , 'sync');
@@ -113,6 +114,10 @@ class Client
 
     private function logAsanaChangeHeaders($reqHeaders, $resHeaders)
     {
+        if (!$this->options['log_asana_change_warnings']) {
+            return;
+        }
+
         $changeHeaderKey = null;
 
         foreach ((array) $resHeaders as $key => $value) {
