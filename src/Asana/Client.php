@@ -80,7 +80,9 @@ class Client
 
     public function request($method, $path, $options)
     {
-        $options = array_merge_recursive($this->options, $options);
+        $options = Client::array_merge_recursive_distinct($this->options, $options);
+        var_dump($options);
+
         $requestOptions = $this->parseRequestOptions($options);
         $uri = $options['base_url'] . $path;
         $retryCount = 0;
@@ -348,5 +350,22 @@ class Client
                 Client::$API_OPTIONS
             );
         }
+    }
+
+    private static function array_merge_recursive_distinct(array &$array1, array &$array2)
+    {
+        $merged = $array1;
+        foreach ($array2 as $key => &$value)
+        {
+            if (is_array($value) && isset($merged[$key]) && is_array($merged[$key]))
+            {
+                $merged[$key] = Client::array_merge_recursive_distinct($merged[$key], $value);
+            }
+            else
+            {
+                $merged[$key] = $value;
+            }
+        }
+        return $merged;
     }
 }
