@@ -81,7 +81,6 @@ class Client
     public function request($method, $path, $options)
     {
         $options = Client::array_merge_recursive_distinct($this->options, $options);
-        var_dump($options);
 
         $requestOptions = $this->parseRequestOptions($options);
         $uri = $options['base_url'] . $path;
