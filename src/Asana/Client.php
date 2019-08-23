@@ -80,7 +80,7 @@ class Client
 
     public function request($method, $path, $options)
     {
-        $options = array_merge($this->options, $options);
+        $options = array_merge_recursive($this->options, $options);
         $requestOptions = $this->parseRequestOptions($options);
         $uri = $options['base_url'] . $path;
         $retryCount = 0;
