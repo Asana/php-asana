@@ -1,0 +1,36 @@
+<?php
+
+namespace Asana\Resources\Gen;
+
+{{#operations}}
+class {{classname}}Base {
+
+    /**
+    * @param Asana/Client client  The client instance
+    */
+    public function __construct($client)
+    {
+        $this->client = $client;
+    }
+{{#operation}}
+{{#contents}}
+
+    public function {{operationId}}({{#pathParams}}${{paramName}}, {{/pathParams}}$params = array(), $options = array()) {
+        /** {{#summary}}{{{.}}}{{/summary}}{{^summary}}{{operationId}}{{/summary}}
+         *
+        {{#pathParams}}
+         * @param ${{paramName}} {{dataType}}: {{#required}} (required){{/required}}{{#optional}}(optional){{/optional}}{{#description}} {{{description}}}{{/description}}
+        {{/pathParams}}
+         * @param $params {{dataType}}: {{#required}} (required){{/required}}{{#optional}}(optional){{/optional}}{{#description}} {{{description}}}{{/description}}
+         * @return response
+         */
+        $path = "{{path}}";
+        {{#pathParams}}
+        $path = str_replace($path,"{ {{~baseName~}} }", ${{paramName}});
+        {{/pathParams}}
+        return $this->client->{{#neq "GET" httpMethod}}{{toLowerCase httpMethod}}{{/neq}}{{#eq "GET" httpMethod}}{{returnContainer}}{{/eq}}($path, $params, $options);
+    }
+{{/contents}}
+{{/operation}}
+{{/operations}}
+}

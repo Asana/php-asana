@@ -2,255 +2,177 @@
 
 namespace Asana\Resources\Gen;
 
-/**
- * A _project_ represents a prioritized list of tasks in Asana or a board with
- * columns of tasks represented as cards. It exists in a single workspace or
- * organization and is accessible to a subset of users in that workspace or
- * organization, depending on its permissions.
- * 
- * Projects in organizations are shared with a single team. You cannot currently
- * change the team of a project via the API. Non-organization workspaces do not
- * have teams and so you should not specify the team of project in a regular
- * workspace.
-*/
-class ProjectsBase
-{
+class ProjectsBase {
+
     /**
-     * @param Asana/Client client  The client instance
-     */
+    * @param Asana/Client client  The client instance
+    */
     public function __construct($client)
     {
         $this->client = $client;
     }
 
-    /**
-     * Creates a new project in a workspace or team.
-     * 
-     * Every project is required to be created in a specific workspace or
-     * organization, and this cannot be changed once set. Note that you can use
-     * the `workspace` parameter regardless of whether or not it is an
-     * organization.
-     * 
-     * If the workspace for your project _is_ an organization, you must also
-     * supply a `team` to share the project with.
-     * 
-     * Returns the full record of the newly created project.
-     *
-     * @return response
-     */
-    public function create($params = array(), $options = array())
-    {
-        return $this->client->post("/projects", $params, $options);
-    }
-
-    /**
-     * If the workspace for your project _is_ an organization, you must also
-     * supply a `team` to share the project with.
-     * 
-     * Returns the full record of the newly created project.
-     *
-     * @param  workspace The workspace or organization to create the project in.
-     * @return response
-     */
-    public function createInWorkspace($workspace, $params = array(), $options = array())
-    {
-        $path = sprintf("/workspaces/%s/projects", $workspace);
+    public function createProject($params = array(), $options = array()) {
+        /** Create a project
+         *
+         * @param $params : 
+         * @return response
+         */
+        $path = "/projects";
         return $this->client->post($path, $params, $options);
     }
 
-    /**
-     * Creates a project shared with the given team.
-     * 
-     * Returns the full record of the newly created project.
-     *
-     * @param  team The team to create the project in.
-     * @return response
-     */
-    public function createInTeam($team, $params = array(), $options = array())
-    {
-        $path = sprintf("/teams/%s/projects", $team);
+    public function createProjectsInWorkspace($workspace_gid, $params = array(), $options = array()) {
+        /** Create a project in a workspace
+         *
+         * @param $workspace_gid string:  (required) Globally unique identifier for the workspace or organization.
+         * @param $params : 
+         * @return response
+         */
+        $path = "/workspaces/{workspace_gid}/projects";
+        $path = str_replace($path,"{workspace_gid}", $workspace_gid);
         return $this->client->post($path, $params, $options);
     }
 
-    /**
-     * Returns the complete project record for a single project.
-     *
-     * @param  project The project to get.
-     * @return response
-     */
-    public function findById($project, $params = array(), $options = array())
-    {
-        $path = sprintf("/projects/%s", $project);
-        return $this->client->get($path, $params, $options);
+    public function createProjectsWithTeam($team_gid, $params = array(), $options = array()) {
+        /** Create a project in a team
+         *
+         * @param $team_gid string:  (required) Globally unique identifier for the team.
+         * @param $params : 
+         * @return response
+         */
+        $path = "/teams/{team_gid}/projects";
+        $path = str_replace($path,"{team_gid}", $team_gid);
+        return $this->client->post($path, $params, $options);
     }
 
-    /**
-     * A specific, existing project can be updated by making a PUT request on the
-     * URL for that project. Only the fields provided in the `data` block will be
-     * updated; any unspecified fields will remain unchanged.
-     * 
-     * When using this method, it is best to specify only those fields you wish
-     * to change, or else you may overwrite changes made by another user since
-     * you last retrieved the task.
-     * 
-     * Returns the complete updated project record.
-     *
-     * @param  project The project to update.
-     * @return response
-     */
-    public function update($project, $params = array(), $options = array())
-    {
-        $path = sprintf("/projects/%s", $project);
-        return $this->client->put($path, $params, $options);
-    }
-
-    /**
-     * A specific, existing project can be deleted by making a DELETE request
-     * on the URL for that project.
-     * 
-     * Returns an empty data record.
-     *
-     * @param  project The project to delete.
-     * @return response
-     */
-    public function delete($project, $params = array(), $options = array())
-    {
-        $path = sprintf("/projects/%s", $project);
+    public function deleteProject($project_gid, $params = array(), $options = array()) {
+        /** Delete a project
+         *
+         * @param $project_gid string:  (required) Globally unique identifier for the project.
+         * @param $params : 
+         * @return response
+         */
+        $path = "/projects/{project_gid}";
+        $path = str_replace($path,"{project_gid}", $project_gid);
         return $this->client->delete($path, $params, $options);
     }
 
-    /**
-     * Creates and returns a job that will asynchronously handle the duplication.
-     *
-     * @param  project The project to duplicate.
-     * @return response
-     */
-    public function duplicateProject($project, $params = array(), $options = array())
-    {
-        $path = sprintf("/projects/%s/duplicate", $project);
+    public function duplicateProject($project_gid, $params = array(), $options = array()) {
+        /** Duplicate a project
+         *
+         * @param $project_gid string:  (required) Globally unique identifier for the project.
+         * @param $params : 
+         * @return response
+         */
+        $path = "/projects/{project_gid}/duplicate";
+        $path = str_replace($path,"{project_gid}", $project_gid);
         return $this->client->post($path, $params, $options);
     }
 
-    /**
-     * Returns the compact project records for some filtered set of projects.
-     * Use one or more of the parameters provided to filter the projects returned.
-     *
-     * @return response
-     */
-    public function findAll($params = array(), $options = array())
-    {
-        return $this->client->getCollection("/projects", $params, $options);
+    public function getProject($project_gid, $params = array(), $options = array()) {
+        /** Get a project
+         *
+         * @param $project_gid string:  (required) Globally unique identifier for the project.
+         * @param $params : 
+         * @return response
+         */
+        $path = "/projects/{project_gid}";
+        $path = str_replace($path,"{project_gid}", $project_gid);
+        return $this->client->get($path, $params, $options);
     }
 
-    /**
-     * Returns the compact project records for all projects in the workspace.
-     *
-     * @param  workspace The workspace or organization to find projects in.
-     * @return response
-     */
-    public function findByWorkspace($workspace, $params = array(), $options = array())
-    {
-        $path = sprintf("/workspaces/%s/projects", $workspace);
-        return $this->client->getCollection($path, $params, $options);
+    public function getProjectTaskCounts($project_gid, $params = array(), $options = array()) {
+        /** Get task count of a project
+         *
+         * @param $project_gid string:  (required) Globally unique identifier for the project.
+         * @param $params : 
+         * @return response
+         */
+        $path = "/projects/{project_gid}/task_counts";
+        $path = str_replace($path,"{project_gid}", $project_gid);
+        return $this->client->get($path, $params, $options);
     }
 
-    /**
-     * Returns the compact project records for all projects in the team.
-     *
-     * @param  team The team to find projects in.
-     * @return response
-     */
-    public function findByTeam($team, $params = array(), $options = array())
-    {
-        $path = sprintf("/teams/%s/projects", $team);
-        return $this->client->getCollection($path, $params, $options);
+    public function getProjects($params = array(), $options = array()) {
+        /** Get multiple projects
+         *
+         * @param $params : 
+         * @return response
+         */
+        $path = "/projects";
+        return $this->client->get($path, $params, $options);
     }
 
-    /**
-     * Returns the compact task records for all tasks within the given project,
-     * ordered by their priority within the project. Tasks can exist in more than one project at a time.
-     *
-     * @param  project The project in which to search for tasks.
-     * @return response
-     */
-    public function tasks($project, $params = array(), $options = array())
-    {
-        $path = sprintf("/projects/%s/tasks", $project);
-        return $this->client->getCollection($path, $params, $options);
+    public function getProjectsInTeam($team_gid, $params = array(), $options = array()) {
+        /** Get a team's projects
+         *
+         * @param $team_gid string:  (required) Globally unique identifier for the team.
+         * @param $params : 
+         * @return response
+         */
+        $path = "/teams/{team_gid}/projects";
+        $path = str_replace($path,"{team_gid}", $team_gid);
+        return $this->client->get($path, $params, $options);
     }
 
-    /**
-     * Adds the specified list of users as followers to the project. Followers are a subset of members, therefore if
-     * the users are not already members of the project they will also become members as a result of this operation.
-     * Returns the updated project record.
-     *
-     * @param  project The project to add followers to.
-     * @return response
-     */
-    public function addFollowers($project, $params = array(), $options = array())
-    {
-        $path = sprintf("/projects/%s/addFollowers", $project);
+    public function getProjectsInWorkspace($workspace_gid, $params = array(), $options = array()) {
+        /** Get all projects in a workspace
+         *
+         * @param $workspace_gid string:  (required) Globally unique identifier for the workspace or organization.
+         * @param $params : 
+         * @return response
+         */
+        $path = "/workspaces/{workspace_gid}/projects";
+        $path = str_replace($path,"{workspace_gid}", $workspace_gid);
+        return $this->client->get($path, $params, $options);
+    }
+
+    public function getTaskProjects($task_gid, $params = array(), $options = array()) {
+        /** Get projects a task is in
+         *
+         * @param $task_gid string:  (required) The task to operate on.
+         * @param $params : 
+         * @return response
+         */
+        $path = "/tasks/{task_gid}/projects";
+        $path = str_replace($path,"{task_gid}", $task_gid);
+        return $this->client->get($path, $params, $options);
+    }
+
+    public function projectAddCustomFieldSetting($project_gid, $params = array(), $options = array()) {
+        /** Add a custom field to a project
+         *
+         * @param $project_gid string:  (required) Globally unique identifier for the project.
+         * @param $params : 
+         * @return response
+         */
+        $path = "/projects/{project_gid}/addCustomFieldSetting";
+        $path = str_replace($path,"{project_gid}", $project_gid);
         return $this->client->post($path, $params, $options);
     }
 
-    /**
-     * Removes the specified list of users from following the project, this will not affect project membership status.
-     * Returns the updated project record.
-     *
-     * @param  project The project to remove followers from.
-     * @return response
-     */
-    public function removeFollowers($project, $params = array(), $options = array())
-    {
-        $path = sprintf("/projects/%s/removeFollowers", $project);
+    public function projectRemoveCustomFieldSetting($project_gid, $params = array(), $options = array()) {
+        /** Remove a custom field from a project
+         *
+         * @param $project_gid string:  (required) Globally unique identifier for the project.
+         * @param $params : 
+         * @return response
+         */
+        $path = "/projects/{project_gid}/removeCustomFieldSetting";
+        $path = str_replace($path,"{project_gid}", $project_gid);
         return $this->client->post($path, $params, $options);
     }
 
-    /**
-     * Adds the specified list of users as members of the project. Returns the updated project record.
-     *
-     * @param  project The project to add members to.
-     * @return response
-     */
-    public function addMembers($project, $params = array(), $options = array())
-    {
-        $path = sprintf("/projects/%s/addMembers", $project);
-        return $this->client->post($path, $params, $options);
-    }
-
-    /**
-     * Removes the specified list of members from the project. Returns the updated project record.
-     *
-     * @param  project The project to remove members from.
-     * @return response
-     */
-    public function removeMembers($project, $params = array(), $options = array())
-    {
-        $path = sprintf("/projects/%s/removeMembers", $project);
-        return $this->client->post($path, $params, $options);
-    }
-
-    /**
-     * Create a new custom field setting on the project.
-     *
-     * @param  project The project to associate the custom field with
-     * @return response
-     */
-    public function addCustomFieldSetting($project, $params = array(), $options = array())
-    {
-        $path = sprintf("/projects/%s/addCustomFieldSetting", $project);
-        return $this->client->post($path, $params, $options);
-    }
-
-    /**
-     * Remove a custom field setting on the project.
-     *
-     * @param  project The project to associate the custom field with
-     * @return response
-     */
-    public function removeCustomFieldSetting($project, $params = array(), $options = array())
-    {
-        $path = sprintf("/projects/%s/removeCustomFieldSetting", $project);
-        return $this->client->post($path, $params, $options);
+    public function updateProject($project_gid, $params = array(), $options = array()) {
+        /** Update a project
+         *
+         * @param $project_gid string:  (required) Globally unique identifier for the project.
+         * @param $params : 
+         * @return response
+         */
+        $path = "/projects/{project_gid}";
+        $path = str_replace($path,"{project_gid}", $project_gid);
+        return $this->client->put($path, $params, $options);
     }
 }

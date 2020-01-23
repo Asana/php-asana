@@ -2,85 +2,71 @@
 
 namespace Asana\Resources\Gen;
 
-/**
- * A _user_ object represents an account in Asana that can be given access to
- * various workspaces, projects, and tasks.
- *
- * Like other objects in the system, users are referred to by numerical IDs.
- * However, the special string identifier `me` can be used anywhere
- * a user ID is accepted, to refer to the current authenticated user.
-*/
-class UsersBase
-{
+class UsersBase {
+
     /**
-     * @param Asana/Client client  The client instance
-     */
+    * @param Asana/Client client  The client instance
+    */
     public function __construct($client)
     {
         $this->client = $client;
     }
 
-    /**
-     * Returns the full user record for the currently authenticated user.
-     *
-     * @return response
-     */
-    public function me($params = array(), $options = array())
-    {
-        return $this->client->get("/users/me", $params, $options);
-    }
-
-    /**
-     * Returns the full user record for the single user with the provided ID.
-     *
-     * @param  user An identifier for the user. Can be one of an email address,
-     * the globally unique identifier for the user, or the keyword `me`
-     * to indicate the current user making the request.
-     * @return response
-     */
-    public function findById($user, $params = array(), $options = array())
-    {
-        $path = sprintf("/users/%s", $user);
+    public function getAllUsers($params = array(), $options = array()) {
+        /** Get multiple users
+         *
+         * @param $params : 
+         * @return response
+         */
+        $path = "/users";
         return $this->client->get($path, $params, $options);
     }
 
-    /**
-     * Returns all of a user's favorites in the given workspace, of the given type.
-     * Results are given in order (The same order as Asana's sidebar).
-     *
-     * @param  user An identifier for the user. Can be one of an email address,
-     * the globally unique identifier for the user, or the keyword `me`
-     * to indicate the current user making the request.
-     * @return response
-     */
-    public function getUserFavorites($user, $params = array(), $options = array())
-    {
-        $path = sprintf("/users/%s/favorites", $user);
-        return $this->client->getCollection($path, $params, $options);
+    public function getUser($user_gid, $params = array(), $options = array()) {
+        /** Get a user
+         *
+         * @param $user_gid string:  (required) Globally unique identifier for the user.
+         * @param $params : 
+         * @return response
+         */
+        $path = "/users/{user_gid}";
+        $path = str_replace($path,"{user_gid}", $user_gid);
+        return $this->client->get($path, $params, $options);
     }
 
-    /**
-     * Returns the user records for all users in the specified workspace or
-     * organization.
-     *
-     * @param  workspace The workspace in which to get users.
-     * @return response
-     */
-    public function findByWorkspace($workspace, $params = array(), $options = array())
-    {
-        $path = sprintf("/workspaces/%s/users", $workspace);
-        return $this->client->getCollection($path, $params, $options);
+    public function getUserFavorites($user_gid, $params = array(), $options = array()) {
+        /** Get a user's favorites
+         *
+         * @param $user_gid string:  (required) Globally unique identifier for the user.
+         * @param $params : 
+         * @return response
+         */
+        $path = "/users/{user_gid}/favorites";
+        $path = str_replace($path,"{user_gid}", $user_gid);
+        return $this->client->get($path, $params, $options);
     }
 
-    /**
-     * Returns the user records for all users in all workspaces and organizations
-     * accessible to the authenticated user. Accepts an optional workspace ID
-     * parameter.
-     *
-     * @return response
-     */
-    public function findAll($params = array(), $options = array())
-    {
-        return $this->client->getCollection("/users", $params, $options);
+    public function getUsersForTeam($team_gid, $params = array(), $options = array()) {
+        /** Get users in a team
+         *
+         * @param $team_gid string:  (required) Globally unique identifier for the team.
+         * @param $params : 
+         * @return response
+         */
+        $path = "/teams/{team_gid}/users";
+        $path = str_replace($path,"{team_gid}", $team_gid);
+        return $this->client->get($path, $params, $options);
+    }
+
+    public function getUsersInWorkspace($workspace_gid, $params = array(), $options = array()) {
+        /** Get users in a workspace or organization
+         *
+         * @param $workspace_gid string:  (required) Globally unique identifier for the workspace or organization.
+         * @param $params : 
+         * @return response
+         */
+        $path = "/workspaces/{workspace_gid}/users";
+        $path = str_replace($path,"{workspace_gid}", $workspace_gid);
+        return $this->client->get($path, $params, $options);
     }
 }

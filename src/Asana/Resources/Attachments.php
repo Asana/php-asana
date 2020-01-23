@@ -12,4 +12,28 @@ class Attachments extends AttachmentsBase
         $options['files'] = array('file' => array($content, $filename, $contentType));
         return $this->client->request('POST', $path, $options);
     }
+
+    /**
+     * Returns the full record for a single attachment.
+     *
+     * @param  attachment Globally unique identifier for the attachment.
+     * @return response
+     */
+    public function findById($attachment, $params = array(), $options = array())
+    {
+        $path = sprintf("/attachments/%s", $attachment);
+        return $this->client->get($path, $params, $options);
+    }
+
+    /**
+     * Returns the compact records for all attachments on the task.
+     *
+     * @param  task Globally unique identifier for the task.
+     * @return response
+     */
+    public function findByTask($task, $params = array(), $options = array())
+    {
+        $path = sprintf("/tasks/%s/attachments", $task);
+        return $this->client->getCollection($path, $params, $options);
+    }
 }

@@ -2,7 +2,7 @@
 
 namespace Asana\Resources\Gen;
 
-class EventsBase {
+class BatchAPIBase {
 
     /**
     * @param Asana/Client client  The client instance
@@ -12,13 +12,13 @@ class EventsBase {
         $this->client = $client;
     }
 
-    public function getEvents($params = array(), $options = array()) {
-        /** Get events on a resource
+    public function batchRequest($params = array(), $options = array()) {
+        /** Submit parallel requests
          *
          * @param $params : 
          * @return response
          */
-        $path = "/events";
-        return $this->client->get($path, $params, $options);
+        $path = "/batch";
+        return $this->client->post($path, $params, $options);
     }
 }
