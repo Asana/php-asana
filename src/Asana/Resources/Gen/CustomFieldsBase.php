@@ -14,7 +14,8 @@ class CustomFieldsBase {
 
     /** Create a custom field
      *
-     * @param $params object
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function createCustomField($params = array(), $options = array()) {
@@ -24,8 +25,9 @@ class CustomFieldsBase {
 
     /** Create an enum option
      *
-     * @param $custom_field_gid string:  (required) Globally unique identifier for the custom field.
-     * @param $params object
+     * @param string $custom_field_gid  (required) Globally unique identifier for the custom field.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function createEnumOptionForCustomField($custom_field_gid, $params = array(), $options = array()) {
@@ -36,8 +38,9 @@ class CustomFieldsBase {
 
     /** Delete a custom field
      *
-     * @param $custom_field_gid string:  (required) Globally unique identifier for the custom field.
-     * @param $params object
+     * @param string $custom_field_gid  (required) Globally unique identifier for the custom field.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function deleteCustomField($custom_field_gid, $params = array(), $options = array()) {
@@ -48,8 +51,9 @@ class CustomFieldsBase {
 
     /** Get a custom field
      *
-     * @param $custom_field_gid string:  (required) Globally unique identifier for the custom field.
-     * @param $params object
+     * @param string $custom_field_gid  (required) Globally unique identifier for the custom field.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getCustomField($custom_field_gid, $params = array(), $options = array()) {
@@ -60,8 +64,9 @@ class CustomFieldsBase {
 
     /** Get a workspace's custom fields
      *
-     * @param $workspace_gid string:  (required) Globally unique identifier for the workspace or organization.
-     * @param $params object
+     * @param string $workspace_gid  (required) Globally unique identifier for the workspace or organization.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getCustomFieldsForWorkspace($workspace_gid, $params = array(), $options = array()) {
@@ -72,8 +77,9 @@ class CustomFieldsBase {
 
     /** Reorder a custom field's enum
      *
-     * @param $custom_field_gid string:  (required) Globally unique identifier for the custom field.
-     * @param $params object
+     * @param string $custom_field_gid  (required) Globally unique identifier for the custom field.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function insertEnumOptionForCustomField($custom_field_gid, $params = array(), $options = array()) {
@@ -84,8 +90,9 @@ class CustomFieldsBase {
 
     /** Update a custom field
      *
-     * @param $custom_field_gid string:  (required) Globally unique identifier for the custom field.
-     * @param $params object
+     * @param string $custom_field_gid  (required) Globally unique identifier for the custom field.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function updateCustomField($custom_field_gid, $params = array(), $options = array()) {
@@ -96,8 +103,9 @@ class CustomFieldsBase {
 
     /** Update an enum option
      *
-     * @param $enum_option_gid string:  (required) Globally unique identifier for the enum option.
-     * @param $params object
+     * @param string $enum_option_gid  (required) Globally unique identifier for the enum option.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function updateEnumOption($enum_option_gid, $params = array(), $options = array()) {

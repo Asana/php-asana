@@ -14,8 +14,9 @@ class AttachmentsBase {
 
     /** Upload an attachment
      *
-     * @param $task_gid string:  (required) The task to operate on.
-     * @param $params object
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function createAttachmentForTask($task_gid, $params = array(), $options = array()) {
@@ -26,8 +27,9 @@ class AttachmentsBase {
 
     /** Delete an attachment
      *
-     * @param $attachment_gid string:  (required) Globally unique identifier for the attachment.
-     * @param $params object
+     * @param string $attachment_gid  (required) Globally unique identifier for the attachment.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function deleteAttachment($attachment_gid, $params = array(), $options = array()) {
@@ -38,8 +40,9 @@ class AttachmentsBase {
 
     /** Get an attachment
      *
-     * @param $attachment_gid string:  (required) Globally unique identifier for the attachment.
-     * @param $params object
+     * @param string $attachment_gid  (required) Globally unique identifier for the attachment.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getAttachment($attachment_gid, $params = array(), $options = array()) {
@@ -50,8 +53,9 @@ class AttachmentsBase {
 
     /** Get attachments for a task
      *
-     * @param $task_gid string:  (required) The task to operate on.
-     * @param $params object
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getAttachmentsForTask($task_gid, $params = array(), $options = array()) {

@@ -14,7 +14,8 @@ class EventsBase {
 
     /** Get events on a resource
      *
-     * @param $params object
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getEvents($params = array(), $options = array()) {

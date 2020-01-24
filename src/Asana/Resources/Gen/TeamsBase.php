@@ -14,8 +14,9 @@ class TeamsBase {
 
     /** Add a user to a team
      *
-     * @param $team_gid string:  (required) Globally unique identifier for the team.
-     * @param $params object
+     * @param string $team_gid  (required) Globally unique identifier for the team.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function addUserForTeam($team_gid, $params = array(), $options = array()) {
@@ -26,8 +27,9 @@ class TeamsBase {
 
     /** Get a team
      *
-     * @param $team_gid string:  (required) Globally unique identifier for the team.
-     * @param $params object
+     * @param string $team_gid  (required) Globally unique identifier for the team.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getTeam($team_gid, $params = array(), $options = array()) {
@@ -38,8 +40,9 @@ class TeamsBase {
 
     /** Get teams in an organization
      *
-     * @param $workspace_gid string:  (required) Globally unique identifier for the workspace or organization.
-     * @param $params object
+     * @param string $workspace_gid  (required) Globally unique identifier for the workspace or organization.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getTeamsForOrganization($workspace_gid, $params = array(), $options = array()) {
@@ -50,8 +53,9 @@ class TeamsBase {
 
     /** Get teams for a user
      *
-     * @param $user_gid string:  (required) Globally unique identifier for the user.
-     * @param $params object
+     * @param string $user_gid  (required) Globally unique identifier for the user.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getTeamsForUser($user_gid, $params = array(), $options = array()) {
@@ -62,8 +66,9 @@ class TeamsBase {
 
     /** Remove a user from a team
      *
-     * @param $team_gid string:  (required) Globally unique identifier for the team.
-     * @param $params object
+     * @param string $team_gid  (required) Globally unique identifier for the team.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function removeUserForTeam($team_gid, $params = array(), $options = array()) {

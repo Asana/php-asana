@@ -14,8 +14,9 @@ class UserTaskListsBase {
 
     /** Get a user task list
      *
-     * @param $user_task_list_gid string:  (required) Globally unique identifier for the user task list.
-     * @param $params object
+     * @param string $user_task_list_gid  (required) Globally unique identifier for the user task list.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getUserTaskList($user_task_list_gid, $params = array(), $options = array()) {
@@ -26,8 +27,9 @@ class UserTaskListsBase {
 
     /** Get a user's task list
      *
-     * @param $user_gid string:  (required) Globally unique identifier for the user.
-     * @param $params object
+     * @param string $user_gid  (required) Globally unique identifier for the user.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getUserTaskListForUser($user_gid, $params = array(), $options = array()) {

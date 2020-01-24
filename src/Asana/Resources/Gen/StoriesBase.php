@@ -14,8 +14,9 @@ class StoriesBase {
 
     /** Create a story on a task
      *
-     * @param $task_gid string:  (required) The task to operate on.
-     * @param $params object
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function createStoryForTask($task_gid, $params = array(), $options = array()) {
@@ -26,8 +27,9 @@ class StoriesBase {
 
     /** Delete a story
      *
-     * @param $story_gid string:  (required) Globally unique identifier for the story.
-     * @param $params object
+     * @param string $story_gid  (required) Globally unique identifier for the story.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function deleteStory($story_gid, $params = array(), $options = array()) {
@@ -38,8 +40,9 @@ class StoriesBase {
 
     /** Get stories from a task
      *
-     * @param $task_gid string:  (required) The task to operate on.
-     * @param $params object
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getStoriesForTask($task_gid, $params = array(), $options = array()) {
@@ -50,8 +53,9 @@ class StoriesBase {
 
     /** Get a story
      *
-     * @param $story_gid string:  (required) Globally unique identifier for the story.
-     * @param $params object
+     * @param string $story_gid  (required) Globally unique identifier for the story.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getStory($story_gid, $params = array(), $options = array()) {
@@ -62,8 +66,9 @@ class StoriesBase {
 
     /** Update a story
      *
-     * @param $story_gid string:  (required) Globally unique identifier for the story.
-     * @param $params object
+     * @param string $story_gid  (required) Globally unique identifier for the story.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function updateStory($story_gid, $params = array(), $options = array()) {

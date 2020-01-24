@@ -14,7 +14,8 @@ class WebhooksBase {
 
     /** Establish a webhook
      *
-     * @param $params object
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function createWebhook($params = array(), $options = array()) {
@@ -24,8 +25,9 @@ class WebhooksBase {
 
     /** Delete a webhook
      *
-     * @param $webhook_gid string:  (required) Globally unique identifier for the webhook.
-     * @param $params object
+     * @param string $webhook_gid  (required) Globally unique identifier for the webhook.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function deleteWebhook($webhook_gid, $params = array(), $options = array()) {
@@ -36,8 +38,9 @@ class WebhooksBase {
 
     /** Get a webhook
      *
-     * @param $webhook_gid string:  (required) Globally unique identifier for the webhook.
-     * @param $params object
+     * @param string $webhook_gid  (required) Globally unique identifier for the webhook.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getWebhook($webhook_gid, $params = array(), $options = array()) {
@@ -48,7 +51,8 @@ class WebhooksBase {
 
     /** Get multiple webhooks
      *
-     * @param $params object
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getWebhooks($params = array(), $options = array()) {

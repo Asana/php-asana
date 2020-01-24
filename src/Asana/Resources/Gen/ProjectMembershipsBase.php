@@ -14,8 +14,9 @@ class ProjectMembershipsBase {
 
     /** Get a project membership
      *
-     * @param $project_membership_path_gid string:  (required)
-     * @param $params object
+     * @param string $project_membership_path_gid  (required)
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getProjectMembership($project_membership_path_gid, $params = array(), $options = array()) {
@@ -26,8 +27,9 @@ class ProjectMembershipsBase {
 
     /** Get memberships from a project
      *
-     * @param $project_gid string:  (required) Globally unique identifier for the project.
-     * @param $params object
+     * @param string $project_gid  (required) Globally unique identifier for the project.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getProjectMembershipsForProject($project_gid, $params = array(), $options = array()) {

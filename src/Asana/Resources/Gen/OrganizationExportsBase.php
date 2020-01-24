@@ -14,7 +14,8 @@ class OrganizationExportsBase {
 
     /** Create an organization export request
      *
-     * @param $params object
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function createOrganizationExport($params = array(), $options = array()) {
@@ -24,8 +25,9 @@ class OrganizationExportsBase {
 
     /** Get details on an org export request
      *
-     * @param $organization_export_gid string:  (required) Globally unique identifier for the organization export.
-     * @param $params object
+     * @param string $organization_export_gid  (required) Globally unique identifier for the organization export.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getOrganizationExport($organization_export_gid, $params = array(), $options = array()) {

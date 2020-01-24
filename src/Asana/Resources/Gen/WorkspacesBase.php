@@ -14,8 +14,9 @@ class WorkspacesBase {
 
     /** Add a user to a workspace or organization
      *
-     * @param $workspace_gid string:  (required) Globally unique identifier for the workspace or organization.
-     * @param $params object
+     * @param string $workspace_gid  (required) Globally unique identifier for the workspace or organization.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function addUserForWorkspace($workspace_gid, $params = array(), $options = array()) {
@@ -26,8 +27,9 @@ class WorkspacesBase {
 
     /** Get a workspace
      *
-     * @param $workspace_gid string:  (required) Globally unique identifier for the workspace or organization.
-     * @param $params object
+     * @param string $workspace_gid  (required) Globally unique identifier for the workspace or organization.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getWorkspace($workspace_gid, $params = array(), $options = array()) {
@@ -38,7 +40,8 @@ class WorkspacesBase {
 
     /** Get multiple workspaces
      *
-     * @param $params object
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getWorkspaces($params = array(), $options = array()) {
@@ -48,8 +51,9 @@ class WorkspacesBase {
 
     /** Remove a user from a workspace or organization
      *
-     * @param $workspace_gid string:  (required) Globally unique identifier for the workspace or organization.
-     * @param $params object
+     * @param string $workspace_gid  (required) Globally unique identifier for the workspace or organization.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function removeUserForWorkspace($workspace_gid, $params = array(), $options = array()) {
@@ -60,8 +64,9 @@ class WorkspacesBase {
 
     /** Update a workspace
      *
-     * @param $workspace_gid string:  (required) Globally unique identifier for the workspace or organization.
-     * @param $params object
+     * @param string $workspace_gid  (required) Globally unique identifier for the workspace or organization.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function updateWorkspace($workspace_gid, $params = array(), $options = array()) {

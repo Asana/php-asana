@@ -14,7 +14,8 @@ class TagsBase {
 
     /** Create a tag
      *
-     * @param $params object
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function createTag($params = array(), $options = array()) {
@@ -24,8 +25,9 @@ class TagsBase {
 
     /** Create a tag in a workspace
      *
-     * @param $workspace_gid string:  (required) Globally unique identifier for the workspace or organization.
-     * @param $params object
+     * @param string $workspace_gid  (required) Globally unique identifier for the workspace or organization.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function createTagForWorkspace($workspace_gid, $params = array(), $options = array()) {
@@ -36,8 +38,9 @@ class TagsBase {
 
     /** Get a tag
      *
-     * @param $tag_gid string:  (required) Globally unique identifier for the tag.
-     * @param $params object
+     * @param string $tag_gid  (required) Globally unique identifier for the tag.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getTag($tag_gid, $params = array(), $options = array()) {
@@ -48,7 +51,8 @@ class TagsBase {
 
     /** Get multiple tags
      *
-     * @param $params object
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getTags($params = array(), $options = array()) {
@@ -58,8 +62,9 @@ class TagsBase {
 
     /** Get a task's tags
      *
-     * @param $task_gid string:  (required) The task to operate on.
-     * @param $params object
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getTagsForTask($task_gid, $params = array(), $options = array()) {
@@ -70,8 +75,9 @@ class TagsBase {
 
     /** Get tags in a workspace
      *
-     * @param $workspace_gid string:  (required) Globally unique identifier for the workspace or organization.
-     * @param $params object
+     * @param string $workspace_gid  (required) Globally unique identifier for the workspace or organization.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getTagsForWorkspace($workspace_gid, $params = array(), $options = array()) {
@@ -82,8 +88,9 @@ class TagsBase {
 
     /** Update a tag
      *
-     * @param $tag_gid string:  (required) Globally unique identifier for the tag.
-     * @param $params object
+     * @param string $tag_gid  (required) Globally unique identifier for the tag.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function updateTag($tag_gid, $params = array(), $options = array()) {

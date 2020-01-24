@@ -14,8 +14,9 @@ class JobsBase {
 
     /** Get a job by id
      *
-     * @param $job_gid string:  (required) Globally unique identifier for the job.
-     * @param $params object
+     * @param string $job_gid  (required) Globally unique identifier for the job.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getJob($job_gid, $params = array(), $options = array()) {

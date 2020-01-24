@@ -14,8 +14,9 @@ class TeamMembershipsBase {
 
     /** Get a team membership
      *
-     * @param $team_membership_path_gid string:  (required)
-     * @param $params object
+     * @param string $team_membership_path_gid  (required)
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getTeamMembership($team_membership_path_gid, $params = array(), $options = array()) {
@@ -26,7 +27,8 @@ class TeamMembershipsBase {
 
     /** Get team memberships
      *
-     * @param $params object
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getTeamMemberships($params = array(), $options = array()) {
@@ -36,8 +38,9 @@ class TeamMembershipsBase {
 
     /** Get memberships from a team
      *
-     * @param $team_gid string:  (required) Globally unique identifier for the team.
-     * @param $params object
+     * @param string $team_gid  (required) Globally unique identifier for the team.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getTeamMembershipsForTeam($team_gid, $params = array(), $options = array()) {
@@ -48,8 +51,9 @@ class TeamMembershipsBase {
 
     /** Get memberships from a user
      *
-     * @param $user_gid string:  (required) Globally unique identifier for the user.
-     * @param $params object
+     * @param string $user_gid  (required) Globally unique identifier for the user.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getTeamMembershipsForUser($user_gid, $params = array(), $options = array()) {

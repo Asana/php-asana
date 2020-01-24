@@ -14,8 +14,9 @@ class WorkspaceMembershipsBase {
 
     /** Get a workspace membership
      *
-     * @param $workspace_membership_path_gid string:  (required)
-     * @param $params object
+     * @param string $workspace_membership_path_gid  (required)
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getWorkspaceMembership($workspace_membership_path_gid, $params = array(), $options = array()) {
@@ -26,8 +27,9 @@ class WorkspaceMembershipsBase {
 
     /** Get workspace memberships for a user
      *
-     * @param $user_gid string:  (required) Globally unique identifier for the user.
-     * @param $params object
+     * @param string $user_gid  (required) Globally unique identifier for the user.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getWorkspaceMembershipsForUser($user_gid, $params = array(), $options = array()) {
@@ -38,8 +40,9 @@ class WorkspaceMembershipsBase {
 
     /** Get the workspace memberships for a workspace
      *
-     * @param $workspace_gid string:  (required) Globally unique identifier for the workspace or organization.
-     * @param $params object
+     * @param string $workspace_gid  (required) Globally unique identifier for the workspace or organization.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getWorkspaceMembershipsForWorkspace($workspace_gid, $params = array(), $options = array()) {

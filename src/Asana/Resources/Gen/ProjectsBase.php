@@ -14,8 +14,9 @@ class ProjectsBase {
 
     /** Add a custom field to a project
      *
-     * @param $project_gid string:  (required) Globally unique identifier for the project.
-     * @param $params object
+     * @param string $project_gid  (required) Globally unique identifier for the project.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function addCustomFieldSettingForProject($project_gid, $params = array(), $options = array()) {
@@ -26,8 +27,9 @@ class ProjectsBase {
 
     /** Add users to a project
      *
-     * @param $project_gid string:  (required) Globally unique identifier for the project.
-     * @param $params object
+     * @param string $project_gid  (required) Globally unique identifier for the project.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function addFollowersForProject($project_gid, $params = array(), $options = array()) {
@@ -38,8 +40,9 @@ class ProjectsBase {
 
     /** Add users to a project
      *
-     * @param $project_gid string:  (required) Globally unique identifier for the project.
-     * @param $params object
+     * @param string $project_gid  (required) Globally unique identifier for the project.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function addMembersForProject($project_gid, $params = array(), $options = array()) {
@@ -50,7 +53,8 @@ class ProjectsBase {
 
     /** Create a project
      *
-     * @param $params object
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function createProject($params = array(), $options = array()) {
@@ -60,8 +64,9 @@ class ProjectsBase {
 
     /** Create a project in a team
      *
-     * @param $team_gid string:  (required) Globally unique identifier for the team.
-     * @param $params object
+     * @param string $team_gid  (required) Globally unique identifier for the team.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function createProjectForTeam($team_gid, $params = array(), $options = array()) {
@@ -72,8 +77,9 @@ class ProjectsBase {
 
     /** Create a project in a workspace
      *
-     * @param $workspace_gid string:  (required) Globally unique identifier for the workspace or organization.
-     * @param $params object
+     * @param string $workspace_gid  (required) Globally unique identifier for the workspace or organization.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function createProjectForWorkspace($workspace_gid, $params = array(), $options = array()) {
@@ -84,8 +90,9 @@ class ProjectsBase {
 
     /** Delete a project
      *
-     * @param $project_gid string:  (required) Globally unique identifier for the project.
-     * @param $params object
+     * @param string $project_gid  (required) Globally unique identifier for the project.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function deleteProject($project_gid, $params = array(), $options = array()) {
@@ -96,8 +103,9 @@ class ProjectsBase {
 
     /** Duplicate a project
      *
-     * @param $project_gid string:  (required) Globally unique identifier for the project.
-     * @param $params object
+     * @param string $project_gid  (required) Globally unique identifier for the project.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function duplicateProject($project_gid, $params = array(), $options = array()) {
@@ -108,8 +116,9 @@ class ProjectsBase {
 
     /** Get a project
      *
-     * @param $project_gid string:  (required) Globally unique identifier for the project.
-     * @param $params object
+     * @param string $project_gid  (required) Globally unique identifier for the project.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getProject($project_gid, $params = array(), $options = array()) {
@@ -120,7 +129,8 @@ class ProjectsBase {
 
     /** Get multiple projects
      *
-     * @param $params object
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getProjects($params = array(), $options = array()) {
@@ -130,8 +140,9 @@ class ProjectsBase {
 
     /** Get projects a task is in
      *
-     * @param $task_gid string:  (required) The task to operate on.
-     * @param $params object
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getProjectsForTask($task_gid, $params = array(), $options = array()) {
@@ -142,8 +153,9 @@ class ProjectsBase {
 
     /** Get a team's projects
      *
-     * @param $team_gid string:  (required) Globally unique identifier for the team.
-     * @param $params object
+     * @param string $team_gid  (required) Globally unique identifier for the team.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getProjectsForTeam($team_gid, $params = array(), $options = array()) {
@@ -154,8 +166,9 @@ class ProjectsBase {
 
     /** Get all projects in a workspace
      *
-     * @param $workspace_gid string:  (required) Globally unique identifier for the workspace or organization.
-     * @param $params object
+     * @param string $workspace_gid  (required) Globally unique identifier for the workspace or organization.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getProjectsForWorkspace($workspace_gid, $params = array(), $options = array()) {
@@ -166,8 +179,9 @@ class ProjectsBase {
 
     /** Get task count of a project
      *
-     * @param $project_gid string:  (required) Globally unique identifier for the project.
-     * @param $params object
+     * @param string $project_gid  (required) Globally unique identifier for the project.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getTaskCountsForProject($project_gid, $params = array(), $options = array()) {
@@ -178,8 +192,9 @@ class ProjectsBase {
 
     /** Remove a custom field from a project
      *
-     * @param $project_gid string:  (required) Globally unique identifier for the project.
-     * @param $params object
+     * @param string $project_gid  (required) Globally unique identifier for the project.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function removeCustomFieldSettingForProject($project_gid, $params = array(), $options = array()) {
@@ -190,8 +205,9 @@ class ProjectsBase {
 
     /** Remove followers from a project
      *
-     * @param $project_gid string:  (required) Globally unique identifier for the project.
-     * @param $params object
+     * @param string $project_gid  (required) Globally unique identifier for the project.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function removeFollowersForProject($project_gid, $params = array(), $options = array()) {
@@ -202,8 +218,9 @@ class ProjectsBase {
 
     /** Remove users from a project
      *
-     * @param $project_gid string:  (required) Globally unique identifier for the project.
-     * @param $params object
+     * @param string $project_gid  (required) Globally unique identifier for the project.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function removeMembersForProject($project_gid, $params = array(), $options = array()) {
@@ -214,8 +231,9 @@ class ProjectsBase {
 
     /** Update a project
      *
-     * @param $project_gid string:  (required) Globally unique identifier for the project.
-     * @param $params object
+     * @param string $project_gid  (required) Globally unique identifier for the project.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function updateProject($project_gid, $params = array(), $options = array()) {

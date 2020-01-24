@@ -14,8 +14,9 @@ class PortfoliosBase {
 
     /** Add a custom field to a portfolio
      *
-     * @param $portfolio_gid string:  (required) Globally unique identifier for the portfolio.
-     * @param $params object
+     * @param string $portfolio_gid  (required) Globally unique identifier for the portfolio.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function addCustomFieldSettingForPortfolio($portfolio_gid, $params = array(), $options = array()) {
@@ -26,8 +27,9 @@ class PortfoliosBase {
 
     /** Add a portfolio item
      *
-     * @param $portfolio_gid string:  (required) Globally unique identifier for the portfolio.
-     * @param $params object
+     * @param string $portfolio_gid  (required) Globally unique identifier for the portfolio.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function addItemForPortfolio($portfolio_gid, $params = array(), $options = array()) {
@@ -38,8 +40,9 @@ class PortfoliosBase {
 
     /** Add users to a portfolio
      *
-     * @param $portfolio_gid string:  (required) Globally unique identifier for the portfolio.
-     * @param $params object
+     * @param string $portfolio_gid  (required) Globally unique identifier for the portfolio.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function addMembersForPortfolio($portfolio_gid, $params = array(), $options = array()) {
@@ -50,7 +53,8 @@ class PortfoliosBase {
 
     /** Create a portfolio
      *
-     * @param $params object
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function createPortfolio($params = array(), $options = array()) {
@@ -60,8 +64,9 @@ class PortfoliosBase {
 
     /** Delete a portfolio
      *
-     * @param $portfolio_gid string:  (required) Globally unique identifier for the portfolio.
-     * @param $params object
+     * @param string $portfolio_gid  (required) Globally unique identifier for the portfolio.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function deletePortfolio($portfolio_gid, $params = array(), $options = array()) {
@@ -72,8 +77,9 @@ class PortfoliosBase {
 
     /** Get portfolio items
      *
-     * @param $portfolio_gid string:  (required) Globally unique identifier for the portfolio.
-     * @param $params object
+     * @param string $portfolio_gid  (required) Globally unique identifier for the portfolio.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getItemsForPortfolio($portfolio_gid, $params = array(), $options = array()) {
@@ -84,8 +90,9 @@ class PortfoliosBase {
 
     /** Get a portfolio
      *
-     * @param $portfolio_gid string:  (required) Globally unique identifier for the portfolio.
-     * @param $params object
+     * @param string $portfolio_gid  (required) Globally unique identifier for the portfolio.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getPortfolio($portfolio_gid, $params = array(), $options = array()) {
@@ -96,7 +103,8 @@ class PortfoliosBase {
 
     /** Get multiple portfolios
      *
-     * @param $params object
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getPortfolios($params = array(), $options = array()) {
@@ -106,8 +114,9 @@ class PortfoliosBase {
 
     /** Remove a custom field from a portfolio
      *
-     * @param $portfolio_gid string:  (required) Globally unique identifier for the portfolio.
-     * @param $params object
+     * @param string $portfolio_gid  (required) Globally unique identifier for the portfolio.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function removeCustomFieldSettingForPortfolio($portfolio_gid, $params = array(), $options = array()) {
@@ -118,8 +127,9 @@ class PortfoliosBase {
 
     /** Remove a portfolio item
      *
-     * @param $portfolio_gid string:  (required) Globally unique identifier for the portfolio.
-     * @param $params object
+     * @param string $portfolio_gid  (required) Globally unique identifier for the portfolio.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function removeItemForPortfolio($portfolio_gid, $params = array(), $options = array()) {
@@ -130,8 +140,9 @@ class PortfoliosBase {
 
     /** Remove users from a portfolio
      *
-     * @param $portfolio_gid string:  (required) Globally unique identifier for the portfolio.
-     * @param $params object
+     * @param string $portfolio_gid  (required) Globally unique identifier for the portfolio.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function removeMembersForPortfolio($portfolio_gid, $params = array(), $options = array()) {
@@ -142,8 +153,9 @@ class PortfoliosBase {
 
     /** Update a portfolio
      *
-     * @param $portfolio_gid string:  (required) Globally unique identifier for the portfolio.
-     * @param $params object
+     * @param string $portfolio_gid  (required) Globally unique identifier for the portfolio.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function updatePortfolio($portfolio_gid, $params = array(), $options = array()) {

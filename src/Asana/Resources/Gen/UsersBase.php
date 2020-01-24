@@ -14,8 +14,9 @@ class UsersBase {
 
     /** Get a user's favorites
      *
-     * @param $user_gid string:  (required) Globally unique identifier for the user.
-     * @param $params object
+     * @param string $user_gid  (required) Globally unique identifier for the user.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getFavoritesForUser($user_gid, $params = array(), $options = array()) {
@@ -26,8 +27,9 @@ class UsersBase {
 
     /** Get a user
      *
-     * @param $user_gid string:  (required) Globally unique identifier for the user.
-     * @param $params object
+     * @param string $user_gid  (required) Globally unique identifier for the user.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getUser($user_gid, $params = array(), $options = array()) {
@@ -38,7 +40,8 @@ class UsersBase {
 
     /** Get multiple users
      *
-     * @param $params object
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getUsers($params = array(), $options = array()) {
@@ -48,8 +51,9 @@ class UsersBase {
 
     /** Get users in a team
      *
-     * @param $team_gid string:  (required) Globally unique identifier for the team.
-     * @param $params object
+     * @param string $team_gid  (required) Globally unique identifier for the team.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getUsersForTeam($team_gid, $params = array(), $options = array()) {
@@ -60,8 +64,9 @@ class UsersBase {
 
     /** Get users in a workspace or organization
      *
-     * @param $workspace_gid string:  (required) Globally unique identifier for the workspace or organization.
-     * @param $params object
+     * @param string $workspace_gid  (required) Globally unique identifier for the workspace or organization.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getUsersForWorkspace($workspace_gid, $params = array(), $options = array()) {

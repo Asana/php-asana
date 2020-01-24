@@ -14,8 +14,9 @@ class TypeaheadBase {
 
     /** Get objects via typeahead
      *
-     * @param $workspace_gid string:  (required) Globally unique identifier for the workspace or organization.
-     * @param $params object
+     * @param string $workspace_gid  (required) Globally unique identifier for the workspace or organization.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function typeaheadForWorkspace($workspace_gid, $params = array(), $options = array()) {

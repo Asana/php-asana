@@ -14,8 +14,9 @@ class PortfolioMembershipsBase {
 
     /** Get a portfolio membership
      *
-     * @param $portfolio_membership_path_gid string:  (required)
-     * @param $params object
+     * @param string $portfolio_membership_path_gid  (required)
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getPortfolioMembership($portfolio_membership_path_gid, $params = array(), $options = array()) {
@@ -26,7 +27,8 @@ class PortfolioMembershipsBase {
 
     /** Get multiple portfolio memberships
      *
-     * @param $params object
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getPortfolioMemberships($params = array(), $options = array()) {
@@ -36,8 +38,9 @@ class PortfolioMembershipsBase {
 
     /** Get memberships from a portfolio
      *
-     * @param $portfolio_gid string:  (required) Globally unique identifier for the portfolio.
-     * @param $params object
+     * @param string $portfolio_gid  (required) Globally unique identifier for the portfolio.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getPortfolioMembershipsForPortfolio($portfolio_gid, $params = array(), $options = array()) {

@@ -14,8 +14,9 @@ class ProjectStatusesBase {
 
     /** Create a project status
      *
-     * @param $project_gid string:  (required) Globally unique identifier for the project.
-     * @param $params object
+     * @param string $project_gid  (required) Globally unique identifier for the project.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function createProjectStatusForProject($project_gid, $params = array(), $options = array()) {
@@ -26,8 +27,9 @@ class ProjectStatusesBase {
 
     /** Delete a project status
      *
-     * @param $project_status_path_gid string:  (required) The project status update to get.
-     * @param $params object
+     * @param string $project_status_path_gid  (required) The project status update to get.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function deleteProjectStatus($project_status_path_gid, $params = array(), $options = array()) {
@@ -38,8 +40,9 @@ class ProjectStatusesBase {
 
     /** Get a project status
      *
-     * @param $project_status_path_gid string:  (required) The project status update to get.
-     * @param $params object
+     * @param string $project_status_path_gid  (required) The project status update to get.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getProjectStatus($project_status_path_gid, $params = array(), $options = array()) {
@@ -50,8 +53,9 @@ class ProjectStatusesBase {
 
     /** Get statuses from a project
      *
-     * @param $project_gid string:  (required) Globally unique identifier for the project.
-     * @param $params object
+     * @param string $project_gid  (required) Globally unique identifier for the project.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getProjectStatusesForProject($project_gid, $params = array(), $options = array()) {

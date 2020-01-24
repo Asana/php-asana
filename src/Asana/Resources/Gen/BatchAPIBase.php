@@ -14,7 +14,8 @@ class BatchAPIBase {
 
     /** Submit parallel requests
      *
-     * @param $params object
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function createBatchRequestAction($params = array(), $options = array()) {

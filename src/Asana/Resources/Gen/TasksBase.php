@@ -14,8 +14,9 @@ class TasksBase {
 
     /** Set dependencies for a task
      *
-     * @param $task_gid string:  (required) The task to operate on.
-     * @param $params object
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function addDependenciesForTask($task_gid, $params = array(), $options = array()) {
@@ -26,8 +27,9 @@ class TasksBase {
 
     /** Set dependents for a task
      *
-     * @param $task_gid string:  (required) The task to operate on.
-     * @param $params object
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function addDependentsForTask($task_gid, $params = array(), $options = array()) {
@@ -38,8 +40,9 @@ class TasksBase {
 
     /** Add followers to a task
      *
-     * @param $task_gid string:  (required) The task to operate on.
-     * @param $params object
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function addFollowersForTask($task_gid, $params = array(), $options = array()) {
@@ -50,8 +53,9 @@ class TasksBase {
 
     /** Add a project to a task
      *
-     * @param $task_gid string:  (required) The task to operate on.
-     * @param $params object
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function addProjectForTask($task_gid, $params = array(), $options = array()) {
@@ -62,8 +66,9 @@ class TasksBase {
 
     /** Add a tag to a task
      *
-     * @param $task_gid string:  (required) The task to operate on.
-     * @param $params object
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function addTagForTask($task_gid, $params = array(), $options = array()) {
@@ -74,8 +79,9 @@ class TasksBase {
 
     /** Create a subtask
      *
-     * @param $task_gid string:  (required) The task to operate on.
-     * @param $params object
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function createSubtaskForTask($task_gid, $params = array(), $options = array()) {
@@ -86,7 +92,8 @@ class TasksBase {
 
     /** Create a task
      *
-     * @param $params object
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function createTask($params = array(), $options = array()) {
@@ -96,8 +103,9 @@ class TasksBase {
 
     /** Delete a task
      *
-     * @param $task_gid string:  (required) The task to operate on.
-     * @param $params object
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function deleteTask($task_gid, $params = array(), $options = array()) {
@@ -108,8 +116,9 @@ class TasksBase {
 
     /** Duplicate a task
      *
-     * @param $task_gid string:  (required) The task to operate on.
-     * @param $params object
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function duplicateTask($task_gid, $params = array(), $options = array()) {
@@ -120,8 +129,9 @@ class TasksBase {
 
     /** Get dependencies from a task
      *
-     * @param $task_gid string:  (required) The task to operate on.
-     * @param $params object
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getDependenciesForTask($task_gid, $params = array(), $options = array()) {
@@ -132,8 +142,9 @@ class TasksBase {
 
     /** Get dependents from a task
      *
-     * @param $task_gid string:  (required) The task to operate on.
-     * @param $params object
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getDependentsForTask($task_gid, $params = array(), $options = array()) {
@@ -144,8 +155,9 @@ class TasksBase {
 
     /** Get subtasks from a task
      *
-     * @param $task_gid string:  (required) The task to operate on.
-     * @param $params object
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getSubtasksForTask($task_gid, $params = array(), $options = array()) {
@@ -156,8 +168,9 @@ class TasksBase {
 
     /** Get a task
      *
-     * @param $task_gid string:  (required) The task to operate on.
-     * @param $params object
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getTask($task_gid, $params = array(), $options = array()) {
@@ -168,7 +181,8 @@ class TasksBase {
 
     /** Get multiple tasks
      *
-     * @param $params object
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getTasks($params = array(), $options = array()) {
@@ -178,8 +192,9 @@ class TasksBase {
 
     /** Get tasks from a project
      *
-     * @param $project_gid string:  (required) Globally unique identifier for the project.
-     * @param $params object
+     * @param string $project_gid  (required) Globally unique identifier for the project.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getTasksForProject($project_gid, $params = array(), $options = array()) {
@@ -190,8 +205,9 @@ class TasksBase {
 
     /** Get tasks from a section
      *
-     * @param $section_gid string:  (required) The globally unique identifier for the section.
-     * @param $params object
+     * @param string $section_gid  (required) The globally unique identifier for the section.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getTasksForSection($section_gid, $params = array(), $options = array()) {
@@ -202,8 +218,9 @@ class TasksBase {
 
     /** Get tasks from a tag
      *
-     * @param $tag_gid string:  (required) Globally unique identifier for the tag.
-     * @param $params object
+     * @param string $tag_gid  (required) Globally unique identifier for the tag.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getTasksForTag($tag_gid, $params = array(), $options = array()) {
@@ -214,8 +231,9 @@ class TasksBase {
 
     /** Get tasks from a user task list
      *
-     * @param $user_task_list_gid string:  (required) Globally unique identifier for the user task list.
-     * @param $params object
+     * @param string $user_task_list_gid  (required) Globally unique identifier for the user task list.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getTasksForUserTaskList($user_task_list_gid, $params = array(), $options = array()) {
@@ -226,8 +244,9 @@ class TasksBase {
 
     /** Unlink dependencies from a task
      *
-     * @param $task_gid string:  (required) The task to operate on.
-     * @param $params object
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function removeDependenciesForTask($task_gid, $params = array(), $options = array()) {
@@ -238,8 +257,9 @@ class TasksBase {
 
     /** Unlink dependents from a task
      *
-     * @param $task_gid string:  (required) The task to operate on.
-     * @param $params object
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function removeDependentsForTask($task_gid, $params = array(), $options = array()) {
@@ -250,8 +270,9 @@ class TasksBase {
 
     /** Remove followers from a task
      *
-     * @param $task_gid string:  (required) The task to operate on.
-     * @param $params object
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function removeFollowerForTask($task_gid, $params = array(), $options = array()) {
@@ -262,8 +283,9 @@ class TasksBase {
 
     /** Remove a project from a task
      *
-     * @param $task_gid string:  (required) The task to operate on.
-     * @param $params object
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function removeProjectForTask($task_gid, $params = array(), $options = array()) {
@@ -274,8 +296,9 @@ class TasksBase {
 
     /** Remove a tag from a task
      *
-     * @param $task_gid string:  (required) The task to operate on.
-     * @param $params object
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function removeTagForTask($task_gid, $params = array(), $options = array()) {
@@ -286,8 +309,9 @@ class TasksBase {
 
     /** Search tasks in a workspace
      *
-     * @param $workspace_gid string:  (required) Globally unique identifier for the workspace or organization.
-     * @param $params object
+     * @param string $workspace_gid  (required) Globally unique identifier for the workspace or organization.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function searchTasksForWorkspace($workspace_gid, $params = array(), $options = array()) {
@@ -298,8 +322,9 @@ class TasksBase {
 
     /** Set the parent of a task
      *
-     * @param $task_gid string:  (required) The task to operate on.
-     * @param $params object
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function setParentForTask($task_gid, $params = array(), $options = array()) {
@@ -310,8 +335,9 @@ class TasksBase {
 
     /** Update a task
      *
-     * @param $task_gid string:  (required) The task to operate on.
-     * @param $params object
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function updateTask($task_gid, $params = array(), $options = array()) {

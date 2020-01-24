@@ -18,9 +18,10 @@ class {{classname}}Base {
     /** {{#summary}}{{{.}}}{{/summary}}{{^summary}}{{operationId}}{{/summary}}
      *
      {{#pathParams}}
-     * @param ${{paramName}} {{dataType}}: {{#required}} (required){{/required}}{{#optional}}(optional){{/optional}}{{#description}} {{{description}}}{{/description}}
+     * @param {{dataType}} ${{paramName}} {{#required}} (required){{/required}}{{#optional}}(optional){{/optional}}{{#description}} {{{description}}}{{/description}}
      {{/pathParams}}
-     * @param $params object
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function {{operationId}}({{#pathParams}}${{paramName}}, {{/pathParams}}$params = array(), $options = array()) {

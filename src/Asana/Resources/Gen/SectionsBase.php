@@ -14,8 +14,9 @@ class SectionsBase {
 
     /** Add task to section
      *
-     * @param $section_gid string:  (required) The globally unique identifier for the section.
-     * @param $params object
+     * @param string $section_gid  (required) The globally unique identifier for the section.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function addTaskForSection($section_gid, $params = array(), $options = array()) {
@@ -26,8 +27,9 @@ class SectionsBase {
 
     /** Create a section in a project
      *
-     * @param $project_gid string:  (required) Globally unique identifier for the project.
-     * @param $params object
+     * @param string $project_gid  (required) Globally unique identifier for the project.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function createSectionForProject($project_gid, $params = array(), $options = array()) {
@@ -38,8 +40,9 @@ class SectionsBase {
 
     /** Delete a section
      *
-     * @param $section_gid string:  (required) The globally unique identifier for the section.
-     * @param $params object
+     * @param string $section_gid  (required) The globally unique identifier for the section.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function deleteSection($section_gid, $params = array(), $options = array()) {
@@ -50,8 +53,9 @@ class SectionsBase {
 
     /** Get a section
      *
-     * @param $section_gid string:  (required) The globally unique identifier for the section.
-     * @param $params object
+     * @param string $section_gid  (required) The globally unique identifier for the section.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getSection($section_gid, $params = array(), $options = array()) {
@@ -62,8 +66,9 @@ class SectionsBase {
 
     /** Get sections in a project
      *
-     * @param $project_gid string:  (required) Globally unique identifier for the project.
-     * @param $params object
+     * @param string $project_gid  (required) Globally unique identifier for the project.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getSectionsForProject($project_gid, $params = array(), $options = array()) {
@@ -74,8 +79,9 @@ class SectionsBase {
 
     /** Move or Insert sections
      *
-     * @param $project_gid string:  (required) Globally unique identifier for the project.
-     * @param $params object
+     * @param string $project_gid  (required) Globally unique identifier for the project.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function insertSectionForProject($project_gid, $params = array(), $options = array()) {
@@ -86,8 +92,9 @@ class SectionsBase {
 
     /** Update a section
      *
-     * @param $section_gid string:  (required) The globally unique identifier for the section.
-     * @param $params object
+     * @param string $section_gid  (required) The globally unique identifier for the section.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function updateSection($section_gid, $params = array(), $options = array()) {

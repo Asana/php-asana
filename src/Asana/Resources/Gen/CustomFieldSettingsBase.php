@@ -14,8 +14,9 @@ class CustomFieldSettingsBase {
 
     /** Get a portfolio's custom fields
      *
-     * @param $portfolio_gid string:  (required) Globally unique identifier for the portfolio.
-     * @param $params object
+     * @param string $portfolio_gid  (required) Globally unique identifier for the portfolio.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getCustomFieldSettingsForPortfolio($portfolio_gid, $params = array(), $options = array()) {
@@ -26,8 +27,9 @@ class CustomFieldSettingsBase {
 
     /** Get a project's custom fields
      *
-     * @param $project_gid string:  (required) Globally unique identifier for the project.
-     * @param $params object
+     * @param string $project_gid  (required) Globally unique identifier for the project.
+     * @param array $params
+     * @param array $options
      * @return response
      */
     public function getCustomFieldSettingsForProject($project_gid, $params = array(), $options = array()) {
