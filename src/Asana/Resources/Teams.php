@@ -9,6 +9,8 @@ class Teams extends TeamsBase
     /**
      * Returns the full record for a single team.
      *
+     * @deprecated replace with getTeam
+     *
      * @param  team Globally unique identifier for the team.
      * @return response
      */
@@ -22,6 +24,8 @@ class Teams extends TeamsBase
      * Returns the compact records for all teams in the organization visible to
      * the authorized user.
      *
+     * @deprecated replace with getTeamsForOrganization
+     *
      * @param  organization Globally unique identifier for the workspace or organization.
      * @return response
      */
@@ -33,6 +37,8 @@ class Teams extends TeamsBase
 
     /**
      * Returns the compact records for all teams to which user is assigned.
+     *
+     * @deprecated replace with getTeamsForUser
      *
      * @param  user An identifier for the user. Can be one of an email address,
      * the globally unique identifier for the user, or the keyword `me`
@@ -47,6 +53,8 @@ class Teams extends TeamsBase
 
     /**
      * Returns the compact records for all users that are members of the team.
+     *
+     * @deprecated replace with Users.getUsersForTeam
      *
      * @param  team Globally unique identifier for the team.
      * @return response
@@ -63,6 +71,8 @@ class Teams extends TeamsBase
      * The user to add can be referenced by their globally unique user ID or their email address.
      * Returns the full user record for the added user.
      *
+     * @deprecated replace with addUserForTeam
+     *
      * @param  team Globally unique identifier for the team.
      * @return response
      */
@@ -75,6 +85,8 @@ class Teams extends TeamsBase
     /**
      * The user to remove can be referenced by their globally unique user ID or their email address.
      * Removes the user from the specified team. Returns an empty data record.
+     *
+     * @deprecated replace with removeUserForTeam
      *
      * @param  team Globally unique identifier for the team.
      * @return response

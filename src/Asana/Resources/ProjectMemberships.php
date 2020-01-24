@@ -17,6 +17,8 @@ class ProjectMemberships extends ProjectMembershipsBase
     /**
      * Returns the compact project membership records for the project.
      *
+     * @deprecated replace with getProjectMembershipsForProject
+     *
      * @param  project The project for which to fetch memberships.
      * @return response
      */
@@ -28,6 +30,8 @@ class ProjectMemberships extends ProjectMembershipsBase
 
     /**
      * Returns the project membership record.
+     *
+     * @deprecated replace with getProjectMembership
      *
      * @param  project_membership Globally unique identifier for the project membership.
      * @return response

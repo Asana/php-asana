@@ -5,20 +5,20 @@ namespace Asana\Resources\Gen;
 class EventsBase {
 
     /**
-    * @param Asana/Client client  The client instance
-    */
+     * @param Asana/Client client  The client instance
+     */
     public function __construct($client)
     {
         $this->client = $client;
     }
 
+    /** Get events on a resource
+     *
+     * @param $params object
+     * @return response
+     */
     public function getEvents($params = array(), $options = array()) {
-        /** Get events on a resource
-         *
-         * @param $params : 
-         * @return response
-         */
         $path = "/events";
-        return $this->client->get($path, $params, $options);
+        return $this->client->getCollection($path, $params, $options);
     }
 }

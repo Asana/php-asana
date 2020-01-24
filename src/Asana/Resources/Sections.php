@@ -11,6 +11,8 @@ class Sections extends SectionsBase
      *
      * Returns the full record of the newly created section.
      *
+     * @deprecated replace with createSectionForProject
+     *
      * @param  project The project to create the section in
      * @return response
      */
@@ -23,6 +25,8 @@ class Sections extends SectionsBase
     /**
      * Returns the compact records for all sections in the specified project.
      *
+     * @deprecated replace with getSectionsForProject
+     *
      * @param  project The project to get sections from.
      * @return response
      */
@@ -34,6 +38,8 @@ class Sections extends SectionsBase
 
     /**
      * Returns the complete record for a single section.
+     *
+     * @deprecated replace with getSection
      *
      * @param  section The section to get.
      * @return response
@@ -56,6 +62,8 @@ class Sections extends SectionsBase
      *
      * Returns the complete updated section record.
      *
+     * @deprecated replace with updateSection
+     *
      * @param  section The section to update.
      * @return response
      */
@@ -75,6 +83,8 @@ class Sections extends SectionsBase
      *
      * Returns an empty data block.
      *
+     * @deprecated replace with deleteSection
+     *
      * @param  section The section to delete.
      * @return response
      */
@@ -90,6 +100,8 @@ class Sections extends SectionsBase
      * The task will be inserted at the top of a section unless an `insert_before` or `insert_after` parameter is declared.
      *
      * This does not work for separators (tasks with the `resource_subtype` of section).
+     *
+     * @deprecated replace with addTaskForSection
      *
      * @param  task The task to add to this section
      * @return response
@@ -109,6 +121,8 @@ class Sections extends SectionsBase
      * At this point in time, moving sections is not supported in list views, only board views.
      *
      * Returns an empty data block.
+     *
+     * @deprecated replace with insertSectionForProject
      *
      * @param  project The project in which to reorder the given section
      * @return response

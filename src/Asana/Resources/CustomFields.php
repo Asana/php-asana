@@ -23,6 +23,8 @@ class CustomFields extends CustomFieldsBase
      *
      * Returns the full record of the newly created custom field.
      *
+     * @deprecated replace with createCustomField
+     *
      * @return response
      */
     public function create($params = array(), $options = array())
@@ -32,6 +34,8 @@ class CustomFields extends CustomFieldsBase
 
     /**
      * Returns the complete definition of a custom field's metadata.
+     *
+     * @deprecated replace with getCustomField
      *
      * @param  custom_field Globally unique identifier for the custom field.
      * @return response
@@ -44,6 +48,8 @@ class CustomFields extends CustomFieldsBase
 
     /**
      * Returns a list of the compact representation of all of the custom fields in a workspace.
+     *
+     * @deprecated replace with getCustomFieldsForWorkspace
      *
      * @param  workspace The workspace or organization to find custom field definitions in.
      * @return response
@@ -65,6 +71,8 @@ class CustomFields extends CustomFieldsBase
      *
      * Returns the complete updated custom field record.
      *
+     * @deprecated replace with updateCustomField
+     *
      * @param  custom_field Globally unique identifier for the custom field.
      * @return response
      */
@@ -80,6 +88,8 @@ class CustomFields extends CustomFieldsBase
      * Locked custom fields can only be deleted by the user who locked the field.
      *
      * Returns an empty data record.
+     *
+     * @deprecated replace with deleteCustomField
      *
      * @param  custom_field Globally unique identifier for the custom field.
      * @return response
@@ -97,6 +107,8 @@ class CustomFields extends CustomFieldsBase
      *
      * Returns the full record of the newly created enum option.
      *
+     * @deprecated replace with createEnumOptionForCustomField
+     *
      * @param  custom_field Globally unique identifier for the custom field.
      * @return response
      */
@@ -107,25 +119,11 @@ class CustomFields extends CustomFieldsBase
     }
 
     /**
-     * Updates an existing enum option. Enum custom fields require at least one enabled enum option.
-     *
-     * Locked custom fields can only be updated by the user who locked the field.
-     *
-     * Returns the full record of the updated enum option.
-     *
-     * @param  enum_option Globally unique identifier for the enum option.
-     * @return response
-     */
-    public function updateEnumOption($enumOption, $params = array(), $options = array())
-    {
-        $path = sprintf("/enum_options/%s", $enumOption);
-        return $this->client->put($path, $params, $options);
-    }
-
-    /**
      * Moves a particular enum option to be either before or after another specified enum option in the custom field.
      *
      * Locked custom fields can only be reordered by the user who locked the field.
+     *
+     * @deprecated replace with insertEnumOptionForCustomField
      *
      * @param  custom_field Globally unique identifier for the custom field.
      * @return response

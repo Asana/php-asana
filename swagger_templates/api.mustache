@@ -6,8 +6,8 @@ namespace Asana\Resources\Gen;
 class {{classname}}Base {
 
     /**
-    * @param Asana/Client client  The client instance
-    */
+     * @param Asana/Client client  The client instance
+     */
     public function __construct($client)
     {
         $this->client = $client;
@@ -15,15 +15,15 @@ class {{classname}}Base {
 {{#operation}}
 {{#contents}}
 
+    /** {{#summary}}{{{.}}}{{/summary}}{{^summary}}{{operationId}}{{/summary}}
+     *
+     {{#pathParams}}
+     * @param ${{paramName}} {{dataType}}: {{#required}} (required){{/required}}{{#optional}}(optional){{/optional}}{{#description}} {{{description}}}{{/description}}
+     {{/pathParams}}
+     * @param $params object
+     * @return response
+     */
     public function {{operationId}}({{#pathParams}}${{paramName}}, {{/pathParams}}$params = array(), $options = array()) {
-        /** {{#summary}}{{{.}}}{{/summary}}{{^summary}}{{operationId}}{{/summary}}
-         *
-        {{#pathParams}}
-         * @param ${{paramName}} {{dataType}}: {{#required}} (required){{/required}}{{#optional}}(optional){{/optional}}{{#description}} {{{description}}}{{/description}}
-        {{/pathParams}}
-         * @param $params {{dataType}}: {{#required}} (required){{/required}}{{#optional}}(optional){{/optional}}{{#description}} {{{description}}}{{/description}}
-         * @return response
-         */
         $path = "{{path}}";
         {{#pathParams}}
         $path = str_replace($path,"{ {{~baseName~}} }", ${{paramName}});

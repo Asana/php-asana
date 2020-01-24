@@ -9,6 +9,8 @@ class UserTaskLists extends UserTaskListsBase
     /**
      * Returns the full record for the user task list for the given user
      *
+     * @deprecated replace with getUserTaskListForUser
+     *
      * @param  user An identifier for the user. Can be one of an email address,
      * the globally unique identifier for the user, or the keyword `me`
      * to indicate the current user making the request.
@@ -22,6 +24,8 @@ class UserTaskLists extends UserTaskListsBase
 
     /**
      * Returns the full record for a user task list.
+     *
+     * @deprecated replace with getUserTaskList
      *
      * @param  user_task_list Globally unique identifier for the user task list.
      * @return response
@@ -50,6 +54,8 @@ class UserTaskLists extends UserTaskListsBase
      * unless they are filtered out (for example, setting `completed_since=now`
      * will return only incomplete tasks, which is the default view for "My
      * Tasks" in Asana.)
+     *
+     * @deprecated replace with Tasks.getTasksForUserTaskList
      *
      * @param  user_task_list The user task list in which to search for tasks.
      * @return response

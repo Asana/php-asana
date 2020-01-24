@@ -19,6 +19,8 @@ class Projects extends ProjectsBase
      *
      * Returns the full record of the newly created project.
      *
+     * @deprecated replace with createProject
+     *
      * @return response
      */
     public function create($params = array(), $options = array())
@@ -31,6 +33,8 @@ class Projects extends ProjectsBase
      * supply a `team` to share the project with.
      *
      * Returns the full record of the newly created project.
+     *
+     * @deprecated replace with createProjectForWorkspace
      *
      * @param  workspace The workspace or organization to create the project in.
      * @return response
@@ -46,6 +50,8 @@ class Projects extends ProjectsBase
      *
      * Returns the full record of the newly created project.
      *
+     * @deprecated replace with createProjectForTeam
+     *
      * @param  team The team to create the project in.
      * @return response
      */
@@ -57,6 +63,8 @@ class Projects extends ProjectsBase
 
     /**
      * Returns the complete project record for a single project.
+     *
+     * @deprecated replace with getProject
      *
      * @param  project The project to get.
      * @return response
@@ -78,6 +86,8 @@ class Projects extends ProjectsBase
      *
      * Returns the complete updated project record.
      *
+     * @deprecated replace with updateProject
+     *
      * @param  project The project to update.
      * @return response
      */
@@ -93,6 +103,8 @@ class Projects extends ProjectsBase
      *
      * Returns an empty data record.
      *
+     * @deprecated replace with deleteProject
+     *
      * @param  project The project to delete.
      * @return response
      */
@@ -103,20 +115,10 @@ class Projects extends ProjectsBase
     }
 
     /**
-     * Creates and returns a job that will asynchronously handle the duplication.
-     *
-     * @param  project The project to duplicate.
-     * @return response
-     */
-    public function duplicateProject($project, $params = array(), $options = array())
-    {
-        $path = sprintf("/projects/%s/duplicate", $project);
-        return $this->client->post($path, $params, $options);
-    }
-
-    /**
      * Returns the compact project records for some filtered set of projects.
      * Use one or more of the parameters provided to filter the projects returned.
+     *
+     * @deprecated replace with getProjects
      *
      * @return response
      */
@@ -127,6 +129,8 @@ class Projects extends ProjectsBase
 
     /**
      * Returns the compact project records for all projects in the workspace.
+     *
+     * @deprecated replace with getProjectsForWorkspace
      *
      * @param  workspace The workspace or organization to find projects in.
      * @return response
@@ -140,6 +144,8 @@ class Projects extends ProjectsBase
     /**
      * Returns the compact project records for all projects in the team.
      *
+     * @deprecated replace with getProjectsForTeam
+     *
      * @param  team The team to find projects in.
      * @return response
      */
@@ -152,6 +158,8 @@ class Projects extends ProjectsBase
     /**
      * Returns the compact task records for all tasks within the given project,
      * ordered by their priority within the project. Tasks can exist in more than one project at a time.
+     *
+     * @deprecated replace with Tasks.getTasksForProject
      *
      * @param  project The project in which to search for tasks.
      * @return response
@@ -167,6 +175,8 @@ class Projects extends ProjectsBase
      * the users are not already members of the project they will also become members as a result of this operation.
      * Returns the updated project record.
      *
+     * @deprecated replace with addFollowersForProject
+     *
      * @param  project The project to add followers to.
      * @return response
      */
@@ -180,6 +190,8 @@ class Projects extends ProjectsBase
      * Removes the specified list of users from following the project, this will not affect project membership status.
      * Returns the updated project record.
      *
+     * @deprecated replace with removeFollowersForProject
+     *
      * @param  project The project to remove followers from.
      * @return response
      */
@@ -191,6 +203,8 @@ class Projects extends ProjectsBase
 
     /**
      * Adds the specified list of users as members of the project. Returns the updated project record.
+     *
+     * @deprecated replace with addMembersForProject
      *
      * @param  project The project to add members to.
      * @return response
@@ -204,6 +218,8 @@ class Projects extends ProjectsBase
     /**
      * Removes the specified list of members from the project. Returns the updated project record.
      *
+     * @deprecated replace with removeMembersForProject
+     *
      * @param  project The project to remove members from.
      * @return response
      */
@@ -216,6 +232,8 @@ class Projects extends ProjectsBase
     /**
      * Create a new custom field setting on the project.
      *
+     * @deprecated replace with addCustomFieldSettingForProject
+     *
      * @param  project The project to associate the custom field with
      * @return response
      */
@@ -227,6 +245,8 @@ class Projects extends ProjectsBase
 
     /**
      * Remove a custom field setting on the project.
+     *
+     * @deprecated replace with removeCustomFieldSettingForProject
      *
      * @param  project The project to associate the custom field with
      * @return response

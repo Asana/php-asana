@@ -9,6 +9,8 @@ class Workspaces extends WorkspacesBase
     /**
      * Returns the full workspace record for a single workspace.
      *
+     * @deprecated replace with getWorkspace
+     *
      * @param  workspace Globally unique identifier for the workspace or organization.
      * @return response
      */
@@ -20,6 +22,8 @@ class Workspaces extends WorkspacesBase
 
     /**
      * Returns the compact records for all workspaces visible to the authorized user.
+     *
+     * @deprecated replace with getWorkspaces
      *
      * @return response
      */
@@ -37,6 +41,8 @@ class Workspaces extends WorkspacesBase
      *
      * Returns the complete, updated workspace record.
      *
+     * @deprecated replace with updateWorkspace
+     *
      * @param  workspace The workspace to update.
      * @return response
      */
@@ -53,6 +59,8 @@ class Workspaces extends WorkspacesBase
      * result set is limited to a single page of results with a maximum size,
      * so you won't be able to fetch large numbers of results.
      *
+     * @deprecated replace with Typeahead.typeahead
+     *
      * @param  workspace The workspace to fetch objects from.
      * @return response
      */
@@ -66,6 +74,8 @@ class Workspaces extends WorkspacesBase
      * The user can be referenced by their globally unique user ID or their email address.
      * Returns the full user record for the invited user.
      *
+     * @deprecated replace with addUserForWorkspace
+     *
      * @param  workspace The workspace or organization to invite the user to.
      * @return response
      */
@@ -78,6 +88,8 @@ class Workspaces extends WorkspacesBase
     /**
      * The user making this call must be an admin in the workspace.
      * Returns an empty data record.
+     *
+     * @deprecated replace with removeUserForWorkspace
      *
      * @param  workspace The workspace or organization to invite the user to.
      * @return response

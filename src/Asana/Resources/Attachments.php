@@ -16,6 +16,8 @@ class Attachments extends AttachmentsBase
     /**
      * Returns the full record for a single attachment.
      *
+     * @deprecated replace with getAttachment
+     *
      * @param  attachment Globally unique identifier for the attachment.
      * @return response
      */
@@ -27,6 +29,8 @@ class Attachments extends AttachmentsBase
 
     /**
      * Returns the compact records for all attachments on the task.
+     *
+     * @deprecated replace with getAttachmentsForTask
      *
      * @param  task Globally unique identifier for the task.
      * @return response

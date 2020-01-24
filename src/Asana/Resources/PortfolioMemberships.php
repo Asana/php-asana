@@ -10,6 +10,8 @@ class PortfolioMemberships extends PortfolioMembershipsBase
      * Returns the compact portfolio membership records for the portfolio. You must
      * specify `portfolio`, `portfolio` and `user`, or `workspace` and `user`.
      *
+     * @deprecated replace with getPortfolioMemberships
+     *
      * @return response
      */
     public function findAll($params = array(), $options = array())
@@ -19,6 +21,8 @@ class PortfolioMemberships extends PortfolioMembershipsBase
 
     /**
      * Returns the compact portfolio membership records for the portfolio.
+     *
+     * @deprecated replace with getPortfolioMembershipsForPortfolio
      *
      * @param  portfolio The portfolio for which to fetch memberships.
      * @return response
@@ -31,6 +35,8 @@ class PortfolioMemberships extends PortfolioMembershipsBase
 
     /**
      * Returns the portfolio membership record.
+     *
+     * @deprecated replace with getPortfolioMembership
      *
      * @param  portfolio_membership Globally unique identifier for the portfolio membership.
      * @return response

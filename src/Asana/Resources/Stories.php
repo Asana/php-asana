@@ -9,6 +9,8 @@ class Stories extends StoriesBase
     /**
      * Returns the compact records for all stories on the task.
      *
+     * @deprecated replace with getStoriesForTask
+     *
      * @param  task Globally unique identifier for the task.
      * @return response
      */
@@ -20,6 +22,8 @@ class Stories extends StoriesBase
 
     /**
      * Returns the full record for a single story.
+     *
+     * @deprecated replace with getStory
      *
      * @param  story Globally unique identifier for the story.
      * @return response
@@ -37,6 +41,8 @@ class Stories extends StoriesBase
      *
      * Returns the full record for the new story added to the task.
      *
+     * @deprecated replace with createStoryForTask
+     *
      * @param  task Globally unique identifier for the task.
      * @return response
      */
@@ -51,6 +57,8 @@ class Stories extends StoriesBase
      * Only comment stories can have their text updated, and only comment stories and
      * attachment stories can be pinned. Only one of `text` and `html_text` can be specified.
      *
+     * @deprecated replace with updateStory
+     *
      * @param  story Globally unique identifier for the story.
      * @return response
      */
@@ -62,6 +70,8 @@ class Stories extends StoriesBase
 
     /**
      * Deletes a story. A user can only delete stories they have created. Returns an empty data record.
+     *
+     * @deprecated replace with deleteStory
      *
      * @param  story Globally unique identifier for the story.
      * @return response

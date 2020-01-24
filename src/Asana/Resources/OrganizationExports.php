@@ -9,6 +9,8 @@ class OrganizationExports extends OrganizationExportsBase
     /**
      * Returns details of a previously-requested Organization export.
      *
+     * @deprecated replace with getOrganizationExport
+     *
      * @param  organization_export Globally unique identifier for the Organization export.
      * @return response
      */
@@ -21,6 +23,8 @@ class OrganizationExports extends OrganizationExportsBase
     /**
      * This method creates a request to export an Organization. Asana will complete the export at some
      * point after you create the request.
+     *
+     * @deprecated replace with createOrganizationExport
      *
      * @return response
      */

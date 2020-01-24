@@ -24,6 +24,8 @@ class ProjectStatuses extends ProjectStatusesBase
      *
      * Returns the full record of the newly created project status update.
      *
+     * @deprecated replace with createProjectStatusForProject
+     *
      * @param  project The project on which to create a status update.
      * @return response
      */
@@ -36,6 +38,8 @@ class ProjectStatuses extends ProjectStatusesBase
     /**
      * Returns the compact project status update records for all updates on the project.
      *
+     * @deprecated replace with getProjectStatusesForProject
+     *
      * @param  project The project to find status updates for.
      * @return response
      */
@@ -47,6 +51,8 @@ class ProjectStatuses extends ProjectStatusesBase
 
     /**
      * Returns the complete record for a single status update.
+     *
+     * @deprecated replace with getProjectStatus
      *
      * @param  project-status The project status update to get.
      * @return response
@@ -61,6 +67,8 @@ class ProjectStatuses extends ProjectStatusesBase
      * Deletes a specific, existing project status update.
      *
      * Returns an empty data record.
+     *
+     * @deprecated replace with deleteProjectStatus
      *
      * @param  project-status The project status update to delete.
      * @return response

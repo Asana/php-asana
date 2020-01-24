@@ -19,6 +19,8 @@ class Users extends UsersBase
     /**
      * Returns the full user record for the single user with the provided ID.
      *
+     * @deprecated replace with getUser
+     *
      * @param  user An identifier for the user. Can be one of an email address,
      * the globally unique identifier for the user, or the keyword `me`
      * to indicate the current user making the request.
@@ -33,6 +35,8 @@ class Users extends UsersBase
     /**
      * Returns all of a user's favorites in the given workspace, of the given type.
      * Results are given in order (The same order as Asana's sidebar).
+     *
+     * @deprecated replace with getFavoritesForUser
      *
      * @param  user An identifier for the user. Can be one of an email address,
      * the globally unique identifier for the user, or the keyword `me`
@@ -49,6 +53,8 @@ class Users extends UsersBase
      * Returns the user records for all users in the specified workspace or
      * organization.
      *
+     * @deprecated replace with getUsersForWorkspace
+     *
      * @param  workspace The workspace in which to get users.
      * @return response
      */
@@ -62,6 +68,8 @@ class Users extends UsersBase
      * Returns the user records for all users in all workspaces and organizations
      * accessible to the authenticated user. Accepts an optional workspace ID
      * parameter.
+     *
+     * @deprecated replace with getUsers
      *
      * @return response
      */

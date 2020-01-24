@@ -23,6 +23,8 @@ class Tasks extends TasksBase
      * `projects` can be a comma separated list of projects, or just a single
      * project the task should belong to.
      *
+     * @deprecated replace with createTask
+     *
      * @return response
      */
     public function create($params = array(), $options = array())
@@ -39,6 +41,8 @@ class Tasks extends TasksBase
      * workspace cannot be changed once set. The workspace need not be set
      * explicitly if you specify a `project` or a `parent` task instead.
      *
+     * @deprecated replace with createTaskForWorkspace
+     *
      * @param  workspace The workspace to create a task in.
      * @return response
      */
@@ -50,6 +54,8 @@ class Tasks extends TasksBase
 
     /**
      * Returns the complete task record for a single task.
+     *
+     * @deprecated replace with getTask
      *
      * @param  task The task to get.
      * @return response
@@ -71,6 +77,8 @@ class Tasks extends TasksBase
      *
      * Returns the complete updated task record.
      *
+     * @deprecated replace with updateTask
+     *
      * @param  task The task to update.
      * @return response
      */
@@ -88,6 +96,8 @@ class Tasks extends TasksBase
      *
      * Returns an empty data record.
      *
+     * @deprecated replace with deleteTask
+     *
      * @param  task The task to delete.
      * @return response
      */
@@ -98,20 +108,10 @@ class Tasks extends TasksBase
     }
 
     /**
-     * Creates and returns a job that will asynchronously handle the duplication.
-     *
-     * @param  task The task to duplicate.
-     * @return response
-     */
-    public function duplicateTask($task, $params = array(), $options = array())
-    {
-        $path = sprintf("/tasks/%s/duplicate", $task);
-        return $this->client->post($path, $params, $options);
-    }
-
-    /**
      * Returns the compact task records for all tasks within the given project,
      * ordered by their priority within the project.
+     *
+     * @deprecated replace with getTasksForProject
      *
      * @param  project The project in which to search for tasks.
      * @return response
@@ -125,6 +125,8 @@ class Tasks extends TasksBase
     /**
      * Returns the compact task records for all tasks with the given tag.
      *
+     * @deprecated replace with getTasksForTag
+     *
      * @param  tag The tag in which to search for tasks.
      * @return response
      */
@@ -136,6 +138,8 @@ class Tasks extends TasksBase
 
     /**
      * <b>Board view only:</b> Returns the compact section records for all tasks within the given section.
+     *
+     * @deprecated replace with getTasksForSection
      *
      * @param  section The section in which to search for tasks.
      * @return response
@@ -165,6 +169,8 @@ class Tasks extends TasksBase
      * will return only incomplete tasks, which is the default view for "My
      * Tasks" in Asana.)
      *
+     * @deprecated replace with getTasksForUserTaskList
+     *
      * @param  user_task_list The user task list in which to search for tasks.
      * @return response
      */
@@ -180,6 +186,8 @@ class Tasks extends TasksBase
      * specify a `project`, `section`, `tag`, or `user_task_list` if you do not
      * specify `assignee` and `workspace`.
      *
+     * @deprecated replace with getTasks
+     *
      * @return response
      */
     public function findAll($params = array(), $options = array())
@@ -189,6 +197,8 @@ class Tasks extends TasksBase
 
     /**
      * The search endpoint allows you to build complex queries to find and fetch exactly the data you need from Asana. For a more comprehensive description of all the query parameters and limitations of this endpoint, see our [long-form documentation](/developers/documentation/getting-started/search-api) for this feature.
+     *
+     * @deprecated replace with searchTasksForWorkspace
      *
      * @param  workspace The workspace or organization in which to search for tasks.
      * @return response
@@ -202,6 +212,8 @@ class Tasks extends TasksBase
     /**
      * Returns the compact representations of all of the dependencies of a task.
      *
+     * @deprecated replace with getDependenciesForTask
+     *
      * @param  task The task to get dependencies on.
      * @return response
      */
@@ -213,6 +225,8 @@ class Tasks extends TasksBase
 
     /**
      * Returns the compact representations of all of the dependents of a task.
+     *
+     * @deprecated replace with getDependentsForTask
      *
      * @param  task The task to get dependents on.
      * @return response
@@ -227,6 +241,8 @@ class Tasks extends TasksBase
      * Marks a set of tasks as dependencies of this task, if they are not
      * already dependencies. *A task can have at most 15 dependencies.*
      *
+     * @deprecated replace with addDependenciesForTask
+     *
      * @param  task The task to add dependencies to.
      * @return response
      */
@@ -240,6 +256,8 @@ class Tasks extends TasksBase
      * Marks a set of tasks as dependents of this task, if they are not already
      * dependents. *A task can have at most 30 dependents.*
      *
+     * @deprecated replace with addDependentsForTask
+     *
      * @param  task The task to add dependents to.
      * @return response
      */
@@ -252,6 +270,8 @@ class Tasks extends TasksBase
     /**
      * Unlinks a set of dependencies from this task.
      *
+     * @deprecated replace with removeDependenciesForTask
+     *
      * @param  task The task to remove dependencies from.
      * @return response
      */
@@ -263,6 +283,8 @@ class Tasks extends TasksBase
 
     /**
      * Unlinks a set of dependents from this task.
+     *
+     * @deprecated replace with removeDependentsForTask
      *
      * @param  task The task to remove dependents from.
      * @return response
@@ -277,6 +299,8 @@ class Tasks extends TasksBase
      * Adds each of the specified followers to the task, if they are not already
      * following. Returns the complete, updated record for the affected task.
      *
+     * @deprecated replace with addFollowersForTask
+     *
      * @param  task The task to add followers to.
      * @return response
      */
@@ -290,6 +314,8 @@ class Tasks extends TasksBase
      * Removes each of the specified followers from the task if they are
      * following. Returns the complete, updated record for the affected task.
      *
+     * @deprecated replace with removeFollowersForTask
+     *
      * @param  task The task to remove followers from.
      * @return response
      */
@@ -301,6 +327,8 @@ class Tasks extends TasksBase
 
     /**
      * Returns a compact representation of all of the projects the task is in.
+     *
+     * @deprecated replace with Tasks.getProjectsForTask
      *
      * @param  task The task to get projects on.
      * @return response
@@ -327,6 +355,8 @@ class Tasks extends TasksBase
      *
      * Returns an empty data block.
      *
+     * @deprecated replace with addProjectForTask
+     *
      * @param  task The task to add to a project.
      * @return response
      */
@@ -342,6 +372,8 @@ class Tasks extends TasksBase
      *
      * Returns an empty data block.
      *
+     * @deprecated replace with removeProjectForTask
+     *
      * @param  task The task to remove from a project.
      * @return response
      */
@@ -353,6 +385,8 @@ class Tasks extends TasksBase
 
     /**
      * Returns a compact representation of all of the tags the task has.
+     *
+     * @deprecated replace with Tags.getTagsForTask
      *
      * @param  task The task to get tags on.
      * @return response
@@ -366,6 +400,8 @@ class Tasks extends TasksBase
     /**
      * Adds a tag to a task. Returns an empty data block.
      *
+     * @deprecated replace with addTagForTask
+     *
      * @param  task The task to add a tag to.
      * @return response
      */
@@ -378,6 +414,8 @@ class Tasks extends TasksBase
     /**
      * Removes a tag from the task. Returns an empty data block.
      *
+     * @deprecated replace with removeTagForTask
+     *
      * @param  task The task to remove a tag from.
      * @return response
      */
@@ -389,6 +427,8 @@ class Tasks extends TasksBase
 
     /**
      * Returns a compact representation of all of the subtasks of a task.
+     *
+     * @deprecated replace with getSubtasksForTask
      *
      * @param  task The task to get the subtasks of.
      * @return response
@@ -403,6 +443,8 @@ class Tasks extends TasksBase
      * Creates a new subtask and adds it to the parent task. Returns the full record
      * for the newly created subtask.
      *
+     * @deprecated replace with createSubtaskForTask
+     *
      * @param  task The task to add a subtask to.
      * @return response
      */
@@ -414,6 +456,8 @@ class Tasks extends TasksBase
 
     /**
      * Returns a compact representation of all of the stories on the task.
+     *
+     * @deprecated replace with Stories.createStoryForTask
      *
      * @param  task The task containing the stories to get.
      * @return response
@@ -430,6 +474,8 @@ class Tasks extends TasksBase
      * the request.
      *
      * Returns the full record for the new story added to the task.
+     *
+     * @deprecated replace with Stories.createStoryForTask
      *
      * @param  task Globally unique identifier for the task.
      * @return response

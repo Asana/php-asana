@@ -9,6 +9,8 @@ class Jobs extends JobsBase
     /**
      * Returns the complete job record for a single job.
      *
+     * @deprecated replace with getJob
+     *
      * @param  job The job to get.
      * @return response
      */

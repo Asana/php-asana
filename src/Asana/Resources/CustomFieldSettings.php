@@ -9,6 +9,8 @@ class CustomFieldSettings extends CustomFieldSettingsBase
     /**
      * Returns a list of all of the custom fields settings on a project.
      *
+     * @deprecated replace with getCustomFieldSettingsForProject
+     *
      * @param  project The ID of the project for which to list custom field settings
      * @return response
      */
@@ -20,6 +22,8 @@ class CustomFieldSettings extends CustomFieldSettingsBase
 
     /**
      * Returns a list of all of the custom fields settings on a portfolio.
+     *
+     * @deprecated replace with getCustomFieldSettingsForPortfolio
      *
      * @param  portfolio The ID of the portfolio for which to list custom field settings
      * @return response

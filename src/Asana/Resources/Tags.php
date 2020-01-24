@@ -10,6 +10,8 @@ class Tags extends TagsBase
      * Returns the compact task records for all tasks with the given tag.
      * Tasks can have more than one tag at a time.
      *
+     * @deprecated replace with Tasks.getTasksForTag
+     *
      * @param  tag The tag to fetch tasks from.
      * @return response
      */
@@ -29,6 +31,8 @@ class Tags extends TagsBase
      *
      * Returns the full record of the newly created tag.
      *
+     * @deprecated replace with createTag
+     *
      * @return response
      */
     public function create($params = array(), $options = array())
@@ -46,6 +50,8 @@ class Tags extends TagsBase
      *
      * Returns the full record of the newly created tag.
      *
+     * @deprecated replace with createTagForWorkspace
+     *
      * @param  workspace The workspace or organization to create the tag in.
      * @return response
      */
@@ -57,6 +63,8 @@ class Tags extends TagsBase
 
     /**
      * Returns the complete tag record for a single tag.
+     *
+     * @deprecated replace with getTag
      *
      * @param  tag The tag to get.
      * @return response
@@ -77,6 +85,8 @@ class Tags extends TagsBase
      *
      * Returns the complete updated tag record.
      *
+     * @deprecated replace with updateTag
+     *
      * @param  tag The tag to update.
      * @return response
      */
@@ -92,6 +102,8 @@ class Tags extends TagsBase
      *
      * Returns an empty data record.
      *
+     * @deprecated replace with deleteTag
+     *
      * @param  tag The tag to delete.
      * @return response
      */
@@ -105,6 +117,8 @@ class Tags extends TagsBase
      * Returns the compact tag records for some filtered set of tags.
      * Use one or more of the parameters provided to filter the tags returned.
      *
+     * @deprecated replace with getTags
+     *
      * @return response
      */
     public function findAll($params = array(), $options = array())
@@ -114,6 +128,8 @@ class Tags extends TagsBase
 
     /**
      * Returns the compact tag records for all tags in the workspace.
+     *
+     * @deprecated replace with getTagsForWorkspace
      *
      * @param  workspace The workspace or organization to find tags in.
      * @return response

@@ -23,6 +23,8 @@ class Webhooks extends WebhooksBase
      * to create it. This means you need to be able to receive and complete the
      * webhook *while* the POST request is in-flight.
      *
+     * @deprecated replace with createWebhook
+     *
      * @return response
      */
     public function create($params = array(), $options = array())
@@ -34,6 +36,8 @@ class Webhooks extends WebhooksBase
      * Returns the compact representation of all webhooks your app has
      * registered for the authenticated user in the given workspace.
      *
+     * @deprecated replace with getWebhooks
+     *
      * @return response
      */
     public function getAll($params = array(), $options = array())
@@ -43,6 +47,8 @@ class Webhooks extends WebhooksBase
 
     /**
      * Returns the full record for the given webhook.
+     *
+     * @deprecated replace with getWebhook
      *
      * @param  webhook The webhook to get.
      * @return response
@@ -57,6 +63,8 @@ class Webhooks extends WebhooksBase
      * This method permanently removes a webhook. Note that it may be possible
      * to receive a request that was already in flight after deleting the
      * webhook, but no further requests will be issued.
+     *
+     * @deprecated replace with deleteWebhook
      *
      * @param  webhook The webhook to delete.
      * @return response
