@@ -21,7 +21,7 @@ class CustomFieldSettingsBase {
      */
     public function getCustomFieldSettingsForPortfolio($portfolio_gid, $params = array(), $options = array()) {
         $path = "/portfolios/{portfolio_gid}/custom_field_settings";
-        $path = str_replace($path,"{portfolio_gid}", $portfolio_gid);
+        $path = str_replace("{portfolio_gid}", $portfolio_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 
@@ -34,7 +34,7 @@ class CustomFieldSettingsBase {
      */
     public function getCustomFieldSettingsForProject($project_gid, $params = array(), $options = array()) {
         $path = "/projects/{project_gid}/custom_field_settings";
-        $path = str_replace($path,"{project_gid}", $project_gid);
+        $path = str_replace("{project_gid}", $project_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 }

@@ -21,7 +21,7 @@ class WorkspaceMembershipsBase {
      */
     public function getWorkspaceMembership($workspace_membership_path_gid, $params = array(), $options = array()) {
         $path = "/workspace_memberships/{workspace_membership_gid}";
-        $path = str_replace($path,"{workspace_membership_path_gid}", $workspace_membership_path_gid);
+        $path = str_replace("{workspace_membership_path_gid}", $workspace_membership_path_gid, $path);
         return $this->client->get($path, $params, $options);
     }
 
@@ -34,7 +34,7 @@ class WorkspaceMembershipsBase {
      */
     public function getWorkspaceMembershipsForUser($user_gid, $params = array(), $options = array()) {
         $path = "/users/{user_gid}/workspace_memberships";
-        $path = str_replace($path,"{user_gid}", $user_gid);
+        $path = str_replace("{user_gid}", $user_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 
@@ -47,7 +47,7 @@ class WorkspaceMembershipsBase {
      */
     public function getWorkspaceMembershipsForWorkspace($workspace_gid, $params = array(), $options = array()) {
         $path = "/workspaces/{workspace_gid}/workspace_memberships";
-        $path = str_replace($path,"{workspace_gid}", $workspace_gid);
+        $path = str_replace("{workspace_gid}", $workspace_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 }

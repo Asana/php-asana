@@ -21,7 +21,7 @@ class PortfoliosBase {
      */
     public function addCustomFieldSettingForPortfolio($portfolio_gid, $params = array(), $options = array()) {
         $path = "/portfolios/{portfolio_gid}/addCustomFieldSetting";
-        $path = str_replace($path,"{portfolio_gid}", $portfolio_gid);
+        $path = str_replace("{portfolio_gid}", $portfolio_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -34,7 +34,7 @@ class PortfoliosBase {
      */
     public function addItemForPortfolio($portfolio_gid, $params = array(), $options = array()) {
         $path = "/portfolios/{portfolio_gid}/addItem";
-        $path = str_replace($path,"{portfolio_gid}", $portfolio_gid);
+        $path = str_replace("{portfolio_gid}", $portfolio_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -47,7 +47,7 @@ class PortfoliosBase {
      */
     public function addMembersForPortfolio($portfolio_gid, $params = array(), $options = array()) {
         $path = "/portfolios/{portfolio_gid}/addMembers";
-        $path = str_replace($path,"{portfolio_gid}", $portfolio_gid);
+        $path = str_replace("{portfolio_gid}", $portfolio_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -71,7 +71,7 @@ class PortfoliosBase {
      */
     public function deletePortfolio($portfolio_gid, $params = array(), $options = array()) {
         $path = "/portfolios/{portfolio_gid}";
-        $path = str_replace($path,"{portfolio_gid}", $portfolio_gid);
+        $path = str_replace("{portfolio_gid}", $portfolio_gid, $path);
         return $this->client->delete($path, $params, $options);
     }
 
@@ -84,7 +84,7 @@ class PortfoliosBase {
      */
     public function getItemsForPortfolio($portfolio_gid, $params = array(), $options = array()) {
         $path = "/portfolios/{portfolio_gid}/items";
-        $path = str_replace($path,"{portfolio_gid}", $portfolio_gid);
+        $path = str_replace("{portfolio_gid}", $portfolio_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 
@@ -97,7 +97,7 @@ class PortfoliosBase {
      */
     public function getPortfolio($portfolio_gid, $params = array(), $options = array()) {
         $path = "/portfolios/{portfolio_gid}";
-        $path = str_replace($path,"{portfolio_gid}", $portfolio_gid);
+        $path = str_replace("{portfolio_gid}", $portfolio_gid, $path);
         return $this->client->get($path, $params, $options);
     }
 
@@ -121,7 +121,7 @@ class PortfoliosBase {
      */
     public function removeCustomFieldSettingForPortfolio($portfolio_gid, $params = array(), $options = array()) {
         $path = "/portfolios/{portfolio_gid}/removeCustomFieldSetting";
-        $path = str_replace($path,"{portfolio_gid}", $portfolio_gid);
+        $path = str_replace("{portfolio_gid}", $portfolio_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -134,7 +134,7 @@ class PortfoliosBase {
      */
     public function removeItemForPortfolio($portfolio_gid, $params = array(), $options = array()) {
         $path = "/portfolios/{portfolio_gid}/removeItem";
-        $path = str_replace($path,"{portfolio_gid}", $portfolio_gid);
+        $path = str_replace("{portfolio_gid}", $portfolio_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -147,7 +147,7 @@ class PortfoliosBase {
      */
     public function removeMembersForPortfolio($portfolio_gid, $params = array(), $options = array()) {
         $path = "/portfolios/{portfolio_gid}/removeMembers";
-        $path = str_replace($path,"{portfolio_gid}", $portfolio_gid);
+        $path = str_replace("{portfolio_gid}", $portfolio_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -160,7 +160,7 @@ class PortfoliosBase {
      */
     public function updatePortfolio($portfolio_gid, $params = array(), $options = array()) {
         $path = "/portfolios/{portfolio_gid}";
-        $path = str_replace($path,"{portfolio_gid}", $portfolio_gid);
+        $path = str_replace("{portfolio_gid}", $portfolio_gid, $path);
         return $this->client->put($path, $params, $options);
     }
 }

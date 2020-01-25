@@ -21,7 +21,7 @@ class StoriesBase {
      */
     public function createStoryForTask($task_gid, $params = array(), $options = array()) {
         $path = "/tasks/{task_gid}/stories";
-        $path = str_replace($path,"{task_gid}", $task_gid);
+        $path = str_replace("{task_gid}", $task_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -34,7 +34,7 @@ class StoriesBase {
      */
     public function deleteStory($story_gid, $params = array(), $options = array()) {
         $path = "/stories/{story_gid}";
-        $path = str_replace($path,"{story_gid}", $story_gid);
+        $path = str_replace("{story_gid}", $story_gid, $path);
         return $this->client->delete($path, $params, $options);
     }
 
@@ -47,7 +47,7 @@ class StoriesBase {
      */
     public function getStoriesForTask($task_gid, $params = array(), $options = array()) {
         $path = "/tasks/{task_gid}/stories";
-        $path = str_replace($path,"{task_gid}", $task_gid);
+        $path = str_replace("{task_gid}", $task_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 
@@ -60,7 +60,7 @@ class StoriesBase {
      */
     public function getStory($story_gid, $params = array(), $options = array()) {
         $path = "/stories/{story_gid}";
-        $path = str_replace($path,"{story_gid}", $story_gid);
+        $path = str_replace("{story_gid}", $story_gid, $path);
         return $this->client->get($path, $params, $options);
     }
 
@@ -73,7 +73,7 @@ class StoriesBase {
      */
     public function updateStory($story_gid, $params = array(), $options = array()) {
         $path = "/stories/{story_gid}";
-        $path = str_replace($path,"{story_gid}", $story_gid);
+        $path = str_replace("{story_gid}", $story_gid, $path);
         return $this->client->put($path, $params, $options);
     }
 }

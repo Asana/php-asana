@@ -32,7 +32,7 @@ class OrganizationExportsBase {
      */
     public function getOrganizationExport($organization_export_gid, $params = array(), $options = array()) {
         $path = "/organization_exports/{organization_export_gid}";
-        $path = str_replace($path,"{organization_export_gid}", $organization_export_gid);
+        $path = str_replace("{organization_export_gid}", $organization_export_gid, $path);
         return $this->client->get($path, $params, $options);
     }
 }

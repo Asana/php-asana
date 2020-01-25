@@ -32,7 +32,7 @@ class WebhooksBase {
      */
     public function deleteWebhook($webhook_gid, $params = array(), $options = array()) {
         $path = "/webhooks/{webhook_gid}";
-        $path = str_replace($path,"{webhook_gid}", $webhook_gid);
+        $path = str_replace("{webhook_gid}", $webhook_gid, $path);
         return $this->client->delete($path, $params, $options);
     }
 
@@ -45,7 +45,7 @@ class WebhooksBase {
      */
     public function getWebhook($webhook_gid, $params = array(), $options = array()) {
         $path = "/webhooks/{webhook_gid}";
-        $path = str_replace($path,"{webhook_gid}", $webhook_gid);
+        $path = str_replace("{webhook_gid}", $webhook_gid, $path);
         return $this->client->get($path, $params, $options);
     }
 

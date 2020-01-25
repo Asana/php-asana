@@ -21,7 +21,7 @@ class JobsBase {
      */
     public function getJob($job_gid, $params = array(), $options = array()) {
         $path = "/jobs/{job_gid}";
-        $path = str_replace($path,"{job_gid}", $job_gid);
+        $path = str_replace("{job_gid}", $job_gid, $path);
         return $this->client->get($path, $params, $options);
     }
 }

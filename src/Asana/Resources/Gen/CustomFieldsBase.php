@@ -32,7 +32,7 @@ class CustomFieldsBase {
      */
     public function createEnumOptionForCustomField($custom_field_gid, $params = array(), $options = array()) {
         $path = "/custom_fields/{custom_field_gid}/enum_options";
-        $path = str_replace($path,"{custom_field_gid}", $custom_field_gid);
+        $path = str_replace("{custom_field_gid}", $custom_field_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -45,7 +45,7 @@ class CustomFieldsBase {
      */
     public function deleteCustomField($custom_field_gid, $params = array(), $options = array()) {
         $path = "/custom_fields/{custom_field_gid}";
-        $path = str_replace($path,"{custom_field_gid}", $custom_field_gid);
+        $path = str_replace("{custom_field_gid}", $custom_field_gid, $path);
         return $this->client->delete($path, $params, $options);
     }
 
@@ -58,7 +58,7 @@ class CustomFieldsBase {
      */
     public function getCustomField($custom_field_gid, $params = array(), $options = array()) {
         $path = "/custom_fields/{custom_field_gid}";
-        $path = str_replace($path,"{custom_field_gid}", $custom_field_gid);
+        $path = str_replace("{custom_field_gid}", $custom_field_gid, $path);
         return $this->client->get($path, $params, $options);
     }
 
@@ -71,7 +71,7 @@ class CustomFieldsBase {
      */
     public function getCustomFieldsForWorkspace($workspace_gid, $params = array(), $options = array()) {
         $path = "/workspaces/{workspace_gid}/custom_fields";
-        $path = str_replace($path,"{workspace_gid}", $workspace_gid);
+        $path = str_replace("{workspace_gid}", $workspace_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 
@@ -84,7 +84,7 @@ class CustomFieldsBase {
      */
     public function insertEnumOptionForCustomField($custom_field_gid, $params = array(), $options = array()) {
         $path = "/custom_fields/{custom_field_gid}/enum_options/insert";
-        $path = str_replace($path,"{custom_field_gid}", $custom_field_gid);
+        $path = str_replace("{custom_field_gid}", $custom_field_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -97,7 +97,7 @@ class CustomFieldsBase {
      */
     public function updateCustomField($custom_field_gid, $params = array(), $options = array()) {
         $path = "/custom_fields/{custom_field_gid}";
-        $path = str_replace($path,"{custom_field_gid}", $custom_field_gid);
+        $path = str_replace("{custom_field_gid}", $custom_field_gid, $path);
         return $this->client->put($path, $params, $options);
     }
 
@@ -110,7 +110,7 @@ class CustomFieldsBase {
      */
     public function updateEnumOption($enum_option_gid, $params = array(), $options = array()) {
         $path = "/enum_options/{enum_option_gid}";
-        $path = str_replace($path,"{enum_option_gid}", $enum_option_gid);
+        $path = str_replace("{enum_option_gid}", $enum_option_gid, $path);
         return $this->client->put($path, $params, $options);
     }
 }

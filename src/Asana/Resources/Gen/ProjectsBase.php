@@ -21,7 +21,7 @@ class ProjectsBase {
      */
     public function addCustomFieldSettingForProject($project_gid, $params = array(), $options = array()) {
         $path = "/projects/{project_gid}/addCustomFieldSetting";
-        $path = str_replace($path,"{project_gid}", $project_gid);
+        $path = str_replace("{project_gid}", $project_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -34,7 +34,7 @@ class ProjectsBase {
      */
     public function addFollowersForProject($project_gid, $params = array(), $options = array()) {
         $path = "/projects/{project_gid}/addFollowers";
-        $path = str_replace($path,"{project_gid}", $project_gid);
+        $path = str_replace("{project_gid}", $project_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -47,7 +47,7 @@ class ProjectsBase {
      */
     public function addMembersForProject($project_gid, $params = array(), $options = array()) {
         $path = "/projects/{project_gid}/addMembers";
-        $path = str_replace($path,"{project_gid}", $project_gid);
+        $path = str_replace("{project_gid}", $project_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -71,7 +71,7 @@ class ProjectsBase {
      */
     public function createProjectForTeam($team_gid, $params = array(), $options = array()) {
         $path = "/teams/{team_gid}/projects";
-        $path = str_replace($path,"{team_gid}", $team_gid);
+        $path = str_replace("{team_gid}", $team_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -84,7 +84,7 @@ class ProjectsBase {
      */
     public function createProjectForWorkspace($workspace_gid, $params = array(), $options = array()) {
         $path = "/workspaces/{workspace_gid}/projects";
-        $path = str_replace($path,"{workspace_gid}", $workspace_gid);
+        $path = str_replace("{workspace_gid}", $workspace_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -97,7 +97,7 @@ class ProjectsBase {
      */
     public function deleteProject($project_gid, $params = array(), $options = array()) {
         $path = "/projects/{project_gid}";
-        $path = str_replace($path,"{project_gid}", $project_gid);
+        $path = str_replace("{project_gid}", $project_gid, $path);
         return $this->client->delete($path, $params, $options);
     }
 
@@ -110,7 +110,7 @@ class ProjectsBase {
      */
     public function duplicateProject($project_gid, $params = array(), $options = array()) {
         $path = "/projects/{project_gid}/duplicate";
-        $path = str_replace($path,"{project_gid}", $project_gid);
+        $path = str_replace("{project_gid}", $project_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -123,7 +123,7 @@ class ProjectsBase {
      */
     public function getProject($project_gid, $params = array(), $options = array()) {
         $path = "/projects/{project_gid}";
-        $path = str_replace($path,"{project_gid}", $project_gid);
+        $path = str_replace("{project_gid}", $project_gid, $path);
         return $this->client->get($path, $params, $options);
     }
 
@@ -147,7 +147,7 @@ class ProjectsBase {
      */
     public function getProjectsForTask($task_gid, $params = array(), $options = array()) {
         $path = "/tasks/{task_gid}/projects";
-        $path = str_replace($path,"{task_gid}", $task_gid);
+        $path = str_replace("{task_gid}", $task_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 
@@ -160,7 +160,7 @@ class ProjectsBase {
      */
     public function getProjectsForTeam($team_gid, $params = array(), $options = array()) {
         $path = "/teams/{team_gid}/projects";
-        $path = str_replace($path,"{team_gid}", $team_gid);
+        $path = str_replace("{team_gid}", $team_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 
@@ -173,7 +173,7 @@ class ProjectsBase {
      */
     public function getProjectsForWorkspace($workspace_gid, $params = array(), $options = array()) {
         $path = "/workspaces/{workspace_gid}/projects";
-        $path = str_replace($path,"{workspace_gid}", $workspace_gid);
+        $path = str_replace("{workspace_gid}", $workspace_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 
@@ -186,7 +186,7 @@ class ProjectsBase {
      */
     public function getTaskCountsForProject($project_gid, $params = array(), $options = array()) {
         $path = "/projects/{project_gid}/task_counts";
-        $path = str_replace($path,"{project_gid}", $project_gid);
+        $path = str_replace("{project_gid}", $project_gid, $path);
         return $this->client->get($path, $params, $options);
     }
 
@@ -199,7 +199,7 @@ class ProjectsBase {
      */
     public function removeCustomFieldSettingForProject($project_gid, $params = array(), $options = array()) {
         $path = "/projects/{project_gid}/removeCustomFieldSetting";
-        $path = str_replace($path,"{project_gid}", $project_gid);
+        $path = str_replace("{project_gid}", $project_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -212,7 +212,7 @@ class ProjectsBase {
      */
     public function removeFollowersForProject($project_gid, $params = array(), $options = array()) {
         $path = "/projects/{project_gid}/removeFollowers";
-        $path = str_replace($path,"{project_gid}", $project_gid);
+        $path = str_replace("{project_gid}", $project_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -225,7 +225,7 @@ class ProjectsBase {
      */
     public function removeMembersForProject($project_gid, $params = array(), $options = array()) {
         $path = "/projects/{project_gid}/removeMembers";
-        $path = str_replace($path,"{project_gid}", $project_gid);
+        $path = str_replace("{project_gid}", $project_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -238,7 +238,7 @@ class ProjectsBase {
      */
     public function updateProject($project_gid, $params = array(), $options = array()) {
         $path = "/projects/{project_gid}";
-        $path = str_replace($path,"{project_gid}", $project_gid);
+        $path = str_replace("{project_gid}", $project_gid, $path);
         return $this->client->put($path, $params, $options);
     }
 }

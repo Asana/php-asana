@@ -21,7 +21,7 @@ class WorkspacesBase {
      */
     public function addUserForWorkspace($workspace_gid, $params = array(), $options = array()) {
         $path = "/workspaces/{workspace_gid}/addUser";
-        $path = str_replace($path,"{workspace_gid}", $workspace_gid);
+        $path = str_replace("{workspace_gid}", $workspace_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -34,7 +34,7 @@ class WorkspacesBase {
      */
     public function getWorkspace($workspace_gid, $params = array(), $options = array()) {
         $path = "/workspaces/{workspace_gid}";
-        $path = str_replace($path,"{workspace_gid}", $workspace_gid);
+        $path = str_replace("{workspace_gid}", $workspace_gid, $path);
         return $this->client->get($path, $params, $options);
     }
 
@@ -58,7 +58,7 @@ class WorkspacesBase {
      */
     public function removeUserForWorkspace($workspace_gid, $params = array(), $options = array()) {
         $path = "/workspaces/{workspace_gid}/removeUser";
-        $path = str_replace($path,"{workspace_gid}", $workspace_gid);
+        $path = str_replace("{workspace_gid}", $workspace_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -71,7 +71,7 @@ class WorkspacesBase {
      */
     public function updateWorkspace($workspace_gid, $params = array(), $options = array()) {
         $path = "/workspaces/{workspace_gid}";
-        $path = str_replace($path,"{workspace_gid}", $workspace_gid);
+        $path = str_replace("{workspace_gid}", $workspace_gid, $path);
         return $this->client->put($path, $params, $options);
     }
 }

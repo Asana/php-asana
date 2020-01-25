@@ -21,7 +21,7 @@ class UsersBase {
      */
     public function getFavoritesForUser($user_gid, $params = array(), $options = array()) {
         $path = "/users/{user_gid}/favorites";
-        $path = str_replace($path,"{user_gid}", $user_gid);
+        $path = str_replace("{user_gid}", $user_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 
@@ -34,7 +34,7 @@ class UsersBase {
      */
     public function getUser($user_gid, $params = array(), $options = array()) {
         $path = "/users/{user_gid}";
-        $path = str_replace($path,"{user_gid}", $user_gid);
+        $path = str_replace("{user_gid}", $user_gid, $path);
         return $this->client->get($path, $params, $options);
     }
 
@@ -58,7 +58,7 @@ class UsersBase {
      */
     public function getUsersForTeam($team_gid, $params = array(), $options = array()) {
         $path = "/teams/{team_gid}/users";
-        $path = str_replace($path,"{team_gid}", $team_gid);
+        $path = str_replace("{team_gid}", $team_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 
@@ -71,7 +71,7 @@ class UsersBase {
      */
     public function getUsersForWorkspace($workspace_gid, $params = array(), $options = array()) {
         $path = "/workspaces/{workspace_gid}/users";
-        $path = str_replace($path,"{workspace_gid}", $workspace_gid);
+        $path = str_replace("{workspace_gid}", $workspace_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 }

@@ -21,7 +21,7 @@ class TeamsBase {
      */
     public function addUserForTeam($team_gid, $params = array(), $options = array()) {
         $path = "/teams/{team_gid}/addUser";
-        $path = str_replace($path,"{team_gid}", $team_gid);
+        $path = str_replace("{team_gid}", $team_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -34,7 +34,7 @@ class TeamsBase {
      */
     public function getTeam($team_gid, $params = array(), $options = array()) {
         $path = "/teams/{team_gid}";
-        $path = str_replace($path,"{team_gid}", $team_gid);
+        $path = str_replace("{team_gid}", $team_gid, $path);
         return $this->client->get($path, $params, $options);
     }
 
@@ -47,7 +47,7 @@ class TeamsBase {
      */
     public function getTeamsForOrganization($workspace_gid, $params = array(), $options = array()) {
         $path = "/organizations/{workspace_gid}/teams";
-        $path = str_replace($path,"{workspace_gid}", $workspace_gid);
+        $path = str_replace("{workspace_gid}", $workspace_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 
@@ -60,7 +60,7 @@ class TeamsBase {
      */
     public function getTeamsForUser($user_gid, $params = array(), $options = array()) {
         $path = "/users/{user_gid}/teams";
-        $path = str_replace($path,"{user_gid}", $user_gid);
+        $path = str_replace("{user_gid}", $user_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 
@@ -73,7 +73,7 @@ class TeamsBase {
      */
     public function removeUserForTeam($team_gid, $params = array(), $options = array()) {
         $path = "/teams/{team_gid}/removeUser";
-        $path = str_replace($path,"{team_gid}", $team_gid);
+        $path = str_replace("{team_gid}", $team_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 }

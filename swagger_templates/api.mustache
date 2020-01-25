@@ -27,7 +27,7 @@ class {{classname}}Base {
     public function {{operationId}}({{#pathParams}}${{paramName}}, {{/pathParams}}$params = array(), $options = array()) {
         $path = "{{path}}";
         {{#pathParams}}
-        $path = str_replace($path,"{ {{~baseName~}} }", ${{paramName}});
+        $path = str_replace("{ {{~baseName~}} }", ${{paramName}}, $path);
         {{/pathParams}}
         return $this->client->{{#neq "GET" httpMethod}}{{toLowerCase httpMethod}}{{/neq}}{{#eq "GET" httpMethod}}{{returnContainer}}{{/eq}}($path, $params, $options);
     }

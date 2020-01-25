@@ -21,7 +21,7 @@ class AttachmentsBase {
      */
     public function createAttachmentForTask($task_gid, $params = array(), $options = array()) {
         $path = "/tasks/{task_gid}/attachments";
-        $path = str_replace($path,"{task_gid}", $task_gid);
+        $path = str_replace("{task_gid}", $task_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -34,7 +34,7 @@ class AttachmentsBase {
      */
     public function deleteAttachment($attachment_gid, $params = array(), $options = array()) {
         $path = "/attachments/{attachment_gid}";
-        $path = str_replace($path,"{attachment_gid}", $attachment_gid);
+        $path = str_replace("{attachment_gid}", $attachment_gid, $path);
         return $this->client->delete($path, $params, $options);
     }
 
@@ -47,7 +47,7 @@ class AttachmentsBase {
      */
     public function getAttachment($attachment_gid, $params = array(), $options = array()) {
         $path = "/attachments/{attachment_gid}";
-        $path = str_replace($path,"{attachment_gid}", $attachment_gid);
+        $path = str_replace("{attachment_gid}", $attachment_gid, $path);
         return $this->client->get($path, $params, $options);
     }
 
@@ -60,7 +60,7 @@ class AttachmentsBase {
      */
     public function getAttachmentsForTask($task_gid, $params = array(), $options = array()) {
         $path = "/tasks/{task_gid}/attachments";
-        $path = str_replace($path,"{task_gid}", $task_gid);
+        $path = str_replace("{task_gid}", $task_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 }

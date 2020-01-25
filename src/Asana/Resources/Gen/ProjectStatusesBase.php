@@ -21,7 +21,7 @@ class ProjectStatusesBase {
      */
     public function createProjectStatusForProject($project_gid, $params = array(), $options = array()) {
         $path = "/projects/{project_gid}/project_statuses";
-        $path = str_replace($path,"{project_gid}", $project_gid);
+        $path = str_replace("{project_gid}", $project_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -34,7 +34,7 @@ class ProjectStatusesBase {
      */
     public function deleteProjectStatus($project_status_path_gid, $params = array(), $options = array()) {
         $path = "/project_statuses/{project_status_gid}";
-        $path = str_replace($path,"{project_status_path_gid}", $project_status_path_gid);
+        $path = str_replace("{project_status_path_gid}", $project_status_path_gid, $path);
         return $this->client->delete($path, $params, $options);
     }
 
@@ -47,7 +47,7 @@ class ProjectStatusesBase {
      */
     public function getProjectStatus($project_status_path_gid, $params = array(), $options = array()) {
         $path = "/project_statuses/{project_status_gid}";
-        $path = str_replace($path,"{project_status_path_gid}", $project_status_path_gid);
+        $path = str_replace("{project_status_path_gid}", $project_status_path_gid, $path);
         return $this->client->get($path, $params, $options);
     }
 
@@ -60,7 +60,7 @@ class ProjectStatusesBase {
      */
     public function getProjectStatusesForProject($project_gid, $params = array(), $options = array()) {
         $path = "/projects/{project_gid}/project_statuses";
-        $path = str_replace($path,"{project_gid}", $project_gid);
+        $path = str_replace("{project_gid}", $project_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 }

@@ -32,7 +32,7 @@ class TagsBase {
      */
     public function createTagForWorkspace($workspace_gid, $params = array(), $options = array()) {
         $path = "/workspaces/{workspace_gid}/tags";
-        $path = str_replace($path,"{workspace_gid}", $workspace_gid);
+        $path = str_replace("{workspace_gid}", $workspace_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -45,7 +45,7 @@ class TagsBase {
      */
     public function getTag($tag_gid, $params = array(), $options = array()) {
         $path = "/tags/{tag_gid}";
-        $path = str_replace($path,"{tag_gid}", $tag_gid);
+        $path = str_replace("{tag_gid}", $tag_gid, $path);
         return $this->client->get($path, $params, $options);
     }
 
@@ -69,7 +69,7 @@ class TagsBase {
      */
     public function getTagsForTask($task_gid, $params = array(), $options = array()) {
         $path = "/tasks/{task_gid}/tags";
-        $path = str_replace($path,"{task_gid}", $task_gid);
+        $path = str_replace("{task_gid}", $task_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 
@@ -82,7 +82,7 @@ class TagsBase {
      */
     public function getTagsForWorkspace($workspace_gid, $params = array(), $options = array()) {
         $path = "/workspaces/{workspace_gid}/tags";
-        $path = str_replace($path,"{workspace_gid}", $workspace_gid);
+        $path = str_replace("{workspace_gid}", $workspace_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 
@@ -95,7 +95,7 @@ class TagsBase {
      */
     public function updateTag($tag_gid, $params = array(), $options = array()) {
         $path = "/tags/{tag_gid}";
-        $path = str_replace($path,"{tag_gid}", $tag_gid);
+        $path = str_replace("{tag_gid}", $tag_gid, $path);
         return $this->client->put($path, $params, $options);
     }
 }

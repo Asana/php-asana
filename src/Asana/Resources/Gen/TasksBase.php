@@ -21,7 +21,7 @@ class TasksBase {
      */
     public function addDependenciesForTask($task_gid, $params = array(), $options = array()) {
         $path = "/tasks/{task_gid}/addDependencies";
-        $path = str_replace($path,"{task_gid}", $task_gid);
+        $path = str_replace("{task_gid}", $task_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -34,7 +34,7 @@ class TasksBase {
      */
     public function addDependentsForTask($task_gid, $params = array(), $options = array()) {
         $path = "/tasks/{task_gid}/addDependents";
-        $path = str_replace($path,"{task_gid}", $task_gid);
+        $path = str_replace("{task_gid}", $task_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -47,7 +47,7 @@ class TasksBase {
      */
     public function addFollowersForTask($task_gid, $params = array(), $options = array()) {
         $path = "/tasks/{task_gid}/addFollowers";
-        $path = str_replace($path,"{task_gid}", $task_gid);
+        $path = str_replace("{task_gid}", $task_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -60,7 +60,7 @@ class TasksBase {
      */
     public function addProjectForTask($task_gid, $params = array(), $options = array()) {
         $path = "/tasks/{task_gid}/addProject";
-        $path = str_replace($path,"{task_gid}", $task_gid);
+        $path = str_replace("{task_gid}", $task_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -73,7 +73,7 @@ class TasksBase {
      */
     public function addTagForTask($task_gid, $params = array(), $options = array()) {
         $path = "/tasks/{task_gid}/addTag";
-        $path = str_replace($path,"{task_gid}", $task_gid);
+        $path = str_replace("{task_gid}", $task_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -86,7 +86,7 @@ class TasksBase {
      */
     public function createSubtaskForTask($task_gid, $params = array(), $options = array()) {
         $path = "/tasks/{task_gid}/subtasks";
-        $path = str_replace($path,"{task_gid}", $task_gid);
+        $path = str_replace("{task_gid}", $task_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -110,7 +110,7 @@ class TasksBase {
      */
     public function deleteTask($task_gid, $params = array(), $options = array()) {
         $path = "/tasks/{task_gid}";
-        $path = str_replace($path,"{task_gid}", $task_gid);
+        $path = str_replace("{task_gid}", $task_gid, $path);
         return $this->client->delete($path, $params, $options);
     }
 
@@ -123,7 +123,7 @@ class TasksBase {
      */
     public function duplicateTask($task_gid, $params = array(), $options = array()) {
         $path = "/tasks/{task_gid}/duplicate";
-        $path = str_replace($path,"{task_gid}", $task_gid);
+        $path = str_replace("{task_gid}", $task_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -136,7 +136,7 @@ class TasksBase {
      */
     public function getDependenciesForTask($task_gid, $params = array(), $options = array()) {
         $path = "/tasks/{task_gid}/dependencies";
-        $path = str_replace($path,"{task_gid}", $task_gid);
+        $path = str_replace("{task_gid}", $task_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 
@@ -149,7 +149,7 @@ class TasksBase {
      */
     public function getDependentsForTask($task_gid, $params = array(), $options = array()) {
         $path = "/tasks/{task_gid}/dependents";
-        $path = str_replace($path,"{task_gid}", $task_gid);
+        $path = str_replace("{task_gid}", $task_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 
@@ -162,7 +162,7 @@ class TasksBase {
      */
     public function getSubtasksForTask($task_gid, $params = array(), $options = array()) {
         $path = "/tasks/{task_gid}/subtasks";
-        $path = str_replace($path,"{task_gid}", $task_gid);
+        $path = str_replace("{task_gid}", $task_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 
@@ -175,7 +175,7 @@ class TasksBase {
      */
     public function getTask($task_gid, $params = array(), $options = array()) {
         $path = "/tasks/{task_gid}";
-        $path = str_replace($path,"{task_gid}", $task_gid);
+        $path = str_replace("{task_gid}", $task_gid, $path);
         return $this->client->get($path, $params, $options);
     }
 
@@ -199,7 +199,7 @@ class TasksBase {
      */
     public function getTasksForProject($project_gid, $params = array(), $options = array()) {
         $path = "/projects/{project_gid}/tasks";
-        $path = str_replace($path,"{project_gid}", $project_gid);
+        $path = str_replace("{project_gid}", $project_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 
@@ -212,7 +212,7 @@ class TasksBase {
      */
     public function getTasksForSection($section_gid, $params = array(), $options = array()) {
         $path = "/sections/{section_gid}/tasks";
-        $path = str_replace($path,"{section_gid}", $section_gid);
+        $path = str_replace("{section_gid}", $section_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 
@@ -225,7 +225,7 @@ class TasksBase {
      */
     public function getTasksForTag($tag_gid, $params = array(), $options = array()) {
         $path = "/tags/{tag_gid}/tasks";
-        $path = str_replace($path,"{tag_gid}", $tag_gid);
+        $path = str_replace("{tag_gid}", $tag_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 
@@ -238,7 +238,7 @@ class TasksBase {
      */
     public function getTasksForUserTaskList($user_task_list_gid, $params = array(), $options = array()) {
         $path = "/user_task_lists/{user_task_list_gid}/tasks";
-        $path = str_replace($path,"{user_task_list_gid}", $user_task_list_gid);
+        $path = str_replace("{user_task_list_gid}", $user_task_list_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 
@@ -251,7 +251,7 @@ class TasksBase {
      */
     public function removeDependenciesForTask($task_gid, $params = array(), $options = array()) {
         $path = "/tasks/{task_gid}/removeDependencies";
-        $path = str_replace($path,"{task_gid}", $task_gid);
+        $path = str_replace("{task_gid}", $task_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -264,7 +264,7 @@ class TasksBase {
      */
     public function removeDependentsForTask($task_gid, $params = array(), $options = array()) {
         $path = "/tasks/{task_gid}/removeDependents";
-        $path = str_replace($path,"{task_gid}", $task_gid);
+        $path = str_replace("{task_gid}", $task_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -277,7 +277,7 @@ class TasksBase {
      */
     public function removeFollowerForTask($task_gid, $params = array(), $options = array()) {
         $path = "/tasks/{task_gid}/removeFollowers";
-        $path = str_replace($path,"{task_gid}", $task_gid);
+        $path = str_replace("{task_gid}", $task_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -290,7 +290,7 @@ class TasksBase {
      */
     public function removeProjectForTask($task_gid, $params = array(), $options = array()) {
         $path = "/tasks/{task_gid}/removeProject";
-        $path = str_replace($path,"{task_gid}", $task_gid);
+        $path = str_replace("{task_gid}", $task_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -303,7 +303,7 @@ class TasksBase {
      */
     public function removeTagForTask($task_gid, $params = array(), $options = array()) {
         $path = "/tasks/{task_gid}/removeTag";
-        $path = str_replace($path,"{task_gid}", $task_gid);
+        $path = str_replace("{task_gid}", $task_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -316,7 +316,7 @@ class TasksBase {
      */
     public function searchTasksForWorkspace($workspace_gid, $params = array(), $options = array()) {
         $path = "/workspaces/{workspace_gid}/tasks/search";
-        $path = str_replace($path,"{workspace_gid}", $workspace_gid);
+        $path = str_replace("{workspace_gid}", $workspace_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 
@@ -329,7 +329,7 @@ class TasksBase {
      */
     public function setParentForTask($task_gid, $params = array(), $options = array()) {
         $path = "/tasks/{task_gid}/setParent";
-        $path = str_replace($path,"{task_gid}", $task_gid);
+        $path = str_replace("{task_gid}", $task_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -342,7 +342,7 @@ class TasksBase {
      */
     public function updateTask($task_gid, $params = array(), $options = array()) {
         $path = "/tasks/{task_gid}";
-        $path = str_replace($path,"{task_gid}", $task_gid);
+        $path = str_replace("{task_gid}", $task_gid, $path);
         return $this->client->put($path, $params, $options);
     }
 }

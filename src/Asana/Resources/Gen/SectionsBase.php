@@ -21,7 +21,7 @@ class SectionsBase {
      */
     public function addTaskForSection($section_gid, $params = array(), $options = array()) {
         $path = "/sections/{section_gid}/addTask";
-        $path = str_replace($path,"{section_gid}", $section_gid);
+        $path = str_replace("{section_gid}", $section_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -34,7 +34,7 @@ class SectionsBase {
      */
     public function createSectionForProject($project_gid, $params = array(), $options = array()) {
         $path = "/projects/{project_gid}/sections";
-        $path = str_replace($path,"{project_gid}", $project_gid);
+        $path = str_replace("{project_gid}", $project_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -47,7 +47,7 @@ class SectionsBase {
      */
     public function deleteSection($section_gid, $params = array(), $options = array()) {
         $path = "/sections/{section_gid}";
-        $path = str_replace($path,"{section_gid}", $section_gid);
+        $path = str_replace("{section_gid}", $section_gid, $path);
         return $this->client->delete($path, $params, $options);
     }
 
@@ -60,7 +60,7 @@ class SectionsBase {
      */
     public function getSection($section_gid, $params = array(), $options = array()) {
         $path = "/sections/{section_gid}";
-        $path = str_replace($path,"{section_gid}", $section_gid);
+        $path = str_replace("{section_gid}", $section_gid, $path);
         return $this->client->get($path, $params, $options);
     }
 
@@ -73,7 +73,7 @@ class SectionsBase {
      */
     public function getSectionsForProject($project_gid, $params = array(), $options = array()) {
         $path = "/projects/{project_gid}/sections";
-        $path = str_replace($path,"{project_gid}", $project_gid);
+        $path = str_replace("{project_gid}", $project_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 
@@ -86,7 +86,7 @@ class SectionsBase {
      */
     public function insertSectionForProject($project_gid, $params = array(), $options = array()) {
         $path = "/projects/{project_gid}/sections/insert";
-        $path = str_replace($path,"{project_gid}", $project_gid);
+        $path = str_replace("{project_gid}", $project_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -99,7 +99,7 @@ class SectionsBase {
      */
     public function updateSection($section_gid, $params = array(), $options = array()) {
         $path = "/sections/{section_gid}";
-        $path = str_replace($path,"{section_gid}", $section_gid);
+        $path = str_replace("{section_gid}", $section_gid, $path);
         return $this->client->put($path, $params, $options);
     }
 }

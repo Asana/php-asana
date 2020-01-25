@@ -21,7 +21,7 @@ class UserTaskListsBase {
      */
     public function getUserTaskList($user_task_list_gid, $params = array(), $options = array()) {
         $path = "/user_task_lists/{user_task_list_gid}";
-        $path = str_replace($path,"{user_task_list_gid}", $user_task_list_gid);
+        $path = str_replace("{user_task_list_gid}", $user_task_list_gid, $path);
         return $this->client->get($path, $params, $options);
     }
 
@@ -34,7 +34,7 @@ class UserTaskListsBase {
      */
     public function getUserTaskListForUser($user_gid, $params = array(), $options = array()) {
         $path = "/users/{user_gid}/user_task_list";
-        $path = str_replace($path,"{user_gid}", $user_gid);
+        $path = str_replace("{user_gid}", $user_gid, $path);
         return $this->client->get($path, $params, $options);
     }
 }

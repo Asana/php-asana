@@ -21,7 +21,7 @@ class TeamMembershipsBase {
      */
     public function getTeamMembership($team_membership_path_gid, $params = array(), $options = array()) {
         $path = "/team_memberships/{team_membership_gid}";
-        $path = str_replace($path,"{team_membership_path_gid}", $team_membership_path_gid);
+        $path = str_replace("{team_membership_path_gid}", $team_membership_path_gid, $path);
         return $this->client->get($path, $params, $options);
     }
 
@@ -45,7 +45,7 @@ class TeamMembershipsBase {
      */
     public function getTeamMembershipsForTeam($team_gid, $params = array(), $options = array()) {
         $path = "/teams/{team_gid}/team_memberships";
-        $path = str_replace($path,"{team_gid}", $team_gid);
+        $path = str_replace("{team_gid}", $team_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 
@@ -58,7 +58,7 @@ class TeamMembershipsBase {
      */
     public function getTeamMembershipsForUser($user_gid, $params = array(), $options = array()) {
         $path = "/users/{user_gid}/team_memberships";
-        $path = str_replace($path,"{user_gid}", $user_gid);
+        $path = str_replace("{user_gid}", $user_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 }
