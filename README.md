@@ -219,8 +219,8 @@ To develop:
 
 ### Code generation
 
-The specific Asana resource classes (`Tag`, `Workspace`, `Task`, etc) are
-generated code, hence they shouldn't be modified by hand. See the [asana-api-meta](https://github.com/Asana/asana-api-meta) repo for details.
+The specific Asana resource classes in the Gen folder (`Tag`, `Workspace`, `Task`, etc) are
+generated code, hence they shouldn't be modified by hand.
 
 ### Deployment
 
@@ -240,3 +240,5 @@ The rest is automatically done by Composer / Packagist. Visit [the asana package
 
 [packagist-url]: https://packagist.org/packages/asana/asana
 [packagist-image]: https://img.shields.io/packagist/v/asana/asana.svg?style=flat-square
+
+[asana-docs]: https://developers.asana.com/docs
