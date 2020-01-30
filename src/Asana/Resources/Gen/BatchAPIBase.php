@@ -18,7 +18,7 @@ class BatchAPIBase {
      * @param array $options
      * @return response
      */
-    public function createBatchRequestAction($params = array(), $options = array()) {
+    public function createBatchRequest($params = array(), $options = array()) {
         $path = "/batch";
         return $this->client->post($path, $params, $options);
     }
