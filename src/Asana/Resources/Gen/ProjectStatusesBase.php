@@ -27,27 +27,27 @@ class ProjectStatusesBase {
 
     /** Delete a project status
      *
-     * @param string $project_status_path_gid  (required) The project status update to get.
+     * @param string $project_status_gid  (required) The project status update to get.
      * @param array $params
      * @param array $options
      * @return response
      */
-    public function deleteProjectStatus($project_status_path_gid, $params = array(), $options = array()) {
+    public function deleteProjectStatus($project_status_gid, $params = array(), $options = array()) {
         $path = "/project_statuses/{project_status_gid}";
-        $path = str_replace("{project_status_path_gid}", $project_status_path_gid, $path);
+        $path = str_replace("{project_status_gid}", $project_status_gid, $path);
         return $this->client->delete($path, $params, $options);
     }
 
     /** Get a project status
      *
-     * @param string $project_status_path_gid  (required) The project status update to get.
+     * @param string $project_status_gid  (required) The project status update to get.
      * @param array $params
      * @param array $options
      * @return response
      */
-    public function getProjectStatus($project_status_path_gid, $params = array(), $options = array()) {
+    public function getProjectStatus($project_status_gid, $params = array(), $options = array()) {
         $path = "/project_statuses/{project_status_gid}";
-        $path = str_replace("{project_status_path_gid}", $project_status_path_gid, $path);
+        $path = str_replace("{project_status_gid}", $project_status_gid, $path);
         return $this->client->get($path, $params, $options);
     }
 

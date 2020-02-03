@@ -14,14 +14,14 @@ class ProjectMembershipsBase {
 
     /** Get a project membership
      *
-     * @param string $project_membership_path_gid  (required)
+     * @param string $project_membership_gid  (required)
      * @param array $params
      * @param array $options
      * @return response
      */
-    public function getProjectMembership($project_membership_path_gid, $params = array(), $options = array()) {
+    public function getProjectMembership($project_membership_gid, $params = array(), $options = array()) {
         $path = "/project_memberships/{project_membership_gid}";
-        $path = str_replace("{project_membership_path_gid}", $project_membership_path_gid, $path);
+        $path = str_replace("{project_membership_gid}", $project_membership_gid, $path);
         return $this->client->get($path, $params, $options);
     }
 

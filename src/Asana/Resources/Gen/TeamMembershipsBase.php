@@ -14,14 +14,14 @@ class TeamMembershipsBase {
 
     /** Get a team membership
      *
-     * @param string $team_membership_path_gid  (required)
+     * @param string $team_membership_gid  (required)
      * @param array $params
      * @param array $options
      * @return response
      */
-    public function getTeamMembership($team_membership_path_gid, $params = array(), $options = array()) {
+    public function getTeamMembership($team_membership_gid, $params = array(), $options = array()) {
         $path = "/team_memberships/{team_membership_gid}";
-        $path = str_replace("{team_membership_path_gid}", $team_membership_path_gid, $path);
+        $path = str_replace("{team_membership_gid}", $team_membership_gid, $path);
         return $this->client->get($path, $params, $options);
     }
 

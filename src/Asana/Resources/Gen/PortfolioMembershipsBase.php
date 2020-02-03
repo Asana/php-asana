@@ -14,14 +14,14 @@ class PortfolioMembershipsBase {
 
     /** Get a portfolio membership
      *
-     * @param string $portfolio_membership_path_gid  (required)
+     * @param string $portfolio_membership_gid  (required)
      * @param array $params
      * @param array $options
      * @return response
      */
-    public function getPortfolioMembership($portfolio_membership_path_gid, $params = array(), $options = array()) {
+    public function getPortfolioMembership($portfolio_membership_gid, $params = array(), $options = array()) {
         $path = "/portfolio_memberships/{portfolio_membership_gid}";
-        $path = str_replace("{portfolio_membership_path_gid}", $portfolio_membership_path_gid, $path);
+        $path = str_replace("{portfolio_membership_gid}", $portfolio_membership_gid, $path);
         return $this->client->get($path, $params, $options);
     }
 

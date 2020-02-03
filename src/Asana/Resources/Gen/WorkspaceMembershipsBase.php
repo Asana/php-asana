@@ -14,14 +14,14 @@ class WorkspaceMembershipsBase {
 
     /** Get a workspace membership
      *
-     * @param string $workspace_membership_path_gid  (required)
+     * @param string $workspace_membership_gid  (required)
      * @param array $params
      * @param array $options
      * @return response
      */
-    public function getWorkspaceMembership($workspace_membership_path_gid, $params = array(), $options = array()) {
+    public function getWorkspaceMembership($workspace_membership_gid, $params = array(), $options = array()) {
         $path = "/workspace_memberships/{workspace_membership_gid}";
-        $path = str_replace("{workspace_membership_path_gid}", $workspace_membership_path_gid, $path);
+        $path = str_replace("{workspace_membership_gid}", $workspace_membership_gid, $path);
         return $this->client->get($path, $params, $options);
     }
 
