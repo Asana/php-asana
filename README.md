@@ -108,12 +108,12 @@ The client's methods are divided into several resources: `attachments`, `events`
 Methods that return a single object return that object directly:
 ```php
 <?php
-$me = $client->users->me();
+$me = $client->users->getUser("me");
 echo "Hello " . $me->name;
 
-$workspaceId = $me->workspaces[0]->id;
-$project = $client->projects->createInWorkspace($workspaceId, array('name' => 'new project'));
-echo "Created project with id: " . $project->id;
+$workspaceGid = $me->workspaces[0]->gid;
+$project = $client->projects->createProjectForWorkspace($workspaceGid, array('name' => 'new project'));
+echo "Created project with gid: " . $project->gid;
 ```
 
 Methods that return multiple items (e.x. `findAll`) return an items iterator by default. See the "Collections" section
@@ -182,7 +182,7 @@ If you would rather suppress these warnings, you can set
 By default, methods that return a collection of objects return an item iterator:
 ```php
 <?php
-$workspaces = $client->workspaces->findAll();
+$workspaces = $client->workspaces->getWorkspaces();
 foreach ($workspaces as $workspace) {
     var_dump($workspace);
 }
@@ -197,7 +197,7 @@ You can also use the raw API to fetch a page at a time:
 <?php
 $offset = null;
 while (true) {
-    $page = $client->workspaces->findAll(null, array('offset' => $offset, 'iterator_type' => null, 'page_size' => 2));
+    $page = $client->workspaces->getWorkspaces(null, array('offset' => $offset, 'iterator_type' => null, 'page_size' => 2));
     var_dump($page);
     if (isset($page->next_page)) {
         $offset = $page->next_page->offset;
