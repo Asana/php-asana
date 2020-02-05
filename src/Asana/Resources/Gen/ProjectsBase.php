@@ -25,7 +25,7 @@ class ProjectsBase {
         return $this->client->post($path, $params, $options);
     }
 
-    /** Add users to a project
+    /** Add followers to a project
      *
      * @param string $project_gid  (required) Globally unique identifier for the project.
      * @param array $params

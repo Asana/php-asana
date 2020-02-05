@@ -27,7 +27,7 @@ class WorkspaceMembershipsBase {
 
     /** Get workspace memberships for a user
      *
-     * @param string $user_gid  (required) Globally unique identifier for the user.
+     * @param string $user_gid  (required) A string identifying a user. This can either be the string \"me\", an email, or the gid of a user.
      * @param array $params
      * @param array $options
      * @return response
