@@ -12,19 +12,6 @@ class AttachmentsBase {
         $this->client = $client;
     }
 
-    /** Upload an attachment
-     *
-     * @param string $task_gid  (required) The task to operate on.
-     * @param array $params
-     * @param array $options
-     * @return response
-     */
-    public function createAttachmentForTask($task_gid, $params = array(), $options = array()) {
-        $path = "/tasks/{task_gid}/attachments";
-        $path = str_replace("{task_gid}", $task_gid, $path);
-        return $this->client->post($path, $params, $options);
-    }
-
     /** Delete an attachment
      *
      * @param string $attachment_gid  (required) Globally unique identifier for the attachment.

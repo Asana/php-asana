@@ -12,7 +12,7 @@ class {{classname}}Base {
     {
         $this->client = $client;
     }
-{{#operation}}
+{{#operation}}{{^formParams}}
 {{#contents}}
 
     /** {{#summary}}{{{.}}}{{/summary}}{{^summary}}{{operationId}}{{/summary}}
@@ -32,6 +32,6 @@ class {{classname}}Base {
         return $this->client->{{#neq "GET" httpMethod}}{{toLowerCase httpMethod}}{{/neq}}{{#eq "GET" httpMethod}}{{returnContainer}}{{/eq}}($path, $params, $options);
     }
 {{/contents}}
-{{/operation}}
+{{/formParams}}{{/operation}}
 {{/operations}}
 }
