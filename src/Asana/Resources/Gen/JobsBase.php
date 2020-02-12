@@ -2,14 +2,8 @@
 
 namespace Asana\Resources\Gen;
 
-/**
- * A _job_ represents a process that handles asynchronous work.
- * 
- * Jobs are created when an endpoint requests an action that will be handled asynchronously.
- * Such as project or task duplication.
-*/
-class JobsBase
-{
+class JobsBase {
+
     /**
      * @param Asana/Client client  The client instance
      */
@@ -18,15 +12,16 @@ class JobsBase
         $this->client = $client;
     }
 
-    /**
-     * Returns the complete job record for a single job.
+    /** Get a job by id
      *
-     * @param  job The job to get.
+     * @param string $job_gid  (required) Globally unique identifier for the job.
+     * @param array $params
+     * @param array $options
      * @return response
      */
-    public function findById($job, $params = array(), $options = array())
-    {
-        $path = sprintf("/jobs/%s", $job);
+    public function getJob($job_gid, $params = array(), $options = array()) {
+        $path = "/jobs/{job_gid}";
+        $path = str_replace("{job_gid}", $job_gid, $path);
         return $this->client->get($path, $params, $options);
     }
 }

@@ -2,17 +2,8 @@
 
 namespace Asana\Resources\Gen;
 
-/**
- * A _portfolio_ gives a high-level overview of the status of multiple
- * initiatives in Asana.  Portfolios provide a dashboard overview of the state
- * of multiple items, including a progress report and the most recent
- * [project status](/developers/api-reference/project_statuses) update.
- *
- * Portfolios have some restrictions on size. Each portfolio has a maximum of 250
- * items and, like projects, a maximum of 20 custom fields.
-*/
-class PortfoliosBase
-{
+class PortfoliosBase {
+
     /**
      * @param Asana/Client client  The client instance
      */
@@ -21,175 +12,155 @@ class PortfoliosBase
         $this->client = $client;
     }
 
-    /**
-     * Creates a new portfolio in the given workspace with the supplied name.
+    /** Add a custom field to a portfolio
      *
-     * Note that portfolios created in the Asana UI may have some state
-     * (like the "Priority" custom field) which is automatically added to the
-     * portfolio when it is created. Portfolios created via our API will **not**
-     * be created with the same initial state to allow integrations to create
-     * their own starting state on a portfolio.
-     *
+     * @param string $portfolio_gid  (required) Globally unique identifier for the portfolio.
+     * @param array $params
+     * @param array $options
      * @return response
      */
-    public function create($params = array(), $options = array())
-    {
-        return $this->client->post("/portfolios", $params, $options);
+    public function addCustomFieldSettingForPortfolio($portfolio_gid, $params = array(), $options = array()) {
+        $path = "/portfolios/{portfolio_gid}/addCustomFieldSetting";
+        $path = str_replace("{portfolio_gid}", $portfolio_gid, $path);
+        return $this->client->post($path, $params, $options);
     }
 
-    /**
-     * Returns the complete record for a single portfolio.
+    /** Add a portfolio item
      *
-     * @param  portfolio The portfolio to get.
+     * @param string $portfolio_gid  (required) Globally unique identifier for the portfolio.
+     * @param array $params
+     * @param array $options
      * @return response
      */
-    public function findById($portfolio, $params = array(), $options = array())
-    {
-        $path = sprintf("/portfolios/%s", $portfolio);
-        return $this->client->get($path, $params, $options);
+    public function addItemForPortfolio($portfolio_gid, $params = array(), $options = array()) {
+        $path = "/portfolios/{portfolio_gid}/addItem";
+        $path = str_replace("{portfolio_gid}", $portfolio_gid, $path);
+        return $this->client->post($path, $params, $options);
     }
 
-    /**
-     * An existing portfolio can be updated by making a PUT request on the
-     * URL for that portfolio. Only the fields provided in the `data` block will be
-     * updated; any unspecified fields will remain unchanged.
+    /** Add users to a portfolio
      *
-     * Returns the complete updated portfolio record.
-     *
-     * @param  portfolio The portfolio to update.
+     * @param string $portfolio_gid  (required) Globally unique identifier for the portfolio.
+     * @param array $params
+     * @param array $options
      * @return response
      */
-    public function update($portfolio, $params = array(), $options = array())
-    {
-        $path = sprintf("/portfolios/%s", $portfolio);
-        return $this->client->put($path, $params, $options);
+    public function addMembersForPortfolio($portfolio_gid, $params = array(), $options = array()) {
+        $path = "/portfolios/{portfolio_gid}/addMembers";
+        $path = str_replace("{portfolio_gid}", $portfolio_gid, $path);
+        return $this->client->post($path, $params, $options);
     }
 
-    /**
-     * An existing portfolio can be deleted by making a DELETE request
-     * on the URL for that portfolio.
+    /** Create a portfolio
      *
-     * Returns an empty data record.
-     *
-     * @param  portfolio The portfolio to delete.
+     * @param array $params
+     * @param array $options
      * @return response
      */
-    public function delete($portfolio, $params = array(), $options = array())
-    {
-        $path = sprintf("/portfolios/%s", $portfolio);
+    public function createPortfolio($params = array(), $options = array()) {
+        $path = "/portfolios";
+        return $this->client->post($path, $params, $options);
+    }
+
+    /** Delete a portfolio
+     *
+     * @param string $portfolio_gid  (required) Globally unique identifier for the portfolio.
+     * @param array $params
+     * @param array $options
+     * @return response
+     */
+    public function deletePortfolio($portfolio_gid, $params = array(), $options = array()) {
+        $path = "/portfolios/{portfolio_gid}";
+        $path = str_replace("{portfolio_gid}", $portfolio_gid, $path);
         return $this->client->delete($path, $params, $options);
     }
 
-    /**
-     * Returns a list of the portfolios in compact representation that are owned
-     * by the current API user.
+    /** Get portfolio items
      *
+     * @param string $portfolio_gid  (required) Globally unique identifier for the portfolio.
+     * @param array $params
+     * @param array $options
      * @return response
      */
-    public function findAll($params = array(), $options = array())
-    {
-        return $this->client->getCollection("/portfolios", $params, $options);
-    }
-
-    /**
-     * Get a list of the items in compact form in a portfolio.
-     *
-     * @param  portfolio The portfolio from which to get the list of items.
-     * @return response
-     */
-    public function getItems($portfolio, $params = array(), $options = array())
-    {
-        $path = sprintf("/portfolios/%s/items", $portfolio);
+    public function getItemsForPortfolio($portfolio_gid, $params = array(), $options = array()) {
+        $path = "/portfolios/{portfolio_gid}/items";
+        $path = str_replace("{portfolio_gid}", $portfolio_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 
-    /**
-     * Add an item to a portfolio.
+    /** Get a portfolio
      *
-     * Returns an empty data block.
-     *
-     * @param  portfolio The portfolio to which to add an item.
+     * @param string $portfolio_gid  (required) Globally unique identifier for the portfolio.
+     * @param array $params
+     * @param array $options
      * @return response
      */
-    public function addItem($portfolio, $params = array(), $options = array())
-    {
-        $path = sprintf("/portfolios/%s/addItem", $portfolio);
-        return $this->client->post($path, $params, $options);
+    public function getPortfolio($portfolio_gid, $params = array(), $options = array()) {
+        $path = "/portfolios/{portfolio_gid}";
+        $path = str_replace("{portfolio_gid}", $portfolio_gid, $path);
+        return $this->client->get($path, $params, $options);
     }
 
-    /**
-     * Remove an item to a portfolio.
+    /** Get multiple portfolios
      *
-     * Returns an empty data block.
-     *
-     * @param  portfolio The portfolio from which to remove the item.
+     * @param array $params
+     * @param array $options
      * @return response
      */
-    public function removeItem($portfolio, $params = array(), $options = array())
-    {
-        $path = sprintf("/portfolios/%s/removeItem", $portfolio);
-        return $this->client->post($path, $params, $options);
-    }
-
-    /**
-     * Adds the specified list of users as members of the portfolio. Returns the updated portfolio record.
-     *
-     * @param  portfolio The portfolio to add members to.
-     * @return response
-     */
-    public function addMembers($portfolio, $params = array(), $options = array())
-    {
-        $path = sprintf("/portfolios/%s/addMembers", $portfolio);
-        return $this->client->post($path, $params, $options);
-    }
-
-    /**
-     * Removes the specified list of members from the portfolio. Returns the updated portfolio record.
-     *
-     * @param  portfolio The portfolio to remove members from.
-     * @return response
-     */
-    public function removeMembers($portfolio, $params = array(), $options = array())
-    {
-        $path = sprintf("/portfolios/%s/removeMembers", $portfolio);
-        return $this->client->post($path, $params, $options);
-    }
-
-    /**
-     * Get the custom field settings on a portfolio.
-     *
-     * @param  portfolio The portfolio from which to get the custom field settings.
-     * @return response
-     */
-    public function customFieldSettings($portfolio, $params = array(), $options = array())
-    {
-        $path = sprintf("/portfolios/%s/custom_field_settings", $portfolio);
+    public function getPortfolios($params = array(), $options = array()) {
+        $path = "/portfolios";
         return $this->client->getCollection($path, $params, $options);
     }
 
-    /**
-     * Create a new custom field setting on the portfolio. Returns the full
-     * record for the new custom field setting.
+    /** Remove a custom field from a portfolio
      *
-     * @param  portfolio The portfolio onto which to add the custom field.
+     * @param string $portfolio_gid  (required) Globally unique identifier for the portfolio.
+     * @param array $params
+     * @param array $options
      * @return response
      */
-    public function addCustomFieldSetting($portfolio, $params = array(), $options = array())
-    {
-        $path = sprintf("/portfolios/%s/addCustomFieldSetting", $portfolio);
+    public function removeCustomFieldSettingForPortfolio($portfolio_gid, $params = array(), $options = array()) {
+        $path = "/portfolios/{portfolio_gid}/removeCustomFieldSetting";
+        $path = str_replace("{portfolio_gid}", $portfolio_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
-    /**
-     * Remove a custom field setting on the portfolio. Returns an empty data
-     * block.
+    /** Remove a portfolio item
      *
-     * @param  portfolio The portfolio from which to remove the custom field.
+     * @param string $portfolio_gid  (required) Globally unique identifier for the portfolio.
+     * @param array $params
+     * @param array $options
      * @return response
      */
-    public function removeCustomFieldSetting($portfolio, $params = array(), $options = array())
-    {
-        $path = sprintf("/portfolios/%s/removeCustomFieldSetting", $portfolio);
+    public function removeItemForPortfolio($portfolio_gid, $params = array(), $options = array()) {
+        $path = "/portfolios/{portfolio_gid}/removeItem";
+        $path = str_replace("{portfolio_gid}", $portfolio_gid, $path);
         return $this->client->post($path, $params, $options);
+    }
+
+    /** Remove users from a portfolio
+     *
+     * @param string $portfolio_gid  (required) Globally unique identifier for the portfolio.
+     * @param array $params
+     * @param array $options
+     * @return response
+     */
+    public function removeMembersForPortfolio($portfolio_gid, $params = array(), $options = array()) {
+        $path = "/portfolios/{portfolio_gid}/removeMembers";
+        $path = str_replace("{portfolio_gid}", $portfolio_gid, $path);
+        return $this->client->post($path, $params, $options);
+    }
+
+    /** Update a portfolio
+     *
+     * @param string $portfolio_gid  (required) Globally unique identifier for the portfolio.
+     * @param array $params
+     * @param array $options
+     * @return response
+     */
+    public function updatePortfolio($portfolio_gid, $params = array(), $options = array()) {
+        $path = "/portfolios/{portfolio_gid}";
+        $path = str_replace("{portfolio_gid}", $portfolio_gid, $path);
+        return $this->client->put($path, $params, $options);
     }
 }

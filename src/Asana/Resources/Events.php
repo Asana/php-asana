@@ -7,6 +7,9 @@ use Asana\Iterator\EventsPageIterator;
 
 class Events extends EventsBase
 {
+    /**
+     * @deprecated replace with getEvents and include {"full_payload" = true} as an option
+     */
     public function get($query = array(), $options = array())
     {
         $options['full_payload'] = true;
