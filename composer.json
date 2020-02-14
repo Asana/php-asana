@@ -11,7 +11,7 @@
         "adoy/oauth2": "^1.2.0"
     },
     "require-dev": {
-        "phpunit/PHPUnit": "4.5.*",
+        "phpunit/phpunit": "4.5.*",
         "instaclick/php-code-sniffer": "dev-master"
     },
     "autoload": {
