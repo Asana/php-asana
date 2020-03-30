@@ -2,13 +2,8 @@
 
 namespace Asana\Resources\Gen;
 
-/**
- * An _attachment_ object represents any file attached to a task in Asana,
- * whether it's an uploaded file or one associated via a third-party service
- * such as Dropbox or Google Drive.
-*/
-class AttachmentsBase
-{
+class AttachmentsBase {
+
     /**
      * @param Asana/Client client  The client instance
      */
@@ -17,27 +12,42 @@ class AttachmentsBase
         $this->client = $client;
     }
 
-    /**
-     * Returns the full record for a single attachment.
+    /** Delete an attachment
      *
-     * @param  attachment Globally unique identifier for the attachment.
+     * @param string $attachment_gid  (required) Globally unique identifier for the attachment.
+     * @param array $params
+     * @param array $options
      * @return response
      */
-    public function findById($attachment, $params = array(), $options = array())
-    {
-        $path = sprintf("/attachments/%s", $attachment);
+    public function deleteAttachment($attachment_gid, $params = array(), $options = array()) {
+        $path = "/attachments/{attachment_gid}";
+        $path = str_replace("{attachment_gid}", $attachment_gid, $path);
+        return $this->client->delete($path, $params, $options);
+    }
+
+    /** Get an attachment
+     *
+     * @param string $attachment_gid  (required) Globally unique identifier for the attachment.
+     * @param array $params
+     * @param array $options
+     * @return response
+     */
+    public function getAttachment($attachment_gid, $params = array(), $options = array()) {
+        $path = "/attachments/{attachment_gid}";
+        $path = str_replace("{attachment_gid}", $attachment_gid, $path);
         return $this->client->get($path, $params, $options);
     }
 
-    /**
-     * Returns the compact records for all attachments on the task.
+    /** Get attachments for a task
      *
-     * @param  task Globally unique identifier for the task.
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
      * @return response
      */
-    public function findByTask($task, $params = array(), $options = array())
-    {
-        $path = sprintf("/tasks/%s/attachments", $task);
+    public function getAttachmentsForTask($task_gid, $params = array(), $options = array()) {
+        $path = "/tasks/{task_gid}/attachments";
+        $path = str_replace("{task_gid}", $task_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 }

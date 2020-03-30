@@ -2,11 +2,8 @@
 
 namespace Asana\Resources\Gen;
 
-/**
- * This object determines if a user is a member of a portfolio.
-*/
-class PortfolioMembershipsBase
-{
+class PortfolioMembershipsBase {
+
     /**
      * @param Asana/Client client  The client instance
      */
@@ -15,38 +12,40 @@ class PortfolioMembershipsBase
         $this->client = $client;
     }
 
-    /**
-     * Returns the compact portfolio membership records for the portfolio. You must
-     * specify `portfolio`, `portfolio` and `user`, or `workspace` and `user`.
+    /** Get a portfolio membership
      *
+     * @param string $portfolio_membership_gid  (required)
+     * @param array $params
+     * @param array $options
      * @return response
      */
-    public function findAll($params = array(), $options = array())
-    {
-        return $this->client->getCollection("/portfolio_memberships", $params, $options);
+    public function getPortfolioMembership($portfolio_membership_gid, $params = array(), $options = array()) {
+        $path = "/portfolio_memberships/{portfolio_membership_gid}";
+        $path = str_replace("{portfolio_membership_gid}", $portfolio_membership_gid, $path);
+        return $this->client->get($path, $params, $options);
     }
 
-    /**
-     * Returns the compact portfolio membership records for the portfolio.
+    /** Get multiple portfolio memberships
      *
-     * @param  portfolio The portfolio for which to fetch memberships.
+     * @param array $params
+     * @param array $options
      * @return response
      */
-    public function findByPortfolio($portfolio, $params = array(), $options = array())
-    {
-        $path = sprintf("/portfolios/%s/portfolio_memberships", $portfolio);
+    public function getPortfolioMemberships($params = array(), $options = array()) {
+        $path = "/portfolio_memberships";
         return $this->client->getCollection($path, $params, $options);
     }
 
-    /**
-     * Returns the portfolio membership record.
+    /** Get memberships from a portfolio
      *
-     * @param  portfolio_membership Globally unique identifier for the portfolio membership.
+     * @param string $portfolio_gid  (required) Globally unique identifier for the portfolio.
+     * @param array $params
+     * @param array $options
      * @return response
      */
-    public function findById($portfolioMembership, $params = array(), $options = array())
-    {
-        $path = sprintf("/portfolio_memberships/%s", $portfolioMembership);
-        return $this->client->get($path, $params, $options);
+    public function getPortfolioMembershipsForPortfolio($portfolio_gid, $params = array(), $options = array()) {
+        $path = "/portfolios/{portfolio_gid}/portfolio_memberships";
+        $path = str_replace("{portfolio_gid}", $portfolio_gid, $path);
+        return $this->client->getCollection($path, $params, $options);
     }
 }

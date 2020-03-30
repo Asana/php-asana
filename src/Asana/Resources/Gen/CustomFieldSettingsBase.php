@@ -2,16 +2,8 @@
 
 namespace Asana\Resources\Gen;
 
-/**
- * Custom fields are applied to a particular project or portfolio with the
- * Custom Field Settings resource. This resource both represents the
- * many-to-many join of the Custom Field and Project or Portfolio as well as
- * stores information that is relevant to that particular pairing; for instance,
- * the `is_important` property determines some possible application-specific
- * handling of that custom field and parent.
-*/
-class CustomFieldSettingsBase
-{
+class CustomFieldSettingsBase {
+
     /**
      * @param Asana/Client client  The client instance
      */
@@ -20,27 +12,29 @@ class CustomFieldSettingsBase
         $this->client = $client;
     }
 
-    /**
-     * Returns a list of all of the custom fields settings on a project.
+    /** Get a portfolio's custom fields
      *
-     * @param  project The ID of the project for which to list custom field settings
+     * @param string $portfolio_gid  (required) Globally unique identifier for the portfolio.
+     * @param array $params
+     * @param array $options
      * @return response
      */
-    public function findByProject($project, $params = array(), $options = array())
-    {
-        $path = sprintf("/projects/%s/custom_field_settings", $project);
+    public function getCustomFieldSettingsForPortfolio($portfolio_gid, $params = array(), $options = array()) {
+        $path = "/portfolios/{portfolio_gid}/custom_field_settings";
+        $path = str_replace("{portfolio_gid}", $portfolio_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 
-    /**
-     * Returns a list of all of the custom fields settings on a portfolio.
+    /** Get a project's custom fields
      *
-     * @param  portfolio The ID of the portfolio for which to list custom field settings
+     * @param string $project_gid  (required) Globally unique identifier for the project.
+     * @param array $params
+     * @param array $options
      * @return response
      */
-    public function findByPortfolio($portfolio, $params = array(), $options = array())
-    {
-        $path = sprintf("/portfolios/%s/custom_field_settings", $portfolio);
+    public function getCustomFieldSettingsForProject($project_gid, $params = array(), $options = array()) {
+        $path = "/projects/{project_gid}/custom_field_settings";
+        $path = str_replace("{project_gid}", $project_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 }

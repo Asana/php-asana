@@ -2,14 +2,8 @@
 
 namespace Asana\Resources\Gen;
 
-/**
- * With the introduction of "comment-only" projects in Asana, a user's membership
- * in a project comes with associated permissions. These permissions (whether a
- * user has full access to the project or comment-only access) are accessible
- * through the project memberships endpoints described here.
-*/
-class ProjectMembershipsBase
-{
+class ProjectMembershipsBase {
+
     /**
      * @param Asana/Client client  The client instance
      */
@@ -18,27 +12,29 @@ class ProjectMembershipsBase
         $this->client = $client;
     }
 
-    /**
-     * Returns the compact project membership records for the project.
+    /** Get a project membership
      *
-     * @param  project The project for which to fetch memberships.
+     * @param string $project_membership_gid  (required)
+     * @param array $params
+     * @param array $options
      * @return response
      */
-    public function findByProject($project, $params = array(), $options = array())
-    {
-        $path = sprintf("/projects/%s/project_memberships", $project);
-        return $this->client->getCollection($path, $params, $options);
+    public function getProjectMembership($project_membership_gid, $params = array(), $options = array()) {
+        $path = "/project_memberships/{project_membership_gid}";
+        $path = str_replace("{project_membership_gid}", $project_membership_gid, $path);
+        return $this->client->get($path, $params, $options);
     }
 
-    /**
-     * Returns the project membership record.
+    /** Get memberships from a project
      *
-     * @param  project_membership Globally unique identifier for the project membership.
+     * @param string $project_gid  (required) Globally unique identifier for the project.
+     * @param array $params
+     * @param array $options
      * @return response
      */
-    public function findById($projectMembership, $params = array(), $options = array())
-    {
-        $path = sprintf("/project_memberships/%s", $projectMembership);
-        return $this->client->get($path, $params, $options);
+    public function getProjectMembershipsForProject($project_gid, $params = array(), $options = array()) {
+        $path = "/projects/{project_gid}/project_memberships";
+        $path = str_replace("{project_gid}", $project_gid, $path);
+        return $this->client->getCollection($path, $params, $options);
     }
 }
