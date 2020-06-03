@@ -48,7 +48,7 @@ portfolios:
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
 
 
-        $result = $client->portfolios->deletePortfolio($portfolio_gid, , array('opt_pretty' => 'true'))
+        $result = $client->portfolios->deletePortfolio($portfolio_gid, array('opt_pretty' => 'true'))
     getItemsForPortfolio: >-
         <?php
 

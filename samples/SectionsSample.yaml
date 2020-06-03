@@ -28,7 +28,7 @@ sections:
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
 
 
-        $result = $client->sections->deleteSection($section_gid, , array('opt_pretty' => 'true'))
+        $result = $client->sections->deleteSection($section_gid, array('opt_pretty' => 'true'))
     getSection: >-
         <?php
 

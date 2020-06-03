@@ -8,5 +8,5 @@
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
 
 
-        $result = $client->{{toLowerCase baseName}}->{{operationId}}({{#pathParams}}${{paramName}}, {{/pathParams}}{{#eq "GET" httpMethod}}array('param' => 'value', 'param' => 'value'){{/eq}}{{#neq "GET" httpMethod}}{{#neq "DELETE" httpMethod}}array('field' => 'value', 'field' => 'value'){{/neq}}{{/neq}}, array('opt_pretty' => 'true')){{/contents}}{{/operation}}
+        $result = $client->{{toLowerCase baseName}}->{{operationId}}({{#pathParams}}${{paramName}}, {{/pathParams}}{{#eq "GET" httpMethod}}array('param' => 'value', 'param' => 'value'), {{/eq}}{{#neq "GET" httpMethod}}{{#neq "DELETE" httpMethod}}array('field' => 'value', 'field' => 'value'), {{/neq}}{{/neq}}array('opt_pretty' => 'true')){{/contents}}{{/operation}}
 {{/operations}}

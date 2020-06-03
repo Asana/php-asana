@@ -18,7 +18,7 @@ stories:
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
 
 
-        $result = $client->stories->deleteStory($story_gid, , array('opt_pretty' => 'true'))
+        $result = $client->stories->deleteStory($story_gid, array('opt_pretty' => 'true'))
     getStoriesForTask: >-
         <?php
 

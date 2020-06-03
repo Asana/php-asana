@@ -28,7 +28,7 @@ customfields:
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
 
 
-        $result = $client->customfields->deleteCustomField($custom_field_gid, , array('opt_pretty' => 'true'))
+        $result = $client->customfields->deleteCustomField($custom_field_gid, array('opt_pretty' => 'true'))
     getCustomField: >-
         <?php
 

@@ -18,7 +18,7 @@ attachments:
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
 
 
-        $result = $client->attachments->deleteAttachment($attachment_gid, , array('opt_pretty' => 'true'))
+        $result = $client->attachments->deleteAttachment($attachment_gid, array('opt_pretty' => 'true'))
     getAttachment: >-
         <?php
 

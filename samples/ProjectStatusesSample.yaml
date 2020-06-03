@@ -18,7 +18,7 @@ projectstatuses:
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
 
 
-        $result = $client->projectstatuses->deleteProjectStatus($project_status_gid, , array('opt_pretty' => 'true'))
+        $result = $client->projectstatuses->deleteProjectStatus($project_status_gid, array('opt_pretty' => 'true'))
     getProjectStatus: >-
         <?php
 

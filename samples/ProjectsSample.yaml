@@ -68,7 +68,7 @@ projects:
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
 
 
-        $result = $client->projects->deleteProject($project_gid, , array('opt_pretty' => 'true'))
+        $result = $client->projects->deleteProject($project_gid, array('opt_pretty' => 'true'))
     duplicateProject: >-
         <?php
 

@@ -18,7 +18,7 @@ webhooks:
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
 
 
-        $result = $client->webhooks->deleteWebhook($webhook_gid, , array('opt_pretty' => 'true'))
+        $result = $client->webhooks->deleteWebhook($webhook_gid, array('opt_pretty' => 'true'))
     getWebhook: >-
         <?php
 

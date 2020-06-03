@@ -78,7 +78,7 @@ tasks:
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
 
 
-        $result = $client->tasks->deleteTask($task_gid, , array('opt_pretty' => 'true'))
+        $result = $client->tasks->deleteTask($task_gid, array('opt_pretty' => 'true'))
     duplicateTask: >-
         <?php
 
