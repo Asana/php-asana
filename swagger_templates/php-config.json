@@ -3,7 +3,5 @@
   "templateDir": "swagger_templates",
   "packagePath": "Asana",
   "srcBasePath": "Resources",
-  "hideGenerationTimestamp": true,
-  "apiTests": false,
-  "apiDocs": false
+  "hideGenerationTimestamp": true
 }

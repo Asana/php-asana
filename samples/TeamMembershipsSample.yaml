@@ -1,0 +1,41 @@
+teammemberships:
+    getTeamMembership: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->teammemberships->getTeamMembership($team_membership_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getTeamMemberships: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->teammemberships->getTeamMemberships(array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getTeamMembershipsForTeam: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->teammemberships->getTeamMembershipsForTeam($team_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getTeamMembershipsForUser: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->teammemberships->getTeamMembershipsForUser($user_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))

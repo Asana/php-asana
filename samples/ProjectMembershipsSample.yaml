@@ -1,0 +1,21 @@
+projectmemberships:
+    getProjectMembership: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->projectmemberships->getProjectMembership($project_membership_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getProjectMembershipsForProject: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->projectmemberships->getProjectMembershipsForProject($project_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))

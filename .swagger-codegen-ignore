@@ -1,5 +1,4 @@
 # Swagger Codegen Ignore
 
-test/*
-docs/*
+src/Asana/test/Api/*
 src/Asana/Client.php

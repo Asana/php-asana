@@ -1,0 +1,51 @@
+teams:
+    addUserForTeam: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->teams->addUserForTeam($team_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    getTeam: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->teams->getTeam($team_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getTeamsForOrganization: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->teams->getTeamsForOrganization($workspace_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getTeamsForUser: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->teams->getTeamsForUser($user_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    removeUserForTeam: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->teams->removeUserForTeam($team_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))

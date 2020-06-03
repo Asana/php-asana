@@ -1,0 +1,51 @@
+users:
+    getFavoritesForUser: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->users->getFavoritesForUser($user_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getUser: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->users->getUser($user_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getUsers: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->users->getUsers(array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getUsersForTeam: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->users->getUsersForTeam($team_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getUsersForWorkspace: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->users->getUsersForWorkspace($workspace_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))

@@ -1,0 +1,71 @@
+tags:
+    createTag: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->tags->createTag(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    createTagForWorkspace: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->tags->createTagForWorkspace($workspace_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    getTag: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->tags->getTag($tag_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getTags: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->tags->getTags(array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getTagsForTask: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->tags->getTagsForTask($task_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getTagsForWorkspace: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->tags->getTagsForWorkspace($workspace_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    updateTag: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->tags->updateTag($tag_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))

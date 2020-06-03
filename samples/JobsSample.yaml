@@ -1,0 +1,11 @@
+jobs:
+    getJob: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->jobs->getJob($job_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
