@@ -20,11 +20,11 @@ $client = Asana\Client::accessToken($ASANA_ACCESS_TOKEN);
 $me = $client->users->me();
 echo "me="; var_dump($client->users->me());
 
-// find your "Personal Projects" project
+// find your "Personal Projects" workspace
 $personalProjectsArray = array_filter($me->workspaces, function($item) { return $item->name === 'Personal Projects'; });
 $personalProjects = array_pop($personalProjectsArray);
 var_dump($personalProjects);
-$projects = $client->projects->findByWorkspace($personalProjects->id, null, array('iterator_type' => false, 'page_size' => null))->data;
+$projects = $client->projects->findByWorkspace($personalProjects->gid, null, array('iterator_type' => false, 'page_size' => null))->data;
 echo "personal projects="; var_dump($projects);
 
 // create a "demo project" if it doesn't exist
@@ -32,22 +32,22 @@ $projectArray = array_filter($projects, function($project) { return $project->na
 $project = array_pop($projectArray);
 if ($project === null) {
     echo "creating 'demo project'\n";
-    $project = $client->projects->createInWorkspace($personalProjects->id, array('name' => 'demo project'));
+    $project = $client->projects->createInWorkspace($personalProjects->gid, array('name' => 'demo project'));
 }
 echo "project="; var_dump($project);
 
 // create a task in the project
-$demoTask = $client->tasks->createInWorkspace($personalProjects->id, array(
+$demoTask = $client->tasks->createInWorkspace($personalProjects->gid, array(
     "name" => "demo task created at " . date('m/d/Y h:i:s a'),
-    "projects" => array($project->id)
+    "projects" => array($project->gid)
 ));
-echo "Task " . $demoTask->id . " created.\n";
+echo "Task " . $demoTask->gid . " created.\n";
 
 // add an attachment to the task
 $demoAttachment = $client->attachments->createOnTask(
-    $demoTask->id,
+    $demoTask->gid,
     "hello world",
     "upload.txt",
     "text/plain"
 );
-echo "Attachment " . $demoAttachment->id . " created.\n";
+echo "Attachment " . $demoAttachment->gid . " created.\n";
