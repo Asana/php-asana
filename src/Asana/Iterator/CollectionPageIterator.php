@@ -21,7 +21,7 @@ class CollectionPageIterator extends PageIterator
 
     protected function getContinuation($result)
     {
-        if (empty($result->sync)) {
+        if (!empty($result->sync)) {
             $this->sync = $result->sync;
         }
 
