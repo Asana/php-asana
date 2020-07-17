@@ -5,7 +5,7 @@ namespace Asana;
 use Asana\Test\AsanaTest;
 use Asana\Errors\Error;
 use Asana\Errors\ServerError;
-use PHPUnit_Framework_Error_Warning;
+use PHPUnit\Framework\Error\Warning;
 
 class ClientTest extends Test\AsanaTest
 {
@@ -19,53 +19,48 @@ class ClientTest extends Test\AsanaTest
         $this->assertEquals($result, 'foo');
     }
 
-    /**
-     * @expectedException Asana\Errors\NoAuthorizationError
-     */
     public function testNotAuthorized()
     {
+        $this->expectException(Errors\NoAuthorizationError::class);
+
         $this->dispatcher->registerResponse('/users/me', 401, null, '{ "errors": [{ "message": "Not Authorized" }]}');
 
         $this->client->users->me();
     }
 
-    /**
-     * @expectedException Asana\Errors\InvalidRequestError
-     */
     public function testInvalidRequest()
     {
+        $this->expectException(Errors\InvalidRequestError::class);
+
         $this->dispatcher->registerResponse('/tasks?limit=50', 400, null, '{ "errors": [{ "message": "Missing input" }] }');
 
         $this->client->tasks->findAll(null, array('iterator_type' => false));
     }
 
-    /**
-     * @expectedException Asana\Errors\ServerError
-     */
     public function testServerError()
     {
+        $this->expectException(Errors\ServerError::class);
+
         $res = '{ "errors": [ { "message": "Server Error", "phrase": "6 sad squid snuggle softly" } ] }';
         $this->dispatcher->registerResponse('/users/me', 500, null, $res);
 
         $this->client->users->me();
     }
 
-    /**
-     * @expectedException Asana\Errors\NotFoundError
-     */
     public function testNotFound()
     {
+        $this->expectException(Errors\NotFoundError::class);
+
         $res = '{ "errors": [ { "message": "user: Unknown object: 1234" } ] }';
         $this->dispatcher->registerResponse('/users/1234', 404, null, $res);
 
         $this->client->users->findById(1234);
     }
 
-    /**
-     * @expectedException Asana\Errors\ForbiddenError
-     */
     public function testForbidden()
     {
+        $this->expectException(Errors\ForbiddenError::class);
+
         $res = '{ "errors": [ { "message": "user: Forbidden" } ] }';
         $this->dispatcher->registerResponse('/users/1234', 403, null, $res);
 
@@ -322,7 +317,6 @@ class ClientTest extends Test\AsanaTest
     {
         $this->errors = array();
         set_error_handler(array($this,'handleError'));
-        PHPUnit_Framework_Error_Warning::$enabled = false;
 
         $this->dispatcher->registerResponse('/tasks/1001',
             200,
@@ -341,7 +335,6 @@ class ClientTest extends Test\AsanaTest
     {
         $this->errors = array();
         set_error_handler(array($this,'handleError'));
-        PHPUnit_Framework_Error_Warning::$enabled = false;
 
         $this->dispatcher->registerResponse('/tasks/1001',
             200,
@@ -361,7 +354,6 @@ class ClientTest extends Test\AsanaTest
     {
         $this->errors = array();
         set_error_handler(array($this,'handleError'));
-        PHPUnit_Framework_Error_Warning::$enabled = false;
 
         $this->dispatcher->registerResponse('/tasks/1001',
             200,
@@ -381,7 +373,6 @@ class ClientTest extends Test\AsanaTest
     {
         $this->errors = array();
         set_error_handler(array($this,'handleError'));
-        PHPUnit_Framework_Error_Warning::$enabled = false;
 
         $this->dispatcher->registerResponse('/tasks/1001',
             200,
@@ -400,7 +391,6 @@ class ClientTest extends Test\AsanaTest
     {
         $this->errors = array();
         set_error_handler(array($this,'handleError'));
-        PHPUnit_Framework_Error_Warning::$enabled = false;
 
         $this->dispatcher->registerResponse('/tasks/1001',
             200,

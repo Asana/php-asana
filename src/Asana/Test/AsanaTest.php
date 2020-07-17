@@ -5,11 +5,11 @@ namespace Asana\Test {
     use Asana\Client;
     use Asana\Test\MockDispatcher;
 
-    class AsanaTest extends \PHPUnit_Framework_TestCase
+    class AsanaTest extends \PHPUnit\Framework\TestCase
     {
         protected $client;
 
-        protected function setUp()
+        protected function setUp(): void
         {
             global $sleepCalls;
 
