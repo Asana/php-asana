@@ -213,7 +213,12 @@ class ClientTest extends Test\AsanaTest
             array(429, array('Retry-After' => '0.1' ), '{}'),
             array(200, null, '{ "data": "me" }')
         );
-        $this->dispatcher->registerResponse('/users/me', function () use (&$res) { return array_shift($res); });
+        $this->dispatcher->registerResponse(
+            '/users/me',
+            function () use (&$res) {
+                return array_shift($res);
+            }
+        );
 
         $result = $this->client->users->me();
         $this->assertEquals($result, 'me');
@@ -229,7 +234,12 @@ class ClientTest extends Test\AsanaTest
             array(429, array('Retry-After' => '0.1' ), '{}'),
             array(200, null, '{ "data": "me" }')
         );
-        $this->dispatcher->registerResponse('/users/me', function () use (&$res) { return array_shift($res); });
+        $this->dispatcher->registerResponse(
+            '/users/me',
+            function () use (&$res) {
+                return array_shift($res);
+            }
+        );
 
         $result = $this->client->users->me();
         $this->assertEquals($result, 'me');
@@ -244,7 +254,12 @@ class ClientTest extends Test\AsanaTest
             array(500, null, '{}'),
             array(200, null, '{ "data": "me" }')
         );
-        $this->dispatcher->registerResponse('/users/me', function () use (&$res) { return array_shift($res); });
+        $this->dispatcher->registerResponse(
+            '/users/me',
+            function () use (&$res) {
+                return array_shift($res);
+            }
+        );
 
         $result = $this->client->users->me(null, array('max_retries' => 1));
         $this->assertEquals(count($this->dispatcher->calls), 2);
@@ -260,7 +275,12 @@ class ClientTest extends Test\AsanaTest
             array(500, null, '{}'),
             array(200, null, '{ "data": "me" }')
         );
-        $this->dispatcher->registerResponse('/users/me', function () use (&$res) { return array_shift($res); });
+        $this->dispatcher->registerResponse(
+            '/users/me',
+            function () use (&$res) {
+                return array_shift($res);
+            }
+        );
 
         $result = $this->client->users->me();
         $this->assertEquals(count($this->dispatcher->calls), 4);
@@ -269,7 +289,8 @@ class ClientTest extends Test\AsanaTest
 
     public function testGetNamedParameters()
     {
-        $this->dispatcher->registerResponse('/tasks?limit=50&workspace=14916&assignee=me', 200, null, '{ "data": "foo" }');
+        $res = '{ "data": "foo" }';
+        $this->dispatcher->registerResponse('/tasks?limit=50&workspace=14916&assignee=me', 200, null, $res);
 
         $options = array('iterator_type' => false);
         $result = $this->client->tasks->findAll(array('workspace' => 14916, 'assignee' => 'me'), $options);

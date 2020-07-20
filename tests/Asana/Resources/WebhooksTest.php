@@ -34,11 +34,12 @@ class WebhooksTest extends Test\AsanaTest
 
     public function testWebhooksGetAll()
     {
-        $this->dispatcher->registerResponse('/webhooks?limit=50&workspace=1337', 200, null, '{ "data": [' . json_encode($this->data) . '] }');
+        $res = '{ "data": [' . json_encode($this->data) . '] }';
+        $this->dispatcher->registerResponse('/webhooks?limit=50&workspace=1337', 200, null, $res);
 
         $result = $this->client->webhooks->getAll(array("workspace" => 1337));
         foreach ($result as $res) {
-          $this->verifyWebhookData($res);
+            $this->verifyWebhookData($res);
         }
     }
 

@@ -19,9 +19,9 @@ class AttachmentsTest extends Test\AsanaTest
 
         // If the user's PHP version supports curl_file_create, use it.
         if (function_exists('curl_file_create')) {
-                $this->assertInstanceOf('CURLFile',$fileDescription);
-                $this->assertEquals('file name',$fileDescription->getPostFilename());
-                $this->assertEquals('file content-type',$fileDescription->getMimeType());
+                $this->assertInstanceOf('CURLFile', $fileDescription);
+                $this->assertEquals('file name', $fileDescription->getPostFilename());
+                $this->assertEquals('file content-type', $fileDescription->getMimeType());
         } else {
                 $this->assertStringMatchesFormat('%Sfilename=file name%S', $fileDescription);
                 $this->assertStringMatchesFormat('%Stype=file content-type%S', $fileDescription);

@@ -30,11 +30,13 @@ class JsonHandler extends MimeHandlerAdapter
     public function parse($body)
     {
         $body = $this->stripBom($body);
-        if (empty($body))
+        if (empty($body)) {
             return null;
+        }
         $parsed = json_decode($body, $this->decode_as_array, $this->depth, $this->parse_options);
-        if (is_null($parsed) && 'null' !== strtolower($body))
+        if (is_null($parsed) && 'null' !== strtolower($body)) {
             throw new \Exception("Unable to parse response as JSON");
+        }
         return $parsed;
     }
 
