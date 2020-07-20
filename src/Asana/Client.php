@@ -10,6 +10,11 @@ use Asana\Errors\RetryableAsanaError;
 use Asana\Errors\RateLimitEnforcedError;
 
 use Asana\Iterator\CollectionPageIterator;
+use Asana\Resources\Events;
+use Asana\Resources\Portfolios;
+use Asana\Resources\ProjectMemberships;
+use Asana\Resources\Projects;
+use Asana\Resources\Users;
 
 class Client
 {
@@ -23,7 +28,8 @@ class Client
         'poll_interval' => 5,
         'max_retries' => 5,
         'full_payload' => null,
-        'iterator_type' => 'items'
+        'iterator_type' => 'items',
+        'log_asana_change_warnings' => true
     );
 
     private static $QUERY_OPTIONS   = array('limit', 'offset' , 'sync');
@@ -44,7 +50,10 @@ class Client
         $this->custom_fields = new Resources\CustomFields($this);
         $this->custom_field_settings = new Resources\CustomFieldSettings($this);
         $this->events = new Resources\Events($this);
+        $this->jobs = new Resources\Jobs($this);
         $this->organization_exports = new Resources\OrganizationExports($this);
+        $this->portfolios = new Resources\Portfolios($this);
+        $this->portfolio_memberships = new Resources\PortfolioMemberships($this);
         $this->projects = new Resources\Projects($this);
         $this->project_memberships = new Resources\ProjectMemberships($this);
         $this->project_statuses = new Resources\ProjectStatuses($this);
@@ -54,6 +63,7 @@ class Client
         $this->tasks = new Resources\Tasks($this);
         $this->teams = new Resources\Teams($this);
         $this->users = new Resources\Users($this);
+        $this->user_task_lists = new Resources\UserTaskLists($this);
         $this->workspaces = new Resources\Workspaces($this);
         $this->webhooks = new Resources\Webhooks($this);
     }
@@ -70,13 +80,20 @@ class Client
 
     public function request($method, $path, $options)
     {
-        $options = array_merge($this->options, $options);
+        $options = Client::array_merge_recursive_distinct($this->options, $options);
+
         $requestOptions = $this->parseRequestOptions($options);
         $uri = $options['base_url'] . $path;
         $retryCount = 0;
+
         while (true) {
             try {
                 $response = $this->dispatcher->request($method, $uri, $requestOptions);
+
+                if (!array_key_exists('headers', $options)) {
+                    $options['headers'] = array();
+                }
+                $this->logAsanaChangeHeaders($options['headers'], $response->headers->toArray());
 
                 Errors\AsanaError::handleErrorResponse($response);
 
@@ -91,6 +108,77 @@ class Client
                     $retryCount++;
                 } else {
                     throw $e;
+                }
+            }
+        }
+    }
+
+    private function logAsanaChangeHeaders($reqHeaders, $resHeaders)
+    {
+        if (!$this->options['log_asana_change_warnings']) {
+            return;
+        }
+
+        $changeHeaderKey = null;
+
+        foreach ((array) $resHeaders as $key => $value) {
+            if (strtolower($key) == 'asana-change') {
+                $changeHeaderKey = $key;
+            }
+        }
+
+        if ($changeHeaderKey != null) {
+            $flagsAccountedFor = array();
+
+            foreach ((array) $reqHeaders as $reqHeader => $reqHeaderValue) {
+                $lowerReqHeader = strtolower($reqHeader);
+                if ($lowerReqHeader == "asana-enable" || $lowerReqHeader == "asana-disable") {
+
+                    $flagsAccountedFor = array_merge($flagsAccountedFor, preg_split("/,/", $reqHeaderValue));
+                }
+            }
+
+            $changesArray = preg_split("/,/", $resHeaders[$changeHeaderKey]);
+            if ($changesArray == null) {
+                return;
+            }
+
+            foreach ($changesArray as $change) {
+                $changeParams = preg_split("/;/", $change);
+
+                $name = "";
+                $info = "";
+                $affected = "";
+
+                foreach ((array) $changeParams as $changeParam) {
+                    $paramKeyValue = preg_split("/=/", $changeParam);
+
+                    $paramKeyValue[0] = trim($paramKeyValue[0]);
+                    $paramKeyValue[1] = trim($paramKeyValue[1]);
+                    switch ($paramKeyValue[0]) {
+                        case "name":
+                            $name = $paramKeyValue[1];
+                            break;
+                        case "info":
+                            $info = $paramKeyValue[1];
+                            break;
+                        case "affected":
+                            $affected = $paramKeyValue[1];
+                            break;
+                    }
+                }
+
+                if ($affected != "true") {
+                    continue;
+                }
+
+                if (!in_array($name, $flagsAccountedFor)) {
+                    $message = "This request is affected by the \"" . $name . "\" deprecation. " .
+                        "Please visit this url for more info: " . $info . "\n" .
+                        "Adding \"" . $name . "\" to your \"Asana-Enable\" or \"Asana-Disable\" header " .
+                        "will opt in/out to this deprecation and suppress this warning.";
+
+                    trigger_error($message, E_USER_WARNING);
                 }
             }
         }
@@ -141,10 +229,15 @@ class Client
     public function post($path, $data, $options = array())
     {
         $parameterOptions = $this->parseParameterOptions($options);
+
+        $post_headers = array('content-type' => 'application/json');
+        if (array_key_exists("headers", $options)) {
+            $post_headers = array_merge($post_headers, $options["headers"]);
+        }
         $options = array_merge(
             $options,
             array(
-                'headers' => array('content-type' => 'application/json'),
+                'headers' => $post_headers,
                 'data' => array(
                     'data' => array_merge($parameterOptions, $data), # values in the data body takes precendence
                     'options' => $this->parseApiOptions($options)
@@ -157,10 +250,15 @@ class Client
     public function put($path, $data, $options = array())
     {
         $parameterOptions = $this->parseParameterOptions($options);
+
+        $put_headers = array('content-type' => 'application/json');
+        if (array_key_exists("headers", $options)) {
+            $put_headers = array_merge($put_headers, $options["headers"]);
+        }
         $options = array_merge(
             $options,
             array(
-                'headers' => array('content-type' => 'application/json'),
+                'headers' => $put_headers,
                 'data' => array(
                     'data' => array_merge($parameterOptions, $data), # values in the data body takes precendence
                     'options' => $this->parseApiOptions($options)
@@ -251,5 +349,22 @@ class Client
                 Client::$API_OPTIONS
             );
         }
+    }
+
+    private static function array_merge_recursive_distinct(array &$array1, array &$array2)
+    {
+        $merged = $array1;
+        foreach ($array2 as $key => &$value)
+        {
+            if (is_array($value) && isset($merged[$key]) && is_array($merged[$key]))
+            {
+                $merged[$key] = Client::array_merge_recursive_distinct($merged[$key], $value);
+            }
+            else
+            {
+                $merged[$key] = $value;
+            }
+        }
+        return $merged;
     }
 }

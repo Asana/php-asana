@@ -1,0 +1,41 @@
+projectstatuses:
+    createProjectStatusForProject: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->projectstatuses->createProjectStatusForProject($project_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    deleteProjectStatus: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->projectstatuses->deleteProjectStatus($project_status_gid, array('opt_pretty' => 'true'))
+    getProjectStatus: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->projectstatuses->getProjectStatus($project_status_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getProjectStatusesForProject: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->projectstatuses->getProjectStatusesForProject($project_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))

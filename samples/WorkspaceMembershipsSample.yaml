@@ -1,0 +1,31 @@
+workspacememberships:
+    getWorkspaceMembership: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->workspacememberships->getWorkspaceMembership($workspace_membership_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getWorkspaceMembershipsForUser: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->workspacememberships->getWorkspaceMembershipsForUser($user_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getWorkspaceMembershipsForWorkspace: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->workspacememberships->getWorkspaceMembershipsForWorkspace($workspace_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))

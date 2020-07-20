@@ -1,0 +1,21 @@
+organizationexports:
+    createOrganizationExport: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->organizationexports->createOrganizationExport(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    getOrganizationExport: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->organizationexports->getOrganizationExport($organization_export_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))

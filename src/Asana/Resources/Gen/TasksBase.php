@@ -2,14 +2,8 @@
 
 namespace Asana\Resources\Gen;
 
-/**
- * The _task_ is the basic object around which many operations in Asana are
- * centered. In the Asana application, multiple tasks populate the middle pane
- * according to some view parameters, and the set of selected tasks determines
- * the more detailed information presented in the details pane.
-*/
-class TasksBase
-{
+class TasksBase {
+
     /**
      * @param Asana/Client client  The client instance
      */
@@ -18,393 +12,337 @@ class TasksBase
         $this->client = $client;
     }
 
-    /**
-     * Creating a new task is as easy as POSTing to the `/tasks` endpoint
-     * with a data block containing the fields you'd like to set on the task.
-     * Any unspecified fields will take on default values.
-     * 
-     * Every task is required to be created in a specific workspace, and this
-     * workspace cannot be changed once set. The workspace need not be set
-     * explicitly if you specify `projects` or a `parent` task instead.
-     * 
-     * `projects` can be a comma separated list of projects, or just a single
-     * project the task should belong to.
+    /** Set dependencies for a task
      *
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
      * @return response
      */
-    public function create($params = array(), $options = array())
-    {
-        return $this->client->post("/tasks", $params, $options);
-    }
-
-    /**
-     * Creating a new task is as easy as POSTing to the `/tasks` endpoint
-     * with a data block containing the fields you'd like to set on the task.
-     * Any unspecified fields will take on default values.
-     * 
-     * Every task is required to be created in a specific workspace, and this
-     * workspace cannot be changed once set. The workspace need not be set
-     * explicitly if you specify a `project` or a `parent` task instead.
-     *
-     * @param  workspace The workspace to create a task in.
-     * @return response
-     */
-    public function createInWorkspace($workspace, $params = array(), $options = array())
-    {
-        $path = sprintf("/workspaces/%s/tasks", $workspace);
+    public function addDependenciesForTask($task_gid, $params = array(), $options = array()) {
+        $path = "/tasks/{task_gid}/addDependencies";
+        $path = str_replace("{task_gid}", $task_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
-    /**
-     * Returns the complete task record for a single task.
+    /** Set dependents for a task
      *
-     * @param  task The task to get.
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
      * @return response
      */
-    public function findById($task, $params = array(), $options = array())
-    {
-        $path = sprintf("/tasks/%s", $task);
-        return $this->client->get($path, $params, $options);
+    public function addDependentsForTask($task_gid, $params = array(), $options = array()) {
+        $path = "/tasks/{task_gid}/addDependents";
+        $path = str_replace("{task_gid}", $task_gid, $path);
+        return $this->client->post($path, $params, $options);
     }
 
-    /**
-     * A specific, existing task can be updated by making a PUT request on the
-     * URL for that task. Only the fields provided in the `data` block will be
-     * updated; any unspecified fields will remain unchanged.
-     * 
-     * When using this method, it is best to specify only those fields you wish
-     * to change, or else you may overwrite changes made by another user since
-     * you last retrieved the task.
-     * 
-     * Returns the complete updated task record.
+    /** Add followers to a task
      *
-     * @param  task The task to update.
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
      * @return response
      */
-    public function update($task, $params = array(), $options = array())
-    {
-        $path = sprintf("/tasks/%s", $task);
-        return $this->client->put($path, $params, $options);
+    public function addFollowersForTask($task_gid, $params = array(), $options = array()) {
+        $path = "/tasks/{task_gid}/addFollowers";
+        $path = str_replace("{task_gid}", $task_gid, $path);
+        return $this->client->post($path, $params, $options);
     }
 
-    /**
-     * A specific, existing task can be deleted by making a DELETE request on the
-     * URL for that task. Deleted tasks go into the "trash" of the user making
-     * the delete request. Tasks can be recovered from the trash within a period
-     * of 30 days; afterward they are completely removed from the system.
-     * 
-     * Returns an empty data record.
+    /** Add a project to a task
      *
-     * @param  task The task to delete.
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
      * @return response
      */
-    public function delete($task, $params = array(), $options = array())
-    {
-        $path = sprintf("/tasks/%s", $task);
+    public function addProjectForTask($task_gid, $params = array(), $options = array()) {
+        $path = "/tasks/{task_gid}/addProject";
+        $path = str_replace("{task_gid}", $task_gid, $path);
+        return $this->client->post($path, $params, $options);
+    }
+
+    /** Add a tag to a task
+     *
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
+     * @return response
+     */
+    public function addTagForTask($task_gid, $params = array(), $options = array()) {
+        $path = "/tasks/{task_gid}/addTag";
+        $path = str_replace("{task_gid}", $task_gid, $path);
+        return $this->client->post($path, $params, $options);
+    }
+
+    /** Create a subtask
+     *
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
+     * @return response
+     */
+    public function createSubtaskForTask($task_gid, $params = array(), $options = array()) {
+        $path = "/tasks/{task_gid}/subtasks";
+        $path = str_replace("{task_gid}", $task_gid, $path);
+        return $this->client->post($path, $params, $options);
+    }
+
+    /** Create a task
+     *
+     * @param array $params
+     * @param array $options
+     * @return response
+     */
+    public function createTask($params = array(), $options = array()) {
+        $path = "/tasks";
+        return $this->client->post($path, $params, $options);
+    }
+
+    /** Delete a task
+     *
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
+     * @return response
+     */
+    public function deleteTask($task_gid, $params = array(), $options = array()) {
+        $path = "/tasks/{task_gid}";
+        $path = str_replace("{task_gid}", $task_gid, $path);
         return $this->client->delete($path, $params, $options);
     }
 
-    /**
-     * Returns the compact task records for all tasks within the given project,
-     * ordered by their priority within the project.
+    /** Duplicate a task
      *
-     * @param  projectId The project in which to search for tasks.
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
      * @return response
      */
-    public function findByProject($projectId, $params = array(), $options = array())
-    {
-        $path = sprintf("/projects/%s/tasks", $projectId);
+    public function duplicateTask($task_gid, $params = array(), $options = array()) {
+        $path = "/tasks/{task_gid}/duplicate";
+        $path = str_replace("{task_gid}", $task_gid, $path);
+        return $this->client->post($path, $params, $options);
+    }
+
+    /** Get dependencies from a task
+     *
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
+     * @return response
+     */
+    public function getDependenciesForTask($task_gid, $params = array(), $options = array()) {
+        $path = "/tasks/{task_gid}/dependencies";
+        $path = str_replace("{task_gid}", $task_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 
-    /**
-     * Returns the compact task records for all tasks with the given tag.
+    /** Get dependents from a task
      *
-     * @param  tag The tag in which to search for tasks.
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
      * @return response
      */
-    public function findByTag($tag, $params = array(), $options = array())
-    {
-        $path = sprintf("/tags/%s/tasks", $tag);
+    public function getDependentsForTask($task_gid, $params = array(), $options = array()) {
+        $path = "/tasks/{task_gid}/dependents";
+        $path = str_replace("{task_gid}", $task_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 
-    /**
-     * <b>Board view only:</b> Returns the compact section records for all tasks within the given section.
+    /** Get subtasks from a task
      *
-     * @param  section The section in which to search for tasks.
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
      * @return response
      */
-    public function findBySection($section, $params = array(), $options = array())
-    {
-        $path = sprintf("/sections/%s/tasks", $section);
+    public function getSubtasksForTask($task_gid, $params = array(), $options = array()) {
+        $path = "/tasks/{task_gid}/subtasks";
+        $path = str_replace("{task_gid}", $task_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 
-    /**
-     * Returns the compact task records for some filtered set of tasks. Use one
-     * or more of the parameters provided to filter the tasks returned. You must
-     * specify a `project` or `tag` if you do not specify `assignee` and `workspace`.
+    /** Get a task
      *
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
      * @return response
      */
-    public function findAll($params = array(), $options = array())
-    {
-        return $this->client->getCollection("/tasks", $params, $options);
-    }
-
-    /**
-     * The search endpoint allows you to build complex queries to find and fetch exactly the data you need from Asana.
-     * For a more comprehensive description of all the query parameters and limitations of this endpoint,
-     * see our [long-form documentation](/developers/documentation/getting-started/search-api) for this feature.
-     *
-     * @param  workspace The workspace or organization in which to search for tasks.
-     * @return response
-     */
-    public function search($workspace, $params = array(), $options = array())
-    {
-        $path = sprintf("/workspaces/%s/tasks/search", $workspace);
-        return $this->client->getCollection($path, $params, $options);
-    }
-
-    /**
-     * Returns the compact representations of all of the dependencies of a task.
-     *
-     * @param  task The task to get dependencies on.
-     * @return response
-     */
-    public function dependencies($task, $params = array(), $options = array())
-    {
-        $path = sprintf("/tasks/%s/dependencies", $task);
+    public function getTask($task_gid, $params = array(), $options = array()) {
+        $path = "/tasks/{task_gid}";
+        $path = str_replace("{task_gid}", $task_gid, $path);
         return $this->client->get($path, $params, $options);
     }
 
-    /**
-     * Returns the compact representations of all of the dependents of a task.
+    /** Get multiple tasks
      *
-     * @param  task The task to get dependents on.
+     * @param array $params
+     * @param array $options
      * @return response
      */
-    public function dependents($task, $params = array(), $options = array())
-    {
-        $path = sprintf("/tasks/%s/dependents", $task);
-        return $this->client->get($path, $params, $options);
-    }
-
-    /**
-     * Marks a set of tasks as dependencies of this task, if they are not
-     * already dependencies. *A task can have at most 15 dependencies.*
-     *
-     * @param  task The task to add dependencies to.
-     * @return response
-     */
-    public function addDependencies($task, $params = array(), $options = array())
-    {
-        $path = sprintf("/tasks/%s/addDependencies", $task);
-        return $this->client->post($path, $params, $options);
-    }
-
-    /**
-     * Marks a set of tasks as dependents of this task, if they are not already
-     * dependents. *A task can have at most 30 dependents.*
-     *
-     * @param  task The task to add dependents to.
-     * @return response
-     */
-    public function addDependents($task, $params = array(), $options = array())
-    {
-        $path = sprintf("/tasks/%s/addDependents", $task);
-        return $this->client->post($path, $params, $options);
-    }
-
-    /**
-     * Unlinks a set of dependencies from this task.
-     *
-     * @param  task The task to remove dependencies from.
-     * @return response
-     */
-    public function removeDependencies($task, $params = array(), $options = array())
-    {
-        $path = sprintf("/tasks/%s/removeDependencies", $task);
-        return $this->client->post($path, $params, $options);
-    }
-
-    /**
-     * Unlinks a set of dependents from this task.
-     *
-     * @param  task The task to remove dependents from.
-     * @return response
-     */
-    public function removeDependents($task, $params = array(), $options = array())
-    {
-        $path = sprintf("/tasks/%s/removeDependents", $task);
-        return $this->client->post($path, $params, $options);
-    }
-
-    /**
-     * Adds each of the specified followers to the task, if they are not already
-     * following. Returns the complete, updated record for the affected task.
-     *
-     * @param  task The task to add followers to.
-     * @return response
-     */
-    public function addFollowers($task, $params = array(), $options = array())
-    {
-        $path = sprintf("/tasks/%s/addFollowers", $task);
-        return $this->client->post($path, $params, $options);
-    }
-
-    /**
-     * Removes each of the specified followers from the task if they are
-     * following. Returns the complete, updated record for the affected task.
-     *
-     * @param  task The task to remove followers from.
-     * @return response
-     */
-    public function removeFollowers($task, $params = array(), $options = array())
-    {
-        $path = sprintf("/tasks/%s/removeFollowers", $task);
-        return $this->client->post($path, $params, $options);
-    }
-
-    /**
-     * Returns a compact representation of all of the projects the task is in.
-     *
-     * @param  task The task to get projects on.
-     * @return response
-     */
-    public function projects($task, $params = array(), $options = array())
-    {
-        $path = sprintf("/tasks/%s/projects", $task);
+    public function getTasks($params = array(), $options = array()) {
+        $path = "/tasks";
         return $this->client->getCollection($path, $params, $options);
     }
 
-    /**
-     * Adds the task to the specified project, in the optional location
-     * specified. If no location arguments are given, the task will be added to
-     * the end of the project.
-     * 
-     * `addProject` can also be used to reorder a task within a project or section that
-     * already contains it.
-     * 
-     * At most one of `insert_before`, `insert_after`, or `section` should be
-     * specified. Inserting into a section in an non-order-dependent way can be
-     * done by specifying `section`, otherwise, to insert within a section in a
-     * particular place, specify `insert_before` or `insert_after` and a task
-     * within the section to anchor the position of this task.
-     * 
-     * Returns an empty data block.
+    /** Get tasks from a project
      *
-     * @param  task The task to add to a project.
+     * @param string $project_gid  (required) Globally unique identifier for the project.
+     * @param array $params
+     * @param array $options
      * @return response
      */
-    public function addProject($task, $params = array(), $options = array())
-    {
-        $path = sprintf("/tasks/%s/addProject", $task);
-        return $this->client->post($path, $params, $options);
-    }
-
-    /**
-     * Removes the task from the specified project. The task will still exist
-     * in the system, but it will not be in the project anymore.
-     * 
-     * Returns an empty data block.
-     *
-     * @param  task The task to remove from a project.
-     * @return response
-     */
-    public function removeProject($task, $params = array(), $options = array())
-    {
-        $path = sprintf("/tasks/%s/removeProject", $task);
-        return $this->client->post($path, $params, $options);
-    }
-
-    /**
-     * Returns a compact representation of all of the tags the task has.
-     *
-     * @param  task The task to get tags on.
-     * @return response
-     */
-    public function tags($task, $params = array(), $options = array())
-    {
-        $path = sprintf("/tasks/%s/tags", $task);
+    public function getTasksForProject($project_gid, $params = array(), $options = array()) {
+        $path = "/projects/{project_gid}/tasks";
+        $path = str_replace("{project_gid}", $project_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 
-    /**
-     * Adds a tag to a task. Returns an empty data block.
+    /** Get tasks from a section
      *
-     * @param  task The task to add a tag to.
+     * @param string $section_gid  (required) The globally unique identifier for the section.
+     * @param array $params
+     * @param array $options
      * @return response
      */
-    public function addTag($task, $params = array(), $options = array())
-    {
-        $path = sprintf("/tasks/%s/addTag", $task);
-        return $this->client->post($path, $params, $options);
-    }
-
-    /**
-     * Removes a tag from the task. Returns an empty data block.
-     *
-     * @param  task The task to remove a tag from.
-     * @return response
-     */
-    public function removeTag($task, $params = array(), $options = array())
-    {
-        $path = sprintf("/tasks/%s/removeTag", $task);
-        return $this->client->post($path, $params, $options);
-    }
-
-    /**
-     * Returns a compact representation of all of the subtasks of a task.
-     *
-     * @param  task The task to get the subtasks of.
-     * @return response
-     */
-    public function subtasks($task, $params = array(), $options = array())
-    {
-        $path = sprintf("/tasks/%s/subtasks", $task);
+    public function getTasksForSection($section_gid, $params = array(), $options = array()) {
+        $path = "/sections/{section_gid}/tasks";
+        $path = str_replace("{section_gid}", $section_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 
-    /**
-     * Creates a new subtask and adds it to the parent task. Returns the full record
-     * for the newly created subtask.
+    /** Get tasks from a tag
      *
-     * @param  task The task to add a subtask to.
+     * @param string $tag_gid  (required) Globally unique identifier for the tag.
+     * @param array $params
+     * @param array $options
      * @return response
      */
-    public function addSubtask($task, $params = array(), $options = array())
-    {
-        $path = sprintf("/tasks/%s/subtasks", $task);
-        return $this->client->post($path, $params, $options);
-    }
-
-    /**
-     * Returns a compact representation of all of the stories on the task.
-     *
-     * @param  task The task containing the stories to get.
-     * @return response
-     */
-    public function stories($task, $params = array(), $options = array())
-    {
-        $path = sprintf("/tasks/%s/stories", $task);
+    public function getTasksForTag($tag_gid, $params = array(), $options = array()) {
+        $path = "/tags/{tag_gid}/tasks";
+        $path = str_replace("{tag_gid}", $tag_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 
-    /**
-     * Adds a comment to a task. The comment will be authored by the
-     * currently authenticated user, and timestamped when the server receives
-     * the request.
-     * 
-     * Returns the full record for the new story added to the task.
+    /** Get tasks from a user task list
      *
-     * @param  task Globally unique identifier for the task.
+     * @param string $user_task_list_gid  (required) Globally unique identifier for the user task list.
+     * @param array $params
+     * @param array $options
      * @return response
      */
-    public function addComment($task, $params = array(), $options = array())
-    {
-        $path = sprintf("/tasks/%s/stories", $task);
+    public function getTasksForUserTaskList($user_task_list_gid, $params = array(), $options = array()) {
+        $path = "/user_task_lists/{user_task_list_gid}/tasks";
+        $path = str_replace("{user_task_list_gid}", $user_task_list_gid, $path);
+        return $this->client->getCollection($path, $params, $options);
+    }
+
+    /** Unlink dependencies from a task
+     *
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
+     * @return response
+     */
+    public function removeDependenciesForTask($task_gid, $params = array(), $options = array()) {
+        $path = "/tasks/{task_gid}/removeDependencies";
+        $path = str_replace("{task_gid}", $task_gid, $path);
         return $this->client->post($path, $params, $options);
+    }
+
+    /** Unlink dependents from a task
+     *
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
+     * @return response
+     */
+    public function removeDependentsForTask($task_gid, $params = array(), $options = array()) {
+        $path = "/tasks/{task_gid}/removeDependents";
+        $path = str_replace("{task_gid}", $task_gid, $path);
+        return $this->client->post($path, $params, $options);
+    }
+
+    /** Remove followers from a task
+     *
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
+     * @return response
+     */
+    public function removeFollowerForTask($task_gid, $params = array(), $options = array()) {
+        $path = "/tasks/{task_gid}/removeFollowers";
+        $path = str_replace("{task_gid}", $task_gid, $path);
+        return $this->client->post($path, $params, $options);
+    }
+
+    /** Remove a project from a task
+     *
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
+     * @return response
+     */
+    public function removeProjectForTask($task_gid, $params = array(), $options = array()) {
+        $path = "/tasks/{task_gid}/removeProject";
+        $path = str_replace("{task_gid}", $task_gid, $path);
+        return $this->client->post($path, $params, $options);
+    }
+
+    /** Remove a tag from a task
+     *
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
+     * @return response
+     */
+    public function removeTagForTask($task_gid, $params = array(), $options = array()) {
+        $path = "/tasks/{task_gid}/removeTag";
+        $path = str_replace("{task_gid}", $task_gid, $path);
+        return $this->client->post($path, $params, $options);
+    }
+
+    /** Search tasks in a workspace
+     *
+     * @param string $workspace_gid  (required) Globally unique identifier for the workspace or organization.
+     * @param array $params
+     * @param array $options
+     * @return response
+     */
+    public function searchTasksForWorkspace($workspace_gid, $params = array(), $options = array()) {
+        $path = "/workspaces/{workspace_gid}/tasks/search";
+        $path = str_replace("{workspace_gid}", $workspace_gid, $path);
+        return $this->client->getCollection($path, $params, $options);
+    }
+
+    /** Set the parent of a task
+     *
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
+     * @return response
+     */
+    public function setParentForTask($task_gid, $params = array(), $options = array()) {
+        $path = "/tasks/{task_gid}/setParent";
+        $path = str_replace("{task_gid}", $task_gid, $path);
+        return $this->client->post($path, $params, $options);
+    }
+
+    /** Update a task
+     *
+     * @param string $task_gid  (required) The task to operate on.
+     * @param array $params
+     * @param array $options
+     * @return response
+     */
+    public function updateTask($task_gid, $params = array(), $options = array()) {
+        $path = "/tasks/{task_gid}";
+        $path = str_replace("{task_gid}", $task_gid, $path);
+        return $this->client->put($path, $params, $options);
     }
 }

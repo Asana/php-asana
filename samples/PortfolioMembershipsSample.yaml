@@ -1,0 +1,31 @@
+portfoliomemberships:
+    getPortfolioMembership: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->portfoliomemberships->getPortfolioMembership($portfolio_membership_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getPortfolioMemberships: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->portfoliomemberships->getPortfolioMemberships(array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getPortfolioMembershipsForPortfolio: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->portfoliomemberships->getPortfolioMembershipsForPortfolio($portfolio_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))

@@ -1,0 +1,11 @@
+batchapi:
+    createBatchRequest: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->batchapi->createBatchRequest(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))

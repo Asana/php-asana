@@ -2,6 +2,7 @@
 
 namespace Asana;
 
+use Asana\Errors;
 use Asana\Test\AsanaTest;
 
 class EventsTest extends Test\AsanaTest
@@ -15,11 +16,10 @@ class EventsTest extends Test\AsanaTest
         $this->assertEquals($result, json_decode($res));
     }
 
-    /**
-     * @expectedException Asana\Errors\InvalidTokenError
-     */
     public function testEventsGetInvalidToken()
     {
+        $this->expectException(Errors\InvalidTokenError::class);
+
         $res = '{ "message": "Sync token invalid or too old", "sync": "b" }';
         $this->dispatcher->registerResponse('/events?resource=14321&sync=a', 412, null, $res);
 
@@ -38,21 +38,19 @@ class EventsTest extends Test\AsanaTest
         $this->assertEquals(count($this->client->events->getNext(array('resource' => '1'))), 2);
     }
 
-    /**
-     * @expectedException Asana\Errors\InvalidRequestError
-     */
     public function testEventsGetNextUnknownObject()
     {
+        $this->expectException(Errors\InvalidRequestError::class);
+
         $this->dispatcher->registerResponse('/events?limit=50&resource=1', 400, null, '{ "sync": "1" }');
 
         $this->client->events->getNext(array('resource' => '1'));
     }
 
-    /**
-     * @expectedException Asana\Errors\InvalidTokenError
-     */
     public function testEventsGetNextInvalidToken()
     {
+        $this->expectException(Errors\InvalidTokenError::class);
+
         $this->dispatcher->registerResponse('/events?limit=50&sync=invalid&resource=1', 412, null, '{ "sync": "1" }');
 
         $this->client->events->getNext(array('resource' => '1', 'sync' => 'invalid'));
@@ -82,21 +80,19 @@ class EventsTest extends Test\AsanaTest
         // $this->assertEquals($iterator->current(), 'c');
     }
 
-    /**
-     * @expectedException Asana\Errors\InvalidRequestError
-     */
     public function testEventsGetIteratorUnknownObject()
     {
+        $this->expectException(Errors\InvalidRequestError::class);
+
         $this->dispatcher->registerResponse('/events?limit=50&resource=1', 400, null, '{ "sync": "1" }');
 
         $this->client->events->getIterator(array('resource' => '1'))->rewind();
     }
 
-    /**
-     * @expectedException Asana\Errors\InvalidTokenError
-     */
     public function testEventsGetIteratorInvalidToken()
     {
+        $this->expectException(Errors\InvalidTokenError::class);
+
         $this->dispatcher->registerResponse('/events?limit=50&sync=invalid&resource=1', 412, null, '{ "sync": "1" }');
 
         $this->client->events->getIterator(array('resource' => '1', 'sync' => 'invalid'))->rewind();

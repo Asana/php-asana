@@ -1,0 +1,41 @@
+webhooks:
+    createWebhook: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->webhooks->createWebhook(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    deleteWebhook: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->webhooks->deleteWebhook($webhook_gid, array('opt_pretty' => 'true'))
+    getWebhook: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->webhooks->getWebhook($webhook_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getWebhooks: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->webhooks->getWebhooks(array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))

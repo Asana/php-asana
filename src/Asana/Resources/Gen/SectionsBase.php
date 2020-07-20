@@ -2,13 +2,8 @@
 
 namespace Asana\Resources\Gen;
 
-/**
- * A _section_ is a subdivision of a project that groups tasks together. It can
- * either be a header above a list of tasks in a list view or a column in a
- * board view of a project.
-*/
-class SectionsBase
-{
+class SectionsBase {
+
     /**
      * @param Asana/Client client  The client instance
      */
@@ -17,100 +12,94 @@ class SectionsBase
         $this->client = $client;
     }
 
-    /**
-     * Creates a new section in a project.
-     * 
-     * Returns the full record of the newly created section.
+    /** Add task to section
      *
-     * @param  project The project to create the section in
+     * @param string $section_gid  (required) The globally unique identifier for the section.
+     * @param array $params
+     * @param array $options
      * @return response
      */
-    public function createInProject($project, $params = array(), $options = array())
-    {
-        $path = sprintf("/projects/%s/sections", $project);
+    public function addTaskForSection($section_gid, $params = array(), $options = array()) {
+        $path = "/sections/{section_gid}/addTask";
+        $path = str_replace("{section_gid}", $section_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
-    /**
-     * Returns the compact records for all sections in the specified project.
+    /** Create a section in a project
      *
-     * @param  project The project to get sections from.
+     * @param string $project_gid  (required) Globally unique identifier for the project.
+     * @param array $params
+     * @param array $options
      * @return response
      */
-    public function findByProject($project, $params = array(), $options = array())
-    {
-        $path = sprintf("/projects/%s/sections", $project);
-        return $this->client->get($path, $params, $options);
+    public function createSectionForProject($project_gid, $params = array(), $options = array()) {
+        $path = "/projects/{project_gid}/sections";
+        $path = str_replace("{project_gid}", $project_gid, $path);
+        return $this->client->post($path, $params, $options);
     }
 
-    /**
-     * Returns the complete record for a single section.
+    /** Delete a section
      *
-     * @param  section The section to get.
+     * @param string $section_gid  (required) The globally unique identifier for the section.
+     * @param array $params
+     * @param array $options
      * @return response
      */
-    public function findById($section, $params = array(), $options = array())
-    {
-        $path = sprintf("/sections/%s", $section);
-        return $this->client->get($path, $params, $options);
-    }
-
-    /**
-     * A specific, existing section can be updated by making a PUT request on
-     * the URL for that project. Only the fields provided in the `data` block
-     * will be updated; any unspecified fields will remain unchanged. (note that
-     * at this time, the only field that can be updated is the `name` field.)
-     * 
-     * When using this method, it is best to specify only those fields you wish
-     * to change, or else you may overwrite changes made by another user since
-     * you last retrieved the task.
-     * 
-     * Returns the complete updated section record.
-     *
-     * @param  section The section to update.
-     * @return response
-     */
-    public function update($section, $params = array(), $options = array())
-    {
-        $path = sprintf("/sections/%s", $section);
-        return $this->client->put($path, $params, $options);
-    }
-
-    /**
-     * A specific, existing section can be deleted by making a DELETE request
-     * on the URL for that section.
-     * 
-     * Note that sections must be empty to be deleted.
-     * 
-     * The last remaining section in a board view cannot be deleted.
-     * 
-     * Returns an empty data block.
-     *
-     * @param  section The section to delete.
-     * @return response
-     */
-    public function delete($section, $params = array(), $options = array())
-    {
-        $path = sprintf("/sections/%s", $section);
+    public function deleteSection($section_gid, $params = array(), $options = array()) {
+        $path = "/sections/{section_gid}";
+        $path = str_replace("{section_gid}", $section_gid, $path);
         return $this->client->delete($path, $params, $options);
     }
 
-    /**
-     * Move sections relative to each other in a board view. One of
-     * `before_section` or `after_section` is required.
-     * 
-     * Sections cannot be moved between projects.
-     * 
-     * At this point in time, moving sections is not supported in list views, only board views.
-     * 
-     * Returns an empty data block.
+    /** Get a section
      *
-     * @param  project The project in which to reorder the given section
+     * @param string $section_gid  (required) The globally unique identifier for the section.
+     * @param array $params
+     * @param array $options
      * @return response
      */
-    public function insertInProject($project, $params = array(), $options = array())
-    {
-        $path = sprintf("/projects/%s/sections/insert", $project);
+    public function getSection($section_gid, $params = array(), $options = array()) {
+        $path = "/sections/{section_gid}";
+        $path = str_replace("{section_gid}", $section_gid, $path);
+        return $this->client->get($path, $params, $options);
+    }
+
+    /** Get sections in a project
+     *
+     * @param string $project_gid  (required) Globally unique identifier for the project.
+     * @param array $params
+     * @param array $options
+     * @return response
+     */
+    public function getSectionsForProject($project_gid, $params = array(), $options = array()) {
+        $path = "/projects/{project_gid}/sections";
+        $path = str_replace("{project_gid}", $project_gid, $path);
+        return $this->client->getCollection($path, $params, $options);
+    }
+
+    /** Move or Insert sections
+     *
+     * @param string $project_gid  (required) Globally unique identifier for the project.
+     * @param array $params
+     * @param array $options
+     * @return response
+     */
+    public function insertSectionForProject($project_gid, $params = array(), $options = array()) {
+        $path = "/projects/{project_gid}/sections/insert";
+        $path = str_replace("{project_gid}", $project_gid, $path);
         return $this->client->post($path, $params, $options);
+    }
+
+    /** Update a section
+     *
+     * @param string $section_gid  (required) The globally unique identifier for the section.
+     * @param array $params
+     * @param array $options
+     * @return response
+     */
+    public function updateSection($section_gid, $params = array(), $options = array()) {
+        $path = "/sections/{section_gid}";
+        $path = str_replace("{section_gid}", $section_gid, $path);
+        return $this->client->put($path, $params, $options);
     }
 }

@@ -13,7 +13,7 @@ If you use [Composer](https://getcomposer.org/) to manage dependencies you can i
 ```json
 {
     "require": {
-        "asana/asana": "^0.8.0"
+        "asana/asana": "^0.10.0"
     }
 }
 ```
@@ -108,12 +108,12 @@ The client's methods are divided into several resources: `attachments`, `events`
 Methods that return a single object return that object directly:
 ```php
 <?php
-$me = $client->users->me();
+$me = $client->users->getUser("me");
 echo "Hello " . $me->name;
 
-$workspaceId = $me->workspaces[0]->id;
-$project = $client->projects->createInWorkspace($workspaceId, array('name' => 'new project'));
-echo "Created project with id: " . $project->id;
+$workspaceGid = $me->workspaces[0]->gid;
+$project = $client->projects->createProjectForWorkspace($workspaceGid, array('name' => 'new project'));
+echo "Created project with gid: " . $project->gid;
 ```
 
 Methods that return multiple items (e.x. `findAll`) return an items iterator by default. See the "Collections" section
@@ -152,6 +152,29 @@ Events:
 * `poll_interval` (default: 5): polling interval for getting new events via `events->getNext` and `events->getIterator`
 * `sync`: sync token returned by previous calls to `events->get` (in `response->sync`)
 
+## Asana Change Warnings
+You will receive warning logs if performing requests that may be affected by a deprecation. The warning contains a link that explains the deprecation.
+
+If you receive one of these warnings, you should:
+
+Read about the deprecation.
+Resolve sections of your code that would be affected by the deprecation.
+Add the deprecation flag to your "asana-enable" header.
+You can place it on the client for all requests, or place it on a single request.
+
+    $client = Asana\Client::accessToken('ASANA_PERSONAL_ACCESS_TOKEN', 
+        array('headers' => array('asana-disable' => 'string_ids')))
+    
+or
+
+    $client = Asana\Client::accessToken('ASANA_PERSONAL_ACCESS_TOKEN', 
+        array('headers' => array('asana-enable' => 'string_ids,new_sections')))
+
+If you would rather suppress these warnings, you can set
+    
+    $client = Asana\Client::accessToken('ASANA_PERSONAL_ACCESS_TOKEN', 
+        array('log_asana_change_warnings' => false))
+
 ## Collections
 
 ### Items Iterator
@@ -159,7 +182,7 @@ Events:
 By default, methods that return a collection of objects return an item iterator:
 ```php
 <?php
-$workspaces = $client->workspaces->findAll();
+$workspaces = $client->workspaces->getWorkspaces();
 foreach ($workspaces as $workspace) {
     var_dump($workspace);
 }
@@ -174,7 +197,7 @@ You can also use the raw API to fetch a page at a time:
 <?php
 $offset = null;
 while (true) {
-    $page = $client->workspaces->findAll(null, array('offset' => $offset, 'iterator_type' => null, 'page_size' => 2));
+    $page = $client->workspaces->getWorkspaces(null, array('offset' => $offset, 'iterator_type' => null, 'page_size' => 2));
     var_dump($page);
     if (isset($page->next_page)) {
         $offset = $page->next_page->offset;
@@ -196,8 +219,8 @@ To develop:
 
 ### Code generation
 
-The specific Asana resource classes (`Tag`, `Workspace`, `Task`, etc) are
-generated code, hence they shouldn't be modified by hand. See the [asana-api-meta](https://github.com/Asana/asana-api-meta) repo for details.
+The specific Asana resource classes in the Gen folder (`Tag`, `Workspace`, `Task`, etc) are
+generated code, hence they shouldn't be modified by hand.
 
 ### Deployment
 
@@ -217,3 +240,5 @@ The rest is automatically done by Composer / Packagist. Visit [the asana package
 
 [packagist-url]: https://packagist.org/packages/asana/asana
 [packagist-image]: https://img.shields.io/packagist/v/asana/asana.svg?style=flat-square
+
+[asana-docs]: https://developers.asana.com/docs

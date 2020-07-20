@@ -1,0 +1,121 @@
+portfolios:
+    addCustomFieldSettingForPortfolio: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->portfolios->addCustomFieldSettingForPortfolio($portfolio_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    addItemForPortfolio: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->portfolios->addItemForPortfolio($portfolio_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    addMembersForPortfolio: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->portfolios->addMembersForPortfolio($portfolio_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    createPortfolio: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->portfolios->createPortfolio(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    deletePortfolio: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->portfolios->deletePortfolio($portfolio_gid, array('opt_pretty' => 'true'))
+    getItemsForPortfolio: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->portfolios->getItemsForPortfolio($portfolio_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getPortfolio: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->portfolios->getPortfolio($portfolio_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getPortfolios: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->portfolios->getPortfolios(array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    removeCustomFieldSettingForPortfolio: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->portfolios->removeCustomFieldSettingForPortfolio($portfolio_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    removeItemForPortfolio: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->portfolios->removeItemForPortfolio($portfolio_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    removeMembersForPortfolio: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->portfolios->removeMembersForPortfolio($portfolio_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    updatePortfolio: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->portfolios->updatePortfolio($portfolio_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))

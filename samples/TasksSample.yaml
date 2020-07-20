@@ -1,0 +1,261 @@
+tasks:
+    addDependenciesForTask: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->tasks->addDependenciesForTask($task_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    addDependentsForTask: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->tasks->addDependentsForTask($task_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    addFollowersForTask: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->tasks->addFollowersForTask($task_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    addProjectForTask: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->tasks->addProjectForTask($task_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    addTagForTask: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->tasks->addTagForTask($task_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    createSubtaskForTask: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->tasks->createSubtaskForTask($task_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    createTask: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->tasks->createTask(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    deleteTask: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->tasks->deleteTask($task_gid, array('opt_pretty' => 'true'))
+    duplicateTask: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->tasks->duplicateTask($task_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    getDependenciesForTask: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->tasks->getDependenciesForTask($task_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getDependentsForTask: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->tasks->getDependentsForTask($task_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getSubtasksForTask: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->tasks->getSubtasksForTask($task_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getTask: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->tasks->getTask($task_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getTasks: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->tasks->getTasks(array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getTasksForProject: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->tasks->getTasksForProject($project_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getTasksForSection: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->tasks->getTasksForSection($section_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getTasksForTag: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->tasks->getTasksForTag($tag_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getTasksForUserTaskList: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->tasks->getTasksForUserTaskList($user_task_list_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    removeDependenciesForTask: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->tasks->removeDependenciesForTask($task_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    removeDependentsForTask: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->tasks->removeDependentsForTask($task_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    removeFollowerForTask: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->tasks->removeFollowerForTask($task_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    removeProjectForTask: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->tasks->removeProjectForTask($task_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    removeTagForTask: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->tasks->removeTagForTask($task_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    searchTasksForWorkspace: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->tasks->searchTasksForWorkspace($workspace_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    setParentForTask: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->tasks->setParentForTask($task_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    updateTask: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->tasks->updateTask($task_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))

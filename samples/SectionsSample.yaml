@@ -1,0 +1,71 @@
+sections:
+    addTaskForSection: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->sections->addTaskForSection($section_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    createSectionForProject: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->sections->createSectionForProject($project_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    deleteSection: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->sections->deleteSection($section_gid, array('opt_pretty' => 'true'))
+    getSection: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->sections->getSection($section_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getSectionsForProject: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->sections->getSectionsForProject($project_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    insertSectionForProject: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->sections->insertSectionForProject($project_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    updateSection: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->sections->updateSection($section_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))

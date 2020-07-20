@@ -1,0 +1,81 @@
+customfields:
+    createCustomField: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->customfields->createCustomField(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    createEnumOptionForCustomField: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->customfields->createEnumOptionForCustomField($custom_field_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    deleteCustomField: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->customfields->deleteCustomField($custom_field_gid, array('opt_pretty' => 'true'))
+    getCustomField: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->customfields->getCustomField($custom_field_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getCustomFieldsForWorkspace: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->customfields->getCustomFieldsForWorkspace($workspace_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    insertEnumOptionForCustomField: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->customfields->insertEnumOptionForCustomField($custom_field_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    updateCustomField: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->customfields->updateCustomField($custom_field_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    updateEnumOption: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->customfields->updateEnumOption($enum_option_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))

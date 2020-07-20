@@ -1,0 +1,51 @@
+workspaces:
+    addUserForWorkspace: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->workspaces->addUserForWorkspace($workspace_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    getWorkspace: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->workspaces->getWorkspace($workspace_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getWorkspaces: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->workspaces->getWorkspaces(array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    removeUserForWorkspace: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->workspaces->removeUserForWorkspace($workspace_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    updateWorkspace: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->workspaces->updateWorkspace($workspace_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))

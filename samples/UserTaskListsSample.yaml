@@ -1,0 +1,21 @@
+usertasklists:
+    getUserTaskList: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->usertasklists->getUserTaskList($user_task_list_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getUserTaskListForUser: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->usertasklists->getUserTaskListForUser($user_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))

@@ -16,9 +16,9 @@ class FakeOauthDispatcher extends OAuthDispatcher
     }
 }
 
-class OAuthDispatcherTest extends \PHPUnit_Framework_TestCase
+class OAuthDispatcherTest extends \PHPUnit\Framework\TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->dispatcher = new FakeOAuthDispatcher(
             array(
@@ -27,12 +27,11 @@ class OAuthDispatcherTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @expectedException Exception
-     * @expectedExceptionMessageRegExp #access token not set#
-     */
     public function testAuthenticateNoToken()
     {
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('access token not set');
+
         $request = new MockRequest($this->dispatcher);
         $this->dispatcher->authenticate($request);
     }

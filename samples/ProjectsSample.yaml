@@ -1,0 +1,181 @@
+projects:
+    addCustomFieldSettingForProject: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->projects->addCustomFieldSettingForProject($project_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    addFollowersForProject: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->projects->addFollowersForProject($project_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    addMembersForProject: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->projects->addMembersForProject($project_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    createProject: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->projects->createProject(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    createProjectForTeam: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->projects->createProjectForTeam($team_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    createProjectForWorkspace: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->projects->createProjectForWorkspace($workspace_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    deleteProject: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->projects->deleteProject($project_gid, array('opt_pretty' => 'true'))
+    duplicateProject: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->projects->duplicateProject($project_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    getProject: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->projects->getProject($project_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getProjects: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->projects->getProjects(array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getProjectsForTask: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->projects->getProjectsForTask($task_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getProjectsForTeam: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->projects->getProjectsForTeam($team_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getProjectsForWorkspace: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->projects->getProjectsForWorkspace($workspace_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getTaskCountsForProject: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->projects->getTaskCountsForProject($project_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    removeCustomFieldSettingForProject: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->projects->removeCustomFieldSettingForProject($project_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    removeFollowersForProject: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->projects->removeFollowersForProject($project_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    removeMembersForProject: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->projects->removeMembersForProject($project_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    updateProject: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->projects->updateProject($project_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
