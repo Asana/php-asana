@@ -19,6 +19,16 @@ tags:
 
 
         $result = $client->tags->createTagForWorkspace($workspace_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    deleteTag: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->tags->deleteTag($tag_gid, array('opt_pretty' => 'true'))
     getTag: >-
         <?php
 
