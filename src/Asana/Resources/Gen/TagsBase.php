@@ -36,6 +36,19 @@ class TagsBase {
         return $this->client->post($path, $params, $options);
     }
 
+    /** Delete a tag
+     *
+     * @param string $tag_gid  (required) Globally unique identifier for the tag.
+     * @param array $params
+     * @param array $options
+     * @return response
+     */
+    public function deleteTag($tag_gid, $params = array(), $options = array()) {
+        $path = "/tags/{tag_gid}";
+        $path = str_replace("{tag_gid}", $tag_gid, $path);
+        return $this->client->delete($path, $params, $options);
+    }
+
     /** Get a tag
      *
      * @param string $tag_gid  (required) Globally unique identifier for the tag.
