@@ -9,6 +9,16 @@ teams:
 
 
         $result = $client->teams->addUserForTeam($team_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    createTeam: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->teams->createTeam(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
     getTeam: >-
         <?php
 
