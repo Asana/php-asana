@@ -25,6 +25,17 @@ class TeamsBase {
         return $this->client->post($path, $params, $options);
     }
 
+    /** Create a team
+     *
+     * @param array $params
+     * @param array $options
+     * @return response
+     */
+    public function createTeam($params = array(), $options = array()) {
+        $path = "/teams";
+        return $this->client->post($path, $params, $options);
+    }
+
     /** Get a team
      *
      * @param string $team_gid  (required) Globally unique identifier for the team.
