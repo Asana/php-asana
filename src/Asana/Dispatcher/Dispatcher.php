@@ -55,7 +55,7 @@ class Dispatcher
         $tmpFiles = array();
         if (isset($requestOptions['files'])) {
             foreach ($requestOptions['files'] as $name => $file) {
-                $tmpFilePath = tempnam(null, null);
+                $tmpFilePath = tempnam(sys_get_temp_dir(), '');
                 $tmpFiles[] = $tmpFilePath;
                 file_put_contents($tmpFilePath, $file[0]);
 
