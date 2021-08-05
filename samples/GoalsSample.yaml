@@ -1,0 +1,151 @@
+goals:
+    addFollowers: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->goals->addFollowers(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    addSubgoal: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->goals->addSubgoal(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    addSupportingWorkForGoal: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->goals->addSupportingWorkForGoal(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    createGoalMetric: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->goals->createGoalMetric(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    deleteGoal: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->goals->deleteGoal($goal_gid, array('opt_pretty' => 'true'))
+    getGoal: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->goals->getGoal($goal_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getGoals: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->goals->getGoals(array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getParentGoalsForGoal: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->goals->getParentGoalsForGoal(array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getSubgoalsForGoal: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->goals->getSubgoalsForGoal(array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    removeFollowers: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->goals->removeFollowers(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    removeSubgoal: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->goals->removeSubgoal(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    removeSupportingWorkForGoal: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->goals->removeSupportingWorkForGoal(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    supportingWork: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->goals->supportingWork(array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    updateGoal: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->goals->updateGoal($goal_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    updateGoalMetric: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->goals->updateGoalMetric(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
