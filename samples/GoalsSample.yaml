@@ -29,6 +29,16 @@ goals:
 
 
         $result = $client->goals->addSupportingWorkForGoal(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    createGoal: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->goals->createGoal(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
     createGoalMetric: >-
         <?php
 

@@ -1,0 +1,21 @@
+timeperiods:
+    getTimePeriod: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->timeperiods->getTimePeriod($time_period_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getTimePeriods: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->timeperiods->getTimePeriods(array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))

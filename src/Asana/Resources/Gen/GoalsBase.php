@@ -45,6 +45,17 @@ class GoalsBase {
         return $this->client->post($path, $params, $options);
     }
 
+    /** Create a goal
+     *
+     * @param array $params
+     * @param array $options
+     * @return response
+     */
+    public function createGoal($params = array(), $options = array()) {
+        $path = "/goals";
+        return $this->client->post($path, $params, $options);
+    }
+
     /** Create a goal metric
      *
      * @param array $params
