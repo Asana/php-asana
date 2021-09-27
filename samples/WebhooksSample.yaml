@@ -39,3 +39,13 @@ webhooks:
 
 
         $result = $client->webhooks->getWebhooks(array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    updateWebhook: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->webhooks->updateWebhook($webhook_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
