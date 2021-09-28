@@ -59,4 +59,17 @@ class WebhooksBase {
         $path = "/webhooks";
         return $this->client->getCollection($path, $params, $options);
     }
+
+    /** Update a webhook
+     *
+     * @param string $webhook_gid  (required) Globally unique identifier for the webhook.
+     * @param array $params
+     * @param array $options
+     * @return response
+     */
+    public function updateWebhook($webhook_gid, $params = array(), $options = array()) {
+        $path = "/webhooks/{webhook_gid}";
+        $path = str_replace("{webhook_gid}", $webhook_gid, $path);
+        return $this->client->put($path, $params, $options);
+    }
 }
