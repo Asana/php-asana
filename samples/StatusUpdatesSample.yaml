@@ -1,0 +1,41 @@
+statusupdates:
+    createStatusForObject: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->statusupdates->createStatusForObject(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    deleteStatus: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->statusupdates->deleteStatus($status_gid, array('opt_pretty' => 'true'))
+    getStatus: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->statusupdates->getStatus($status_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getStatusesForObject: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->statusupdates->getStatusesForObject(array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
