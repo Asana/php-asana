@@ -1,0 +1,41 @@
+projecttemplates:
+    getProjectTemplate: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->projecttemplates->getProjectTemplate($project_template_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getProjectTemplates: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->projecttemplates->getProjectTemplates(array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getProjectTemplatesForTeam: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->projecttemplates->getProjectTemplatesForTeam($team_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    instantiateProject: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->projecttemplates->instantiateProject($project_template_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
