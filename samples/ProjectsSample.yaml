@@ -139,6 +139,16 @@ projects:
 
 
         $result = $client->projects->getTaskCountsForProject($project_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    projectSaveAsTemplate: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->projects->projectSaveAsTemplate($project_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
     removeCustomFieldSettingForProject: >-
         <?php
 

@@ -190,6 +190,19 @@ class ProjectsBase {
         return $this->client->get($path, $params, $options);
     }
 
+    /** Create a project template from a project
+     *
+     * @param string $project_gid  (required) Globally unique identifier for the project.
+     * @param array $params
+     * @param array $options
+     * @return response
+     */
+    public function projectSaveAsTemplate($project_gid, $params = array(), $options = array()) {
+        $path = "/projects/{project_gid}/saveAsTemplate";
+        $path = str_replace("{project_gid}", $project_gid, $path);
+        return $this->client->post($path, $params, $options);
+    }
+
     /** Remove a custom field from a project
      *
      * @param string $project_gid  (required) Globally unique identifier for the project.
