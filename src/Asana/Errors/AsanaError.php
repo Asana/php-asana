@@ -38,6 +38,10 @@ class AsanaError extends \Exception
                 throw new RateLimitEnforcedError($response);
             case ServerError::STATUS:
                 throw new ServerError($response);
+            default:
+                if ($response->code > 400) {
+                    throw new AsanaError('Asana response error', $response->code, $response);
+                }
         }
     }
 }
