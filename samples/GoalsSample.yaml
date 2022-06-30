@@ -8,7 +8,7 @@ goals:
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
 
 
-        $result = $client->goals->addFollowers(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+        $result = $client->goals->addFollowers($goal_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
     addSubgoal: >-
         <?php
 
@@ -18,7 +18,7 @@ goals:
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
 
 
-        $result = $client->goals->addSubgoal(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+        $result = $client->goals->addSubgoal($goal_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
     addSupportingWorkForGoal: >-
         <?php
 
@@ -28,7 +28,7 @@ goals:
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
 
 
-        $result = $client->goals->addSupportingWorkForGoal(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+        $result = $client->goals->addSupportingWorkForGoal($goal_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
     createGoal: >-
         <?php
 
@@ -48,7 +48,7 @@ goals:
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
 
 
-        $result = $client->goals->createGoalMetric(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+        $result = $client->goals->createGoalMetric($goal_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
     deleteGoal: >-
         <?php
 
@@ -88,7 +88,7 @@ goals:
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
 
 
-        $result = $client->goals->getParentGoalsForGoal(array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+        $result = $client->goals->getParentGoalsForGoal($goal_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
     getSubgoalsForGoal: >-
         <?php
 
@@ -98,7 +98,7 @@ goals:
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
 
 
-        $result = $client->goals->getSubgoalsForGoal(array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+        $result = $client->goals->getSubgoalsForGoal($goal_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
     removeFollowers: >-
         <?php
 
@@ -108,7 +108,7 @@ goals:
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
 
 
-        $result = $client->goals->removeFollowers(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+        $result = $client->goals->removeFollowers($goal_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
     removeSubgoal: >-
         <?php
 
@@ -118,7 +118,7 @@ goals:
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
 
 
-        $result = $client->goals->removeSubgoal(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+        $result = $client->goals->removeSubgoal($goal_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
     removeSupportingWorkForGoal: >-
         <?php
 
@@ -128,7 +128,7 @@ goals:
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
 
 
-        $result = $client->goals->removeSupportingWorkForGoal(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+        $result = $client->goals->removeSupportingWorkForGoal($goal_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
     supportingWork: >-
         <?php
 
@@ -138,7 +138,7 @@ goals:
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
 
 
-        $result = $client->goals->supportingWork(array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+        $result = $client->goals->supportingWork($goal_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
     updateGoal: >-
         <?php
 
@@ -158,4 +158,4 @@ goals:
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
 
 
-        $result = $client->goals->updateGoalMetric(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+        $result = $client->goals->updateGoalMetric($goal_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
