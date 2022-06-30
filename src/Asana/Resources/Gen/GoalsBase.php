@@ -14,34 +14,40 @@ class GoalsBase {
 
     /** Add a collaborator to a goal
      *
+     * @param string $goal_gid  (required) Globally unique identifier for the goal.
      * @param array $params
      * @param array $options
      * @return response
      */
-    public function addFollowers($params = array(), $options = array()) {
+    public function addFollowers($goal_gid, $params = array(), $options = array()) {
         $path = "/goals/{goal_gid}/addFollowers";
+        $path = str_replace("{goal_gid}", $goal_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
     /** Add a subgoal to a parent goal
      *
+     * @param string $goal_gid  (required) Globally unique identifier for the goal.
      * @param array $params
      * @param array $options
      * @return response
      */
-    public function addSubgoal($params = array(), $options = array()) {
+    public function addSubgoal($goal_gid, $params = array(), $options = array()) {
         $path = "/goals/{goal_gid}/addSubgoal";
+        $path = str_replace("{goal_gid}", $goal_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
     /** Add a project/portfolio as supporting work for a goal.
      *
+     * @param string $goal_gid  (required) Globally unique identifier for the goal.
      * @param array $params
      * @param array $options
      * @return response
      */
-    public function addSupportingWorkForGoal($params = array(), $options = array()) {
+    public function addSupportingWorkForGoal($goal_gid, $params = array(), $options = array()) {
         $path = "/goals/{goal_gid}/addSupportingWork";
+        $path = str_replace("{goal_gid}", $goal_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -58,12 +64,14 @@ class GoalsBase {
 
     /** Create a goal metric
      *
+     * @param string $goal_gid  (required) Globally unique identifier for the goal.
      * @param array $params
      * @param array $options
      * @return response
      */
-    public function createGoalMetric($params = array(), $options = array()) {
+    public function createGoalMetric($goal_gid, $params = array(), $options = array()) {
         $path = "/goals/{goal_gid}/setMetric";
+        $path = str_replace("{goal_gid}", $goal_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
@@ -106,67 +114,79 @@ class GoalsBase {
 
     /** Get parent goals from a goal
      *
+     * @param string $goal_gid  (required) Globally unique identifier for the goal.
      * @param array $params
      * @param array $options
      * @return response
      */
-    public function getParentGoalsForGoal($params = array(), $options = array()) {
+    public function getParentGoalsForGoal($goal_gid, $params = array(), $options = array()) {
         $path = "/goals/{goal_gid}/parentGoals";
+        $path = str_replace("{goal_gid}", $goal_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 
     /** Get subgoals from a goal
      *
+     * @param string $goal_gid  (required) Globally unique identifier for the goal.
      * @param array $params
      * @param array $options
      * @return response
      */
-    public function getSubgoalsForGoal($params = array(), $options = array()) {
+    public function getSubgoalsForGoal($goal_gid, $params = array(), $options = array()) {
         $path = "/goals/{goal_gid}/subgoals";
+        $path = str_replace("{goal_gid}", $goal_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 
     /** Remove a collaborator from a goal
      *
+     * @param string $goal_gid  (required) Globally unique identifier for the goal.
      * @param array $params
      * @param array $options
      * @return response
      */
-    public function removeFollowers($params = array(), $options = array()) {
+    public function removeFollowers($goal_gid, $params = array(), $options = array()) {
         $path = "/goals/{goal_gid}/removeFollowers";
+        $path = str_replace("{goal_gid}", $goal_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
     /** Remove a subgoal from a goal
      *
+     * @param string $goal_gid  (required) Globally unique identifier for the goal.
      * @param array $params
      * @param array $options
      * @return response
      */
-    public function removeSubgoal($params = array(), $options = array()) {
+    public function removeSubgoal($goal_gid, $params = array(), $options = array()) {
         $path = "/goals/{goal_gid}/removeSubgoal";
+        $path = str_replace("{goal_gid}", $goal_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
     /** Remove a project/portfolio as supporting work for a goal.
      *
+     * @param string $goal_gid  (required) Globally unique identifier for the goal.
      * @param array $params
      * @param array $options
      * @return response
      */
-    public function removeSupportingWorkForGoal($params = array(), $options = array()) {
+    public function removeSupportingWorkForGoal($goal_gid, $params = array(), $options = array()) {
         $path = "/goals/{goal_gid}/removeSupportingWork";
+        $path = str_replace("{goal_gid}", $goal_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 
     /** Get supporting work from a goal
      *
+     * @param string $goal_gid  (required) Globally unique identifier for the goal.
      * @param array $params
      * @param array $options
      * @return response
      */
-    public function supportingWork($params = array(), $options = array()) {
+    public function supportingWork($goal_gid, $params = array(), $options = array()) {
         $path = "/goals/{goal_gid}/supportingWork";
+        $path = str_replace("{goal_gid}", $goal_gid, $path);
         return $this->client->getCollection($path, $params, $options);
     }
 
@@ -185,12 +205,14 @@ class GoalsBase {
 
     /** Update a goal metric
      *
+     * @param string $goal_gid  (required) Globally unique identifier for the goal.
      * @param array $params
      * @param array $options
      * @return response
      */
-    public function updateGoalMetric($params = array(), $options = array()) {
+    public function updateGoalMetric($goal_gid, $params = array(), $options = array()) {
         $path = "/goals/{goal_gid}/setMetricCurrentValue";
+        $path = str_replace("{goal_gid}", $goal_gid, $path);
         return $this->client->post($path, $params, $options);
     }
 }

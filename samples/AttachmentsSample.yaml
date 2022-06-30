@@ -8,7 +8,7 @@ attachments:
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
 
 
-        $result = $client->attachments->createAttachmentForTask($task_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+        $result = $client->attachments->createAttachmentForTask(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
     deleteAttachment: >-
         <?php
 
@@ -29,7 +29,7 @@ attachments:
 
 
         $result = $client->attachments->getAttachment($attachment_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
-    getAttachmentsForTask: >-
+    getAttachmentsForObject: >-
         <?php
 
         require 'php-asana/vendor/autoload.php';
@@ -38,4 +38,4 @@ attachments:
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
 
 
-        $result = $client->attachments->getAttachmentsForTask($task_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+        $result = $client->attachments->getAttachmentsForObject(array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))

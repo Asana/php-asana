@@ -38,16 +38,14 @@ class AttachmentsBase {
         return $this->client->get($path, $params, $options);
     }
 
-    /** Get attachments for a task
+    /** Get attachments from an object
      *
-     * @param string $task_gid  (required) The task to operate on.
      * @param array $params
      * @param array $options
      * @return response
      */
-    public function getAttachmentsForTask($task_gid, $params = array(), $options = array()) {
-        $path = "/tasks/{task_gid}/attachments";
-        $path = str_replace("{task_gid}", $task_gid, $path);
+    public function getAttachmentsForObject($params = array(), $options = array()) {
+        $path = "/attachments";
         return $this->client->getCollection($path, $params, $options);
     }
 }
