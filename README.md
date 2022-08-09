@@ -1,6 +1,6 @@
 # Asana PHP API
 
-[![Build Status](https://travis-ci.org/Asana/php-asana.svg?branch=master)](https://travis-ci.org/Asana/php-asana)
+[![Build Status][github-actions-image]][github-actions-url]
 [![Packagist Version][packagist-image]][packagist-url]
 
 Official PHP client library for the Asana API v1
@@ -235,8 +235,8 @@ generated code, hence they shouldn't be modified by hand.
 
 The rest is automatically done by Composer / Packagist. Visit [the asana package](https://packagist.org/packages/asana/asana) to verify the package was published.
 
-[travis-url]: http://travis-ci.org/Asana/php-asana
-[travis-image]: https://api.travis-ci.org/Asana/php-asana.svg?style=flat-square
+[github-actions-url]: https://github.com/Asana/php-asana/actions
+[github-actions-image]: https://github.com/Asana/php-asana/workflows/Build/badge.svg
 
 [packagist-url]: https://packagist.org/packages/asana/asana
 [packagist-image]: https://img.shields.io/packagist/v/asana/asana.svg?style=flat-square
