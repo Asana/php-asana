@@ -57,6 +57,7 @@ class Client
         $this->projects = new Resources\Projects($this);
         $this->project_memberships = new Resources\ProjectMemberships($this);
         $this->project_statuses = new Resources\ProjectStatuses($this);
+        $this->project_templates = new Resources\ProjectTemplates($this);
         $this->stories = new Resources\Stories($this);
         $this->sections = new Resources\Sections($this);
         $this->tags = new Resources\Tags($this);
