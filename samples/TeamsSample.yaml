@@ -59,3 +59,13 @@ teams:
 
 
         $result = $client->teams->removeUserForTeam($team_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    updateTeam: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->teams->updateTeam(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
