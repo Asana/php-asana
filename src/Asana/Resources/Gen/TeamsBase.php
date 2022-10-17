@@ -87,4 +87,15 @@ class TeamsBase {
         $path = str_replace("{team_gid}", $team_gid, $path);
         return $this->client->post($path, $params, $options);
     }
+
+    /** Update a team
+     *
+     * @param array $params
+     * @param array $options
+     * @return response
+     */
+    public function updateTeam($params = array(), $options = array()) {
+        $path = "/teams";
+        return $this->client->put($path, $params, $options);
+    }
 }

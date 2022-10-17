@@ -47,25 +47,36 @@ class Client
         $this->options = array_merge(Client::$DEFAULTS, $options);
 
         $this->attachments = new Resources\Attachments($this);
-        $this->custom_fields = new Resources\CustomFields($this);
-        $this->custom_field_settings = new Resources\CustomFieldSettings($this);
+        $this->auditlogapi = new Resources\AuditLogAPI($this);
+        $this->batchapi = new Resources\BatchAPI($this);
+        $this->customfields = new Resources\CustomFields($this);
+        $this->customfieldsettings = new Resources\CustomFieldSettings($this);
         $this->events = new Resources\Events($this);
+        $this->goalrelationships = new Resources\GoalRelationships($this);
+        $this->goals = new Resources\Goals($this);
         $this->jobs = new Resources\Jobs($this);
-        $this->organization_exports = new Resources\OrganizationExports($this);
+        $this->organizationexports = new Resources\OrganizationExports($this);
         $this->portfolios = new Resources\Portfolios($this);
-        $this->portfolio_memberships = new Resources\PortfolioMemberships($this);
+        $this->projectbriefs = new Resources\ProjectBriefs($this);
+        $this->portfoliomemberships = new Resources\PortfolioMemberships($this);
         $this->projects = new Resources\Projects($this);
-        $this->project_memberships = new Resources\ProjectMemberships($this);
-        $this->project_statuses = new Resources\ProjectStatuses($this);
+        $this->projectmemberships = new Resources\ProjectMemberships($this);
+        $this->projectstatuses = new Resources\ProjectStatuses($this);
+        $this->projecttemplates = new Resources\ProjectTemplates($this);
         $this->stories = new Resources\Stories($this);
         $this->sections = new Resources\Sections($this);
+        $this->statusupdates = new Resources\StatusUpdates($this);
         $this->tags = new Resources\Tags($this);
         $this->tasks = new Resources\Tasks($this);
+        $this->teammemberships = new Resources\TeamMemberships($this);
         $this->teams = new Resources\Teams($this);
+        $this->timeperiods = new Resources\TimePeriods($this);
+        $this->typeahead = new Resources\Typeahead($this);
         $this->users = new Resources\Users($this);
-        $this->user_task_lists = new Resources\UserTaskLists($this);
-        $this->workspaces = new Resources\Workspaces($this);
+        $this->usertasklists = new Resources\UserTaskLists($this);
         $this->webhooks = new Resources\Webhooks($this);
+        $this->workspacememberships = new Resources\WorkspaceMemberships($this);
+        $this->workspaces = new Resources\Workspaces($this);
     }
 
     public static function accessToken($accessToken, $options = array())

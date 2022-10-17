@@ -1,0 +1,51 @@
+goalrelationships:
+    addSupportingRelationship: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->goalrelationships->addSupportingRelationship($goal_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    getGoalRelationship: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->goalrelationships->getGoalRelationship($goal_relationship_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    getGoalRelationships: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->goalrelationships->getGoalRelationships(array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    removeSupportingRelationship: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->goalrelationships->removeSupportingRelationship($goal_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    updateGoalRelationship: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->goalrelationships->updateGoalRelationship($goal_relationship_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))

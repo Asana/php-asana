@@ -9,26 +9,6 @@ goals:
 
 
         $result = $client->goals->addFollowers($goal_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
-    addSubgoal: >-
-        <?php
-
-        require 'php-asana/vendor/autoload.php';
-
-
-        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
-
-
-        $result = $client->goals->addSubgoal($goal_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
-    addSupportingWorkForGoal: >-
-        <?php
-
-        require 'php-asana/vendor/autoload.php';
-
-
-        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
-
-
-        $result = $client->goals->addSupportingWorkForGoal($goal_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
     createGoal: >-
         <?php
 
@@ -89,16 +69,6 @@ goals:
 
 
         $result = $client->goals->getParentGoalsForGoal($goal_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
-    getSubgoalsForGoal: >-
-        <?php
-
-        require 'php-asana/vendor/autoload.php';
-
-
-        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
-
-
-        $result = $client->goals->getSubgoalsForGoal($goal_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
     removeFollowers: >-
         <?php
 
@@ -109,36 +79,6 @@ goals:
 
 
         $result = $client->goals->removeFollowers($goal_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
-    removeSubgoal: >-
-        <?php
-
-        require 'php-asana/vendor/autoload.php';
-
-
-        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
-
-
-        $result = $client->goals->removeSubgoal($goal_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
-    removeSupportingWorkForGoal: >-
-        <?php
-
-        require 'php-asana/vendor/autoload.php';
-
-
-        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
-
-
-        $result = $client->goals->removeSupportingWorkForGoal($goal_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
-    supportingWork: >-
-        <?php
-
-        require 'php-asana/vendor/autoload.php';
-
-
-        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
-
-
-        $result = $client->goals->supportingWork($goal_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
     updateGoal: >-
         <?php
 

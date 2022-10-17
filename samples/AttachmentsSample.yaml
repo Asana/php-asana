@@ -1,5 +1,5 @@
 attachments:
-    createAttachmentForTask: >-
+    createAttachmentForObject: >-
         <?php
 
         require 'php-asana/vendor/autoload.php';
@@ -8,7 +8,7 @@ attachments:
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
 
 
-        $result = $client->attachments->createAttachmentForTask(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+        $result = $client->attachments->createAttachmentForObject(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
     deleteAttachment: >-
         <?php
 
