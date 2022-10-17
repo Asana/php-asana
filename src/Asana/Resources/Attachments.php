@@ -13,6 +13,19 @@ class Attachments extends AttachmentsBase
         return $this->client->request('POST', $path, $options);
     }
 
+    /** Upload an attachment
+     *
+     * @param array $params
+     * @param array $options
+     * @return response
+     */
+    public function createAttachmentForObject($content, $filename, $contentType, $options = array())
+    {
+        $path = "/attachments";
+        $options['files'] = array('file' => array($content, $filename, $contentType));
+        return $this->client->request('POST', $path, $options);
+    }
+
     /**
      * Returns the full record for a single attachment.
      *
