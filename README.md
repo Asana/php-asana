@@ -13,7 +13,7 @@ If you use [Composer](https://getcomposer.org/) to manage dependencies you can i
 ```json
 {
     "require": {
-        "asana/asana": "^0.10.0"
+        "asana/asana": "^1.0.1"
     }
 }
 ```
@@ -229,11 +229,14 @@ generated code, hence they shouldn't be modified by hand.
 1. Merge in the desired changes into the `master` branch and commit them.
 2. Clone the repo, work on master.
 3. Bump the package version in the `VERSION` file to indicate the [semantic version](http://semver.org/) change.
-4. Commit the change.
-5. Tag the commit with `v` plus the same version number you set in the file. `git tag v1.2.3`
-6. Push changes to origin, including tags: `git push origin master --tags`
+4. Update the `README.md` package depedency version in the "Installation" section
+5. Commit the change.
+6. Tag the commit with `v` plus the same version number you set in the file. `git tag v1.2.3`
+7. Push changes to origin, including tags: `git push origin master --tags`
 
 The rest is automatically done by Composer / Packagist. Visit [the asana package](https://packagist.org/packages/asana/asana) to verify the package was published.
+
+NOTE: If the package did not update on Packagist, log into [Packagist](https://packagist.org/packages/asana/asana) and click on the update button to manually update the package
 
 [github-actions-url]: https://github.com/Asana/php-asana/actions
 [github-actions-image]: https://github.com/Asana/php-asana/workflows/Build/badge.svg
