@@ -13,7 +13,7 @@ If you use [Composer](https://getcomposer.org/) to manage dependencies you can i
 ```json
 {
     "require": {
-        "asana/asana": "^1.0.1"
+        "asana/asana": "^1.0.2"
     }
 }
 ```
