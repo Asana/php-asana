@@ -9,7 +9,7 @@ class ItemIterator implements \Iterator
         $this->pages = $pages;
     }
 
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function rewind()
     {
         $this->pages->rewind();
@@ -21,7 +21,7 @@ class ItemIterator implements \Iterator
         $this->next();
     }
 
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function next()
     {
         // if we don't have an items iterator try to get the next one
@@ -48,19 +48,19 @@ class ItemIterator implements \Iterator
         }
     }
 
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function valid()
     {
         return $this->items != null;
     }
 
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function current()
     {
         return $this->item;
     }
 
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function key()
     {
         return $this->itemIndex;
