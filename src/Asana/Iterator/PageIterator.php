@@ -31,7 +31,7 @@ abstract class PageIterator implements \Iterator
         $this->currentPageNumber = 0;
     }
 
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function rewind()
     {
         # Compute the limit from the page size, and remaining item limit
@@ -49,7 +49,7 @@ abstract class PageIterator implements \Iterator
         }
     }
 
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function next()
     {
         $this->currentPageNumber++;
@@ -68,25 +68,25 @@ abstract class PageIterator implements \Iterator
         }
     }
 
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function valid()
     {
         return $this->currentPage !== null;
     }
 
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function current()
     {
         return $this->currentPage;
     }
 
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function key()
     {
         return $this->currentPageNumber;
     }
 
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function items()
     {
         return new ItemIterator($this);
