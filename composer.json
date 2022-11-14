@@ -7,8 +7,8 @@
     "license": "MIT",
     "require": {
         "php": ">=5.4.0",
-        "nategood/httpful": "~0.2",
-        "adoy/oauth2": "^1.2.0"
+        "adoy/oauth2": "^1.2.0",
+        "themy3/httpful": "^0.4.0"
     },
     "require-dev": {
         "instaclick/php-code-sniffer": "dev-master",
