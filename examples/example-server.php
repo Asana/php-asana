@@ -19,7 +19,7 @@ session_start();
 try {
     if ('/' == $_SERVER['SCRIPT_NAME']) {
         if (isset($_SESSION['token'])) {
-            $me = client($_SESSION['token'])->users->me();
+            $me = client($_SESSION['token'])->users->getUser('me');
             echo '<p>Hello ' . $me->name . '</p><p><a href="/logout">Logout</a></p>';
         } else {
             $state = null;

@@ -24,11 +24,11 @@ class WebhooksTest extends Test\AsanaTest
         $this->assertEquals($webhook->active, $this->data['active']);
     }
 
-    public function testWebhooksCreate()
+    public function testWebhooksCreateWebhook()
     {
         $this->dispatcher->registerResponse('/webhooks', 200, null, '{ "data": ' . json_encode($this->data) . ' }');
 
-        $result = $this->client->webhooks->create(array('resource' => 111, 'target' => 'https://foo/123'));
+        $result = $this->client->webhooks->createWebhook(array('resource' => 111, 'target' => 'https://foo/123'));
         $this->verifyWebhookData($result);
     }
 

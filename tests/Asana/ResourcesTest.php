@@ -26,75 +26,75 @@ class ResourcesTest extends Test\AsanaTest
         }
     }
 
-    public function testAttachmentsFindById()
+    public function testAttachmentsGetAttachment()
     {
         $this->dispatcher->registerResponse('/attachments/1', 200, null, '{ "data": "foo" }');
 
-        $result = $this->client->attachments->findById(1);
+        $result = $this->client->attachments->getAttachment(1);
         $this->assertEquals($result, 'foo');
     }
 
-    public function testCustomFieldsFindById()
+    public function testCustomFieldsGetCustomField()
     {
         $this->dispatcher->registerResponse('/custom_fields/1', 200, null, '{ "data": "foo" }');
 
-        $result = $this->client->customfields->findById(1);
+        $result = $this->client->customfields->getCustomField(1);
         $this->assertEquals($result, 'foo');
     }
 
-    public function testProjectsFindById()
+    public function testProjectsGetProject()
     {
         $this->dispatcher->registerResponse('/projects/1', 200, null, '{ "data": "foo" }');
 
-        $result = $this->client->projects->findById(1);
+        $result = $this->client->projects->getProject(1);
         $this->assertEquals($result, 'foo');
     }
 
-    public function testStoriesFindById()
+    public function testStoriesGetStory()
     {
         $this->dispatcher->registerResponse('/stories/1', 200, null, '{ "data": "foo" }');
 
-        $result = $this->client->stories->findById(1);
+        $result = $this->client->stories->getStory(1);
         $this->assertEquals($result, 'foo');
     }
 
-    public function testTagsFindById()
+    public function testTagsGetTag()
     {
         $this->dispatcher->registerResponse('/tags/1', 200, null, '{ "data": "foo" }');
 
-        $result = $this->client->tags->findById(1);
+        $result = $this->client->tags->getTag(1);
         $this->assertEquals($result, 'foo');
     }
 
-    public function testTasksFindById()
+    public function testTasksGetTask()
     {
         $this->dispatcher->registerResponse('/tasks/1', 200, null, '{ "data": "foo" }');
 
-        $result = $this->client->tasks->findById(1);
+        $result = $this->client->tasks->getTask(1);
         $this->assertEquals($result, 'foo');
     }
 
-    public function testTeamsFindById()
+    public function testTeamsGetTeam()
     {
         $this->dispatcher->registerResponse('/teams/1', 200, null, '{ "data": "foo" }');
 
-        $result = $this->client->teams->findById(1);
+        $result = $this->client->teams->getTeam(1);
         $this->assertEquals($result, 'foo');
     }
 
-    public function testUsersFindById()
+    public function testUsersGetUser()
     {
         $this->dispatcher->registerResponse('/users/1', 200, null, '{ "data": "foo" }');
 
-        $result = $this->client->users->findById(1);
+        $result = $this->client->users->getUser(1);
         $this->assertEquals($result, 'foo');
     }
 
-    public function testWorkspacesFindById()
+    public function testWorkspacesGetWorkspace()
     {
         $this->dispatcher->registerResponse('/workspaces/1', 200, null, '{ "data": "foo" }');
 
-        $result = $this->client->workspaces->findById(1);
+        $result = $this->client->workspaces->getWorkspace(1);
         $this->assertEquals($result, 'foo');
     }
 }
