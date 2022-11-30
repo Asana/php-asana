@@ -116,7 +116,7 @@ $project = $client->projects->createProjectForWorkspace($workspaceGid, array('na
 echo "Created project with gid: " . $project->gid;
 ```
 
-Methods that return multiple items (e.x. `findAll`) return an items iterator by default. See the "Collections" section
+Methods that return multiple items (e.x. `getTasks`, `getProjects`, `getPortfolios`, etc.) return an items iterator by default. See the "Collections" section
 
 ## Options
 
@@ -130,7 +130,7 @@ Asana\Client::$DEFAULTS['page_size'] = 1000;
 $client->options['page_size'] = 1000;
 
 // per-request:
-$client->tasks->findAll(array('project' => 1234), array('page_size' => 1000));
+$client->tasks->getTasks(array('project' => 1234), array('page_size' => 1000));
 ```
 
 ### Available options

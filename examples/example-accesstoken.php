@@ -20,5 +20,5 @@ echo "== Example using Personal Access Token:\n";
 // create a $client->with a Personal Access Token
 $client = Asana\Client::accessToken($ASANA_ACCESS_TOKEN);
 
-$me = $client->users->me();
-echo "me="; var_dump($client->users->me());
+$me = $client->users->getUser('me');
+echo "me="; var_dump($client->users->getUser('me'));

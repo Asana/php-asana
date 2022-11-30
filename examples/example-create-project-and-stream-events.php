@@ -17,14 +17,14 @@ if ($ASANA_ACCESS_TOKEN === false) {
 
 // create a $client->with a Personal Access Token
 $client = Asana\Client::accessToken($ASANA_ACCESS_TOKEN);
-$me = $client->users->me();
-echo "me="; var_dump($client->users->me());
+$me = $client->users->getUser('me');
+echo "me="; var_dump($client->users->getUser('me'));
 
 // find your "Personal Projects" project
 $personalProjectsArray = array_filter($me->workspaces, function($item) { return $item->name === 'Personal Projects'; });
 $personalProjects = array_pop($personalProjectsArray);
 var_dump($personalProjects);
-$projects = $client->projects->findByWorkspace($personalProjects->id, null, array('iterator_type' => false, 'page_size' => null))->data;
+$projects = $client->projects->getProjectsForWorkspace($personalProjects->id, null, array('iterator_type' => false, 'page_size' => null))->data;
 echo "personal projects="; var_dump($projects);
 
 // create a "demo project" if it doesn't exist

@@ -52,7 +52,7 @@ if ($client->dispatcher->authorized) {
     exit(1);
 }
 
-echo "Hello " . $client->users->me()->name . "\n";
+echo "Hello " . $client->users->getUser('me')->name . "\n";
 echo "Your access token is: " . json_encode($token) . "\n";
 echo "Exchanging your refresh token for a new access token because access tokens expire\n";
 
@@ -61,7 +61,7 @@ $token = $client->dispatcher->refreshAccessToken();
 
 echo "Your new access token is: " . json_encode($token) . "\n";
 echo "You are a member of the following workspaces:\n";
-$workspaces = $client->workspaces->findAll();
+$workspaces = $client->workspaces->getWorkspaces();
 foreach ($workspaces as $workspace) {
     echo $workspace->name . "\n";
 }
@@ -76,4 +76,4 @@ $client = Asana\Client::oauth(array(
     'token' => json_decode($token)
 ));
 
-echo "Your registered email address is: " . $client->users->me()->email;
+echo "Your registered email address is: " . $client->users->getUser('me')->email;

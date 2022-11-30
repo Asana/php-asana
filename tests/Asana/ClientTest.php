@@ -15,7 +15,7 @@ class ClientTest extends Test\AsanaTest
     {
         $this->dispatcher->registerResponse('/users/me', 200, null, '{ "data": "foo" }');
 
-        $result = $this->client->users->me();
+        $result = $this->client->users->getUser('me');
         $this->assertEquals($result, 'foo');
     }
 
@@ -25,7 +25,7 @@ class ClientTest extends Test\AsanaTest
 
         $this->dispatcher->registerResponse('/users/me', 401, null, '{ "errors": [{ "message": "Not Authorized" }]}');
 
-        $this->client->users->me();
+        $this->client->users->getUser('me');
     }
 
     public function testInvalidRequest()
@@ -34,7 +34,7 @@ class ClientTest extends Test\AsanaTest
 
         $this->dispatcher->registerResponse('/tasks?limit=50', 400, null, '{ "errors": [{ "message": "Missing input" }] }');
 
-        $this->client->tasks->findAll(null, array('iterator_type' => false));
+        $this->client->tasks->getTasks(null, array('iterator_type' => false));
     }
 
     public function testServerError()
@@ -44,7 +44,7 @@ class ClientTest extends Test\AsanaTest
         $res = '{ "errors": [ { "message": "Server Error", "phrase": "6 sad squid snuggle softly" } ] }';
         $this->dispatcher->registerResponse('/users/me', 500, null, $res);
 
-        $this->client->users->me();
+        $this->client->users->getUser('me');
     }
 
     public function testNotFound()
@@ -54,7 +54,7 @@ class ClientTest extends Test\AsanaTest
         $res = '{ "errors": [ { "message": "user: Unknown object: 1234" } ] }';
         $this->dispatcher->registerResponse('/users/1234', 404, null, $res);
 
-        $this->client->users->findById(1234);
+        $this->client->users->getUser(1234);
     }
 
     public function testForbidden()
@@ -64,21 +64,21 @@ class ClientTest extends Test\AsanaTest
         $res = '{ "errors": [ { "message": "user: Forbidden" } ] }';
         $this->dispatcher->registerResponse('/users/1234', 403, null, $res);
 
-        $this->client->users->findById(1234);
+        $this->client->users->getUser(1234);
     }
 
     public function testOptionPretty()
     {
         $this->dispatcher->registerResponse('/users/me?opt_pretty=true', 200, null, '{ "data": "foo" }');
 
-        $this->assertEquals($this->client->users->me(null, array('pretty' => true)), 'foo');
+        $this->assertEquals($this->client->users->getUser('me', null, array('pretty' => true)), 'foo');
     }
 
     public function testOptionFields()
     {
         $this->dispatcher->registerResponse('/tasks/1224?opt_fields=name%2Cnotes', 200, null, '{ "data": "foo" }');
 
-        $result = $this->client->tasks->findById(1224, null, array("fields" => array('name','notes')));
+        $result = $this->client->tasks->getTask(1224, null, array("fields" => array('name','notes')));
         $this->assertEquals($result, 'foo');
     }
 
@@ -87,7 +87,7 @@ class ClientTest extends Test\AsanaTest
         $req = '{ "data": { "assignee": 1234 }, "options": { "expand" : ["projects"] } }';
         $this->dispatcher->registerResponse('/tasks/1001', 200, null, '{ "data": "foo" }');
 
-        $result = $this->client->tasks->update(1001, array('assignee' => 1234), array('expand' => array('projects')));
+        $result = $this->client->tasks->updateTask(1001, array('assignee' => 1234), array('expand' => array('projects')));
         $this->assertEquals($result, 'foo');
         $this->assertEquals(json_decode($this->dispatcher->calls[0]['request']->payload), json_decode($req));
     }
@@ -107,7 +107,7 @@ class ClientTest extends Test\AsanaTest
         $this->dispatcher->registerResponse('/projects/1337/tasks?limit=5&offset=ABCDEF', 200, null, $res);
 
         $options = array( 'limit' => 5, 'offset' => 'ABCDEF', 'iterator_type' => false );
-        $result = $this->client->tasks->findByProject(1337, null, $options);
+        $result = $this->client->tasks->getTasksForProject(1337, null, $options);
         $this->assertEquals($result, json_decode($res));
     }
 
@@ -120,7 +120,7 @@ class ClientTest extends Test\AsanaTest
         $this->dispatcher->registerResponse('/projects/1337/tasks?limit=2', 200, null, $res);
 
         $options = array('item_limit' => 2, 'page_size' => 2, 'iterator_type' => 'items');
-        $iterator = $this->client->tasks->findByProject(1337, null, $options);
+        $iterator = $this->client->tasks->getTasksForProject(1337, null, $options);
         $iterator->rewind();
         $this->assertEquals($iterator->valid(), true);
         $this->assertEquals($iterator->current(), 'a');
@@ -142,7 +142,7 @@ class ClientTest extends Test\AsanaTest
         $this->dispatcher->registerResponse('/projects/1337/tasks?limit=1&offset=a', 200, null, $res);
 
         $options = array('item_limit' => 3, 'page_size' => 2, 'iterator_type' => 'items');
-        $iterator = $this->client->tasks->findByProject(1337, null, $options);
+        $iterator = $this->client->tasks->getTasksForProject(1337, null, $options);
         $iterator->rewind();
         $this->assertEquals($iterator->valid(), true);
         $this->assertEquals($iterator->current(), 'a');
@@ -167,7 +167,7 @@ class ClientTest extends Test\AsanaTest
         $this->dispatcher->registerResponse('/projects/1337/tasks?limit=2&offset=a', 200, null, $res);
 
         $options = array('item_limit' => 4, 'page_size' => 2, 'iterator_type' => 'items');
-        $iterator = $this->client->tasks->findByProject(1337, null, $options);
+        $iterator = $this->client->tasks->getTasksForProject(1337, null, $options);
         $iterator->rewind();
         $this->assertEquals($iterator->valid(), true);
         $this->assertEquals($iterator->current(), 'a');
@@ -192,7 +192,7 @@ class ClientTest extends Test\AsanaTest
         $this->dispatcher->registerResponse('/projects/1337/tasks?limit=1&offset=a&opt_fields=foo', 200, null, $res);
 
         $options = array('fields' => array('foo'), 'item_limit' => 3, 'page_size' => 2, 'iterator_type' => 'items');
-        $iterator = $this->client->tasks->findByProject(1337, null, $options);
+        $iterator = $this->client->tasks->getTasksForProject(1337, null, $options);
         $iterator->rewind();
         $this->assertEquals($iterator->valid(), true);
         $this->assertEquals($iterator->current(), 'a');
@@ -220,7 +220,7 @@ class ClientTest extends Test\AsanaTest
             }
         );
 
-        $result = $this->client->users->me();
+        $result = $this->client->users->getUser('me');
         $this->assertEquals($result, 'me');
         $this->assertEquals(count($this->dispatcher->calls), 2);
         $this->assertEquals($sleepCalls, array(0.1));
@@ -241,7 +241,7 @@ class ClientTest extends Test\AsanaTest
             }
         );
 
-        $result = $this->client->users->me();
+        $result = $this->client->users->getUser('me');
         $this->assertEquals($result, 'me');
         $this->assertEquals(count($this->dispatcher->calls), 3);
         $this->assertEquals($sleepCalls, array(0.1, 0.1));
@@ -261,7 +261,7 @@ class ClientTest extends Test\AsanaTest
             }
         );
 
-        $result = $this->client->users->me(null, array('max_retries' => 1));
+        $result = $this->client->users->getUser('me', null, array('max_retries' => 1));
         $this->assertEquals(count($this->dispatcher->calls), 2);
         $this->assertEquals($sleepCalls, array(1.0));
     }
@@ -282,7 +282,7 @@ class ClientTest extends Test\AsanaTest
             }
         );
 
-        $result = $this->client->users->me();
+        $result = $this->client->users->getUser('me');
         $this->assertEquals(count($this->dispatcher->calls), 4);
         $this->assertEquals($sleepCalls, array(1.0, 2.0, 4.0));
     }
@@ -293,7 +293,7 @@ class ClientTest extends Test\AsanaTest
         $this->dispatcher->registerResponse('/tasks?limit=50&workspace=14916&assignee=me', 200, null, $res);
 
         $options = array('iterator_type' => false);
-        $result = $this->client->tasks->findAll(array('workspace' => 14916, 'assignee' => 'me'), $options);
+        $result = $this->client->tasks->getTasks(array('workspace' => 14916, 'assignee' => 'me'), $options);
         $this->assertEquals($result, json_decode('{ "data": "foo" }'));
     }
 
@@ -308,7 +308,7 @@ class ClientTest extends Test\AsanaTest
         }';
         $this->dispatcher->registerResponse('/tasks', 201, null, '{ "data": "foo" }');
 
-        $result = $this->client->tasks->create(
+        $result = $this->client->tasks->createTask(
             array('assignee' => 1235, 'followers' => array(5678), 'name' => "Hello, world.")
         );
         $this->assertEquals($result, 'foo');
@@ -326,7 +326,7 @@ class ClientTest extends Test\AsanaTest
         }';
         $this->dispatcher->registerResponse('/tasks/1001', 200, null, '{ "data": "foo" }');
 
-        $result = $this->client->tasks->update(
+        $result = $this->client->tasks->updateTask(
             1001,
             array('assignee' => 1235, 'followers' => array(5678), 'name' => "Hello, world.")
         );
@@ -344,7 +344,7 @@ class ClientTest extends Test\AsanaTest
             null,
             '{ "data": "foo" }');
 
-        $this->client->tasks->update(
+        $this->client->tasks->updateTask(
             1001,
             array('assignee' => 1235, 'followers' => array(5678), 'name' => "Hello, world.")
         );
@@ -362,7 +362,7 @@ class ClientTest extends Test\AsanaTest
             array('asana-change' => 'name=string_ids;info=something;affected=true'),
             '{ "data": "foo" }');
 
-        $this->client->tasks->update(
+        $this->client->tasks->updateTask(
             1001,
             array('assignee' => 1235, 'followers' => array(5678), 'name' => "Hello, world."),
             array('headers' => array('asana-enable' => 'string_ids'))
@@ -381,7 +381,7 @@ class ClientTest extends Test\AsanaTest
             array('asana-change' => 'name=string_ids;info=something;affected=true'),
             '{ "data": "foo" }');
 
-        $this->client->tasks->update(
+        $this->client->tasks->updateTask(
             1001,
             array('assignee' => 1235, 'followers' => array(5678), 'name' => "Hello, world."),
             array('headers' => array('asana-disable' => 'string_ids'))
@@ -400,7 +400,7 @@ class ClientTest extends Test\AsanaTest
             array('asana-change' => 'name=string_ids;info=something;affected=true'),
             '{ "data": "foo" }');
 
-        $this->client->tasks->update(
+        $this->client->tasks->updateTask(
             1001,
             array('assignee' => 1235, 'followers' => array(5678), 'name' => "Hello, world.")
         );
@@ -418,7 +418,7 @@ class ClientTest extends Test\AsanaTest
             array('asana-change' => 'name=string_ids;info=something;affected=true,name=new_sections;info=something;affected=true'),
             '{ "data": "foo" }');
 
-        $this->client->tasks->update(
+        $this->client->tasks->updateTask(
             1001,
             array('assignee' => 1235, 'followers' => array(5678), 'name' => "Hello, world.")
         );
