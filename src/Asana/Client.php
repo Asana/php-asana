@@ -38,6 +38,40 @@ class Client
     private static $CLIENT_OPTIONS  = null;
     private static $ALL_OPTIONS     = null;
 
+    public $dispatcher;
+    public $options;
+    public $attachments;
+    public $auditlogapi;
+    public $batchapi;
+    public $customfields;
+    public $customfieldsettings;
+    public $events;
+    public $goalrelationships;
+    public $goals;
+    public $jobs;
+    public $organizationexports;
+    public $portfolios;
+    public $projectbriefs;
+    public $portfoliomemberships;
+    public $projects;
+    public $projectmemberships;
+    public $projectstatuses;
+    public $projecttemplates;
+    public $stories;
+    public $sections;
+    public $statusupdates;
+    public $tags;
+    public $tasks;
+    public $teammemberships;
+    public $teams;
+    public $timeperiods;
+    public $typeahead;
+    public $users;
+    public $usertasklists;
+    public $webhooks;
+    public $workspacememberships;
+    public $workspaces;
+
     public function __construct($dispatcher, $options = array())
     {
         Client::bootstrap();
@@ -234,7 +268,7 @@ class Client
             }
             return $this->get($path, $query, $options);
         }
-        throw Exception('Unknown value for "iterator_type" option: ' . (string)$options['iterator_type']);
+        throw new \Exception('Unknown value for "iterator_type" option: ' . (string)$options['iterator_type']);
     }
 
     public function post($path, $data, $options = array())
