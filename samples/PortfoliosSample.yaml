@@ -2,7 +2,7 @@ portfolios:
     addCustomFieldSettingForPortfolio: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -12,7 +12,7 @@ portfolios:
     addItemForPortfolio: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -22,7 +22,7 @@ portfolios:
     addMembersForPortfolio: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -32,7 +32,7 @@ portfolios:
     createPortfolio: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -42,7 +42,7 @@ portfolios:
     deletePortfolio: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -52,7 +52,7 @@ portfolios:
     getItemsForPortfolio: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -62,7 +62,7 @@ portfolios:
     getPortfolio: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -72,7 +72,7 @@ portfolios:
     getPortfolios: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -82,7 +82,7 @@ portfolios:
     removeCustomFieldSettingForPortfolio: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -92,7 +92,7 @@ portfolios:
     removeItemForPortfolio: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -102,7 +102,7 @@ portfolios:
     removeMembersForPortfolio: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -112,7 +112,7 @@ portfolios:
     updatePortfolio: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');

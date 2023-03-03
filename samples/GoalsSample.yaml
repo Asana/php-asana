@@ -2,7 +2,7 @@ goals:
     addFollowers: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -12,7 +12,7 @@ goals:
     createGoal: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -22,7 +22,7 @@ goals:
     createGoalMetric: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -32,7 +32,7 @@ goals:
     deleteGoal: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -42,7 +42,7 @@ goals:
     getGoal: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -52,7 +52,7 @@ goals:
     getGoals: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -62,7 +62,7 @@ goals:
     getParentGoalsForGoal: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -72,7 +72,7 @@ goals:
     removeFollowers: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -82,7 +82,7 @@ goals:
     updateGoal: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -92,7 +92,7 @@ goals:
     updateGoalMetric: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');

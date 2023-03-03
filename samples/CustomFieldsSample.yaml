@@ -2,7 +2,7 @@ customfields:
     createCustomField: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -12,7 +12,7 @@ customfields:
     createEnumOptionForCustomField: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -22,7 +22,7 @@ customfields:
     deleteCustomField: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -32,7 +32,7 @@ customfields:
     getCustomField: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -42,7 +42,7 @@ customfields:
     getCustomFieldsForWorkspace: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -52,7 +52,7 @@ customfields:
     insertEnumOptionForCustomField: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -62,7 +62,7 @@ customfields:
     updateCustomField: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -72,7 +72,7 @@ customfields:
     updateEnumOption: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');

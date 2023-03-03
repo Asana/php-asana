@@ -2,7 +2,7 @@ attachments:
     createAttachmentForObject: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -12,7 +12,7 @@ attachments:
     deleteAttachment: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -22,7 +22,7 @@ attachments:
     getAttachment: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -32,7 +32,7 @@ attachments:
     getAttachmentsForObject: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');

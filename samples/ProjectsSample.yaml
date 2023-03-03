@@ -2,7 +2,7 @@ projects:
     addCustomFieldSettingForProject: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -12,7 +12,7 @@ projects:
     addFollowersForProject: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -22,7 +22,7 @@ projects:
     addMembersForProject: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -32,7 +32,7 @@ projects:
     createProject: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -42,7 +42,7 @@ projects:
     createProjectForTeam: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -52,7 +52,7 @@ projects:
     createProjectForWorkspace: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -62,7 +62,7 @@ projects:
     deleteProject: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -72,7 +72,7 @@ projects:
     duplicateProject: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -82,7 +82,7 @@ projects:
     getProject: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -92,7 +92,7 @@ projects:
     getProjects: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -102,7 +102,7 @@ projects:
     getProjectsForTask: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -112,7 +112,7 @@ projects:
     getProjectsForTeam: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -122,7 +122,7 @@ projects:
     getProjectsForWorkspace: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -132,7 +132,7 @@ projects:
     getTaskCountsForProject: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -142,7 +142,7 @@ projects:
     projectSaveAsTemplate: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -152,7 +152,7 @@ projects:
     removeCustomFieldSettingForProject: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -162,7 +162,7 @@ projects:
     removeFollowersForProject: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -172,7 +172,7 @@ projects:
     removeMembersForProject: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
@@ -182,7 +182,7 @@ projects:
     updateProject: >-
         <?php
 
-        require 'php-asana/vendor/autoload.php';
+        require 'vendor/autoload.php';
 
 
         $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
