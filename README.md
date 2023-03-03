@@ -13,7 +13,7 @@ If you use [Composer](https://getcomposer.org/) to manage dependencies you can i
 ```json
 {
     "require": {
-        "asana/asana": "^1.0.4"
+        "asana/asana": "^1.0.5"
     }
 }
 ```
@@ -233,6 +233,7 @@ generated code, hence they shouldn't be modified by hand.
 5. Commit the change.
 6. Tag the commit with `v` plus the same version number you set in the file. `git tag v1.2.3`
 7. Push changes to origin, including tags: `git push origin master --tags`
+8. Log into [packagist.org](https://packagist.org/login/) and click on the update button
 
 The rest is automatically done by Composer / Packagist. Visit [the asana package](https://packagist.org/packages/asana/asana) to verify the package was published.
 
