@@ -1,0 +1,41 @@
+memberships:
+    createMembership: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->memberships->createMembership(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+    deleteMembership: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->memberships->deleteMembership($membership_gid, array('opt_pretty' => 'true'))
+    getMemberships: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->memberships->getMemberships(array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+    updateMembership: >-
+        <?php
+
+        require 'php-asana/vendor/autoload.php';
+
+
+        $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+
+        $result = $client->memberships->updateMembership($membership_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
