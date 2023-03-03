@@ -55,6 +55,7 @@ class Client
         $this->goalrelationships = new Resources\GoalRelationships($this);
         $this->goals = new Resources\Goals($this);
         $this->jobs = new Resources\Jobs($this);
+        $this->memberships = new Resources\Memberships($this);
         $this->organizationexports = new Resources\OrganizationExports($this);
         $this->portfolios = new Resources\Portfolios($this);
         $this->projectbriefs = new Resources\ProjectBriefs($this);
