@@ -9,6 +9,8 @@ class RateLimitEnforcedError extends RetryableAsanaError
     const MESSAGE = 'Rate Limit Enforced';
     const STATUS = 429;
 
+    public $retryAfter;
+
     public function __construct($response)
     {
         parent::__construct(self::MESSAGE, self::STATUS, $response);

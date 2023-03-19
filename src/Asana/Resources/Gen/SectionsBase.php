@@ -3,6 +3,7 @@
 namespace Asana\Resources\Gen;
 
 class SectionsBase {
+    public $client;
 
     /**
      * @param Asana/Client client  The client instance
@@ -17,7 +18,7 @@ class SectionsBase {
      * @param string $section_gid  (required) The globally unique identifier for the section.
      * @param array $params
      * @param array $options
-     * @return response
+     * @return \stdClass response
      */
     public function addTaskForSection($section_gid, $params = array(), $options = array()) {
         $path = "/sections/{section_gid}/addTask";
@@ -30,7 +31,7 @@ class SectionsBase {
      * @param string $project_gid  (required) Globally unique identifier for the project.
      * @param array $params
      * @param array $options
-     * @return response
+     * @return \stdClass response
      */
     public function createSectionForProject($project_gid, $params = array(), $options = array()) {
         $path = "/projects/{project_gid}/sections";
@@ -43,7 +44,7 @@ class SectionsBase {
      * @param string $section_gid  (required) The globally unique identifier for the section.
      * @param array $params
      * @param array $options
-     * @return response
+     * @return \stdClass response
      */
     public function deleteSection($section_gid, $params = array(), $options = array()) {
         $path = "/sections/{section_gid}";
@@ -56,7 +57,7 @@ class SectionsBase {
      * @param string $section_gid  (required) The globally unique identifier for the section.
      * @param array $params
      * @param array $options
-     * @return response
+     * @return \stdClass response
      */
     public function getSection($section_gid, $params = array(), $options = array()) {
         $path = "/sections/{section_gid}";
@@ -69,7 +70,7 @@ class SectionsBase {
      * @param string $project_gid  (required) Globally unique identifier for the project.
      * @param array $params
      * @param array $options
-     * @return response
+     * @return \stdClass response
      */
     public function getSectionsForProject($project_gid, $params = array(), $options = array()) {
         $path = "/projects/{project_gid}/sections";
@@ -82,7 +83,7 @@ class SectionsBase {
      * @param string $project_gid  (required) Globally unique identifier for the project.
      * @param array $params
      * @param array $options
-     * @return response
+     * @return \stdClass response
      */
     public function insertSectionForProject($project_gid, $params = array(), $options = array()) {
         $path = "/projects/{project_gid}/sections/insert";
@@ -95,7 +96,7 @@ class SectionsBase {
      * @param string $section_gid  (required) The globally unique identifier for the section.
      * @param array $params
      * @param array $options
-     * @return response
+     * @return \stdClass response
      */
     public function updateSection($section_gid, $params = array(), $options = array()) {
         $path = "/sections/{section_gid}";
