@@ -4,6 +4,7 @@ namespace Asana\Resources;
 
 use Asana\Resources\Gen\PortfoliosBase;
 
+#[\AllowDynamicProperties]
 class Portfolios extends PortfoliosBase
 {
     /**

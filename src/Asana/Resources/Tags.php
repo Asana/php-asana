@@ -4,6 +4,7 @@ namespace Asana\Resources;
 
 use Asana\Resources\Gen\TagsBase;
 
+#[\AllowDynamicProperties]
 class Tags extends TagsBase
 {
     /**

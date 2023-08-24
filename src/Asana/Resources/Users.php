@@ -4,6 +4,7 @@ namespace Asana\Resources;
 
 use Asana\Resources\Gen\UsersBase;
 
+#[\AllowDynamicProperties]
 class Users extends UsersBase
 {
     /**

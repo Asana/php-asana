@@ -4,6 +4,7 @@ namespace Asana\Resources;
 
 use Asana\Resources\Gen\UserTaskListsBase;
 
+#[\AllowDynamicProperties]
 class UserTaskLists extends UserTaskListsBase
 {
     /**

@@ -4,6 +4,7 @@ namespace Asana\Resources;
 
 use Asana\Resources\Gen\OrganizationExportsBase;
 
+#[\AllowDynamicProperties]
 class OrganizationExports extends OrganizationExportsBase
 {
     /**

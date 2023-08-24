@@ -4,6 +4,7 @@ namespace Asana\Resources;
 
 use Asana\Resources\Gen\ProjectMembershipsBase;
 
+#[\AllowDynamicProperties]
 class ProjectMemberships extends ProjectMembershipsBase
 {
     /**
