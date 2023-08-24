@@ -4,6 +4,7 @@ namespace Asana\Resources;
 
 use Asana\Resources\Gen\CustomFieldSettingsBase;
 
+#[\AllowDynamicProperties]
 class CustomFieldSettings extends CustomFieldSettingsBase
 {
     /**

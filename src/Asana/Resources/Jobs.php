@@ -4,6 +4,7 @@ namespace Asana\Resources;
 
 use Asana\Resources\Gen\JobsBase;
 
+#[\AllowDynamicProperties]
 class Jobs extends JobsBase
 {
     /**

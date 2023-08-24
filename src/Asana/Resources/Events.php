@@ -5,6 +5,7 @@ namespace Asana\Resources;
 use Asana\Resources\Gen\EventsBase;
 use Asana\Iterator\EventsPageIterator;
 
+#[\AllowDynamicProperties]
 class Events extends EventsBase
 {
     /**

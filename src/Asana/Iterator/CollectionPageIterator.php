@@ -4,6 +4,7 @@ namespace Asana\Iterator;
 
 use Asana\Iterator\PageIterator;
 
+#[\AllowDynamicProperties]
 class CollectionPageIterator extends PageIterator
 {
     public $sync = null;

@@ -4,6 +4,7 @@ namespace Asana\Resources;
 
 use Asana\Resources\Gen\TeamsBase;
 
+#[\AllowDynamicProperties]
 class Teams extends TeamsBase
 {
     /**
