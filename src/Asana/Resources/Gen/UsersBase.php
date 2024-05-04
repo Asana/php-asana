@@ -4,6 +4,8 @@ namespace Asana\Resources\Gen;
 
 class UsersBase {
 
+    public $client;
+
     /**
      * @param Asana/Client client  The client instance
      */
