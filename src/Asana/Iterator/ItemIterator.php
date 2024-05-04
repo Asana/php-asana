@@ -4,6 +4,12 @@ namespace Asana\Iterator;
 
 class ItemIterator implements \Iterator
 {
+
+    public $pages;
+    public $items;
+    public $item;
+    public $itemIndex;
+
     public function __construct($pages)
     {
         $this->pages = $pages;

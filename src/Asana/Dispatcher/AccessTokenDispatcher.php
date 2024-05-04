@@ -4,6 +4,9 @@ namespace Asana\Dispatcher;
 
 class AccessTokenDispatcher extends Dispatcher
 {
+
+    public $accessToken;
+
     public function __construct($accessToken)
     {
         parent::__construct();

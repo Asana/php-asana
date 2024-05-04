@@ -10,6 +10,17 @@ abstract class PageIterator implements \Iterator
     abstract protected function getNext();
     abstract protected function getContinuation($result);
 
+    public $client;
+    public $path;
+    public $query;
+    public $options;
+    public $itemLimit;
+    public $pageSize;
+    public $count;
+    public $continuation;
+    public $currentPage;
+    public $currentPageNumber;
+
     public function __construct($client, $path, $query, $options)
     {
         $this->client = $client;
