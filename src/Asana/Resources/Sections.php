@@ -4,6 +4,7 @@ namespace Asana\Resources;
 
 use Asana\Resources\Gen\SectionsBase;
 
+#[\AllowDynamicProperties]
 class Sections extends SectionsBase
 {
     /**

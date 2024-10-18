@@ -4,6 +4,7 @@ namespace Asana\Resources;
 
 use Asana\Resources\Gen\CustomFieldsBase;
 
+#[\AllowDynamicProperties]
 class CustomFields extends CustomFieldsBase
 {
     public function addEnumOption($customField, $params = array(), $options = array())

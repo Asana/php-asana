@@ -16,6 +16,7 @@ use Asana\Resources\ProjectMemberships;
 use Asana\Resources\Projects;
 use Asana\Resources\Users;
 
+#[\AllowDynamicProperties]
 class Client
 {
     const RETRY_DELAY = 1.0;
