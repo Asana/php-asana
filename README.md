@@ -3,6 +3,9 @@
 [![Build Status][github-actions-image]][github-actions-url]
 [![Packagist Version][packagist-image]][packagist-url]
 
+> [!CAUTION]
+> The Asana PHP SDK is no longer supported. While it remains available on [Packagist](https://packagist.org/packages/asana/asana), it will not receive bug fixes or enhancements (including new endpoints or data model changes). We recommend using PHP's [cURL](https://www.php.net/manual/en/book.curl.php) or similar HTTP libraries to make direct API requests instead.
+
 Official PHP client library for the Asana API v1
 
 ## Installation
