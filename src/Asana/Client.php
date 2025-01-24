@@ -72,6 +72,7 @@ class Client
         $this->teammemberships = new Resources\TeamMemberships($this);
         $this->teams = new Resources\Teams($this);
         $this->timeperiods = new Resources\TimePeriods($this);
+        $this->timetrackingentries = new Resources\TimeTrackingEntries($this);
         $this->typeahead = new Resources\Typeahead($this);
         $this->users = new Resources\Users($this);
         $this->usertasklists = new Resources\UserTaskLists($this);
