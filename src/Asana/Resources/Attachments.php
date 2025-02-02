@@ -4,6 +4,7 @@ namespace Asana\Resources;
 
 use Asana\Resources\Gen\AttachmentsBase;
 
+#[\AllowDynamicProperties]
 class Attachments extends AttachmentsBase
 {
     public function createOnTask($task, $content, $filename, $contentType, $options = array())

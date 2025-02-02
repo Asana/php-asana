@@ -4,6 +4,7 @@ namespace Asana\Resources;
 
 use Asana\Resources\Gen\TasksBase;
 
+#[\AllowDynamicProperties]
 class Tasks extends TasksBase
 {
     public function search($workspace, $params = array(), $options = array())

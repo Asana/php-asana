@@ -4,6 +4,7 @@ namespace Asana\Resources;
 
 use Asana\Resources\Gen\StoriesBase;
 
+#[\AllowDynamicProperties]
 class Stories extends StoriesBase
 {
     /**

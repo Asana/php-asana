@@ -4,6 +4,7 @@ namespace Asana\Resources;
 
 use Asana\Resources\Gen\ProjectStatusesBase;
 
+#[\AllowDynamicProperties]
 class ProjectStatuses extends ProjectStatusesBase
 {
     public function create($project, $params = array(), $options = array())

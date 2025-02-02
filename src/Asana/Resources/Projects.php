@@ -4,6 +4,7 @@ namespace Asana\Resources;
 
 use Asana\Resources\Gen\ProjectsBase;
 
+#[\AllowDynamicProperties]
 class Projects extends ProjectsBase
 {
     /**

@@ -4,6 +4,7 @@ namespace Asana\Resources;
 
 use Asana\Resources\Gen\WebhooksBase;
 
+#[\AllowDynamicProperties]
 class Webhooks extends WebhooksBase
 {
     /**
