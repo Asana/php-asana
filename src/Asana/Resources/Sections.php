@@ -101,14 +101,16 @@ class Sections extends SectionsBase
      *
      * This does not work for separators (tasks with the `resource_subtype` of section).
      *
+     * The task needs to be declared at `task` parameter.
+     *
      * @deprecated replace with addTaskForSection
      *
-     * @param  task The task to add to this section
+     * @param  section This section to be added by the task
      * @return response
      */
-    public function addTask($task, $params = array(), $options = array())
+    public function addTask($section, $params = array(), $options = array())
     {
-        $path = sprintf("/sections/%s/addTask", $task);
+        $path = sprintf("/sections/%s/addTask", $section);
         return $this->client->post($path, $params, $options);
     }
 
