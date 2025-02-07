@@ -1,5 +1,5 @@
 {
-    "name": "asana/asana",
+    "name": "mikalaiprudnikau/asana",
     "description": "A PHP client for the Asana API",
     "type": "library",
     "keywords": ["asana", "client"],
